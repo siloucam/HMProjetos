@@ -1,0 +1,27 @@
+{
+    "hmProjetosApp": {
+        "parcela" : {
+            "home": {
+                "title": "Parcelas",
+                "createLabel": "Criar novo Parcela",
+                "createOrEditLabel": "Criar ou editar Parcela"
+            },
+            "created": "Um novo Parcela foi criado com o identificador {{ param }}",
+            "updated": "Um Parcela foi atualizado com o identificador {{ param }}",
+            "deleted": "Um Parcela foi deletado com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir Parcela {{ id }}?"
+            },
+            "detail": {
+                "title": "Parcela"
+            },
+            "descricao": "Descricao",
+            "status": "Status",
+            "valor": "Valor",
+            "dtestipulada": "Dtestipulada",
+            "dtefetuada": "Dtefetuada",
+            "transacao": "Transacao",
+            "orcamento": "Orcamento"
+        }
+    }
+}

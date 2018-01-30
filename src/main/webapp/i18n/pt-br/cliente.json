@@ -1,0 +1,31 @@
+{
+    "hmProjetosApp": {
+        "cliente" : {
+            "home": {
+                "title": "Clientes",
+                "createLabel": "Criar novo Cliente",
+                "createOrEditLabel": "Criar ou editar Cliente"
+            },
+            "created": "Um novo Cliente foi criado com o identificador {{ param }}",
+            "updated": "Um Cliente foi atualizado com o identificador {{ param }}",
+            "deleted": "Um Cliente foi deletado com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir Cliente {{ id }}?"
+            },
+            "detail": {
+                "title": "Cliente"
+            },
+            "nome": "Nome",
+            "endereco": "Endereco",
+            "bairro": "Bairro",
+            "cidade": "Cidade",
+            "estado": "Estado",
+            "cep": "Cep",
+            "email": "Email",
+            "indicacao": "Indicacao",
+            "documento": "Documento",
+            "telefone": "Telefone",
+            "servico": "Servico"
+        }
+    }
+}

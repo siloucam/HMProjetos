@@ -1,0 +1,103 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="mySituacaoLabel" data-translate="hmProjetosApp.situacao.home.createOrEditLabel">Create or edit a Situacao</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.situacao.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.situacao.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="hmProjetosApp.situacao.tipo" for="field_tipo">Tipo</label>
+            <select class="form-control" name="tipo" ng-model="vm.situacao.tipo" id="field_tipo" required>
+                <option value="FM" data-translate="hmProjetosApp.TipoSituacao.FM">FM</option>
+                <option value="FD_LIVRE" data-translate="hmProjetosApp.TipoSituacao.FD_LIVRE">FD_LIVRE</option>
+                <option value="FD_HC" data-translate="hmProjetosApp.TipoSituacao.FD_HC">FD_HC</option>
+                <option value="FCC_LOCAL" data-translate="hmProjetosApp.TipoSituacao.FCC_LOCAL">FCC_LOCAL</option>
+                <option value="FCC_LIGAR" data-translate="hmProjetosApp.TipoSituacao.FCC_LIGAR">FCC_LIGAR</option>
+                <option value="FCT" data-translate="hmProjetosApp.TipoSituacao.FCT">FCT</option>
+                <option value="R_INICIAL" data-translate="hmProjetosApp.TipoSituacao.R_INICIAL">R_INICIAL</option>
+                <option value="R_FINAL" data-translate="hmProjetosApp.TipoSituacao.R_FINAL">R_FINAL</option>
+                <option value="ARC" data-translate="hmProjetosApp.TipoSituacao.ARC">ARC</option>
+                <option value="ART" data-translate="hmProjetosApp.TipoSituacao.ART">ART</option>
+                <option value="EP" data-translate="hmProjetosApp.TipoSituacao.EP">EP</option>
+                <option value="D" data-translate="hmProjetosApp.TipoSituacao.D">D</option>
+            </select>
+            <div ng-show="editForm.tipo.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.tipo.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="hmProjetosApp.situacao.descricao" for="field_descricao">Descricao</label>
+            <input type="text" class="form-control" name="descricao" id="field_descricao"
+                    ng-model="vm.situacao.descricao"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="hmProjetosApp.situacao.terceiro" for="field_terceiro">Terceiro</label>
+            <input type="text" class="form-control" name="terceiro" id="field_terceiro"
+                    ng-model="vm.situacao.terceiro"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="hmProjetosApp.situacao.dtinicio" for="field_dtinicio">Dtinicio</label>
+                <div class="input-group">
+                    <input id="field_dtinicio" type="text" class="form-control" name="dtinicio" uib-datepicker-popup="{{dateformat}}" ng-model="vm.situacao.dtinicio" is-open="vm.datePickerOpenStatus.dtinicio"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('dtinicio')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="hmProjetosApp.situacao.dtfim" for="field_dtfim">Dtfim</label>
+                <div class="input-group">
+                    <input id="field_dtfim" type="text" class="form-control" name="dtfim" uib-datepicker-popup="{{dateformat}}" ng-model="vm.situacao.dtfim" is-open="vm.datePickerOpenStatus.dtfim"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('dtfim')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="hmProjetosApp.situacao.dtestipulada" for="field_dtestipulada">Dtestipulada</label>
+                <div class="input-group">
+                    <input id="field_dtestipulada" type="text" class="form-control" name="dtestipulada" uib-datepicker-popup="{{dateformat}}" ng-model="vm.situacao.dtestipulada" is-open="vm.datePickerOpenStatus.dtestipulada"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('dtestipulada')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+
+        <div class="form-group">
+            <label data-translate="hmProjetosApp.situacao.servico" for="field_servico">Servico</label>
+            <select class="form-control" id="field_servico" name="servico" ng-model="vm.situacao.servico" ng-options="servico as servico.id for servico in vm.servicos track by servico.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label data-translate="hmProjetosApp.situacao.responsavel" for="field_responsavel">Responsavel</label>
+            <select class="form-control" id="field_responsavel" name="responsavel" ng-model="vm.situacao.responsavel" ng-options="extendUser as extendUser.id for extendUser in vm.extendusers track by extendUser.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

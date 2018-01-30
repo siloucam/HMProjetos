@@ -1,0 +1,43 @@
+
+<div>
+    <h2><span data-translate="hmProjetosApp.transacao.detail.title">Transacao</span> {{vm.transacao.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="hmProjetosApp.transacao.valor">Valor</span></dt>
+        <dd>
+            <span>{{vm.transacao.valor}}</span>
+        </dd>
+        <dt><span data-translate="hmProjetosApp.transacao.data">Data</span></dt>
+        <dd>
+            <span>{{vm.transacao.data | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span data-translate="hmProjetosApp.transacao.descricao">Descricao</span></dt>
+        <dd>
+            <span>{{vm.transacao.descricao}}</span>
+        </dd>
+        <dt><span data-translate="hmProjetosApp.transacao.operacao">Operacao</span></dt>
+        <dd>
+            <span data-translate="{{'hmProjetosApp.OP.' + vm.transacao.operacao}}">{{vm.transacao.operacao}}</span>
+        </dd>
+        <dt><span data-translate="hmProjetosApp.transacao.parcela">Parcela</span></dt>
+        <dd>
+            <a ui-sref="parcela-detail({id:vm.transacao.parcela.id})">{{vm.transacao.parcela.id}}</a>
+        </dd>
+        <dt><span data-translate="hmProjetosApp.transacao.servico">Servico</span></dt>
+        <dd>
+            <a ui-sref="servico-detail({id:vm.transacao.servico.id})">{{vm.transacao.servico.id}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="transacao-detail.edit({id:vm.transacao.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

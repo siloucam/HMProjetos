@@ -1,0 +1,90 @@
+<div>
+    <h2>Serviços</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="servico.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span>
+                        Criar novo Serviço
+                    </span>
+                </button>
+            </div>
+            <div class="col-xs-4">
+                
+                    
+            </div>
+            <div class="col-xs-4 no-padding-right">
+
+                <div class="glyphicon glyphicon-search"></div>
+
+                <select class="form-control" name="filtrotipo" ng-model="vm.filtrotipo" id="field_tipo" style="width: 30%; display: inline-block;">
+                <option value=""></option>
+                <option value="PAQ" data-translate="hmProjetosApp.TipoServico.PAQ">PAQ</option>
+                <option value="ASS" data-translate="hmProjetosApp.TipoServico.ASS">ASS</option>
+                <option value="PRS" data-translate="hmProjetosApp.TipoServico.PRS">PRS</option>
+                </select>
+
+                <input type="text" placeholder="Buscar" class="form-control" name="filtronumero" id="field_nome"
+                    ng-model="vm.filtronumero" style="width: 50%; display: inline-block;" 
+                    />
+
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
+                    
+                   
+                    <th jh-sort-by="codigo"><span data-translate="hmProjetosApp.servico.codigo">Codigo</span> <span class="glyphicon glyphicon-sort"></span></th>
+                  
+                    
+                    <th jh-sort-by="inicio"><span data-translate="hmProjetosApp.servico.inicio">Inicio</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="fim"><span data-translate="hmProjetosApp.servico.fim">Fim</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    
+                    <th jh-sort-by="cliente.id"><span data-translate="hmProjetosApp.servico.cliente">Cliente</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
+                <tr ng-repeat="servico in vm.servicos track by servico.id">
+                    
+                    <td>{{servico.codigo}}</td>
+                   
+                        <td>{{servico.inicio | date:'mediumDate'}}</td>
+                        <td>{{servico.fim | date:'mediumDate'}}</td>
+
+                    <td>
+                        <a ui-sref="cliente-detail({id:servico.cliente.id})">{{servico.cliente.nome}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="servico-detail({id:servico.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="servico.edit({id:servico.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="servico.delete({id:servico.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

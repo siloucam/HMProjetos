@@ -1,0 +1,90 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myTransacaoLabel" >Criar ou editar Transação</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.transacao.id">
+            <label for="id" >ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.transacao.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label"  for="field_valor">Valor</label>
+            <input type="number" class="form-control" name="valor" id="field_valor"
+                    ng-model="vm.transacao.valor"
+                    required/>
+            <div ng-show="editForm.valor.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.valor.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.valor.$error.number" data-translate="entity.validation.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label"  for="field_data">Data</label>
+                <div class="input-group">
+                    <input id="field_data" type="text" class="form-control" name="data" uib-datepicker-popup="{{dateformat}}" ng-model="vm.transacao.data" is-open="vm.datePickerOpenStatus.data"
+                    required/>
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('data')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+            <div ng-show="editForm.data.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.data.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label"  for="field_descricao">Descricao</label>
+            <input type="text" class="form-control" name="descricao" id="field_descricao"
+                    ng-model="vm.transacao.descricao"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label"  for="field_operacao">Operacao</label>
+            <select class="form-control" name="operacao" ng-model="vm.transacao.operacao" id="field_operacao" required>
+                <option value="CREDITO" >CREDITO</option>
+                <option value="DEBITO" >DEBITO</option>
+                <option value="PARCELA" >PARCELA</option>
+            </select>
+            <div ng-show="editForm.operacao.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.operacao.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group" ng-if="vm.transacao.operacao == 'PARCELA'">
+            <label for="field_parcela">Parcela</label>
+            <select class="form-control" id="field_parcela" name="parcela" ng-model="vm.transacao.parcela" ng-options="parcela as parcela.id for parcela in vm.parcelas | orderBy:'id' track by parcela.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_servico">Servico</label>
+            <select class="form-control" id="field_servico" name="servico" ng-model="vm.transacao.servico" ng-options="servico as servico.id for servico in vm.servicos track by servico.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

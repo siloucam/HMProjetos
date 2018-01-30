@@ -1,0 +1,10 @@
+{
+    "hmProjetosApp": {
+        "OP" : {
+            "null": "",
+            "CREDITO": "CREDITO",
+            "DEBITO": "DEBITO",
+            "PARCELA": "PARCELA"
+        }
+    }
+}

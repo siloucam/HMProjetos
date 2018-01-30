@@ -1,0 +1,53 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "servico",
+            "otherEntityName": "servico",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "responsavel",
+            "otherEntityName": "extendUser",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "tipo",
+            "fieldType": "TipoSituacao",
+            "fieldValues": "FM,FD_LIVRE,FD_HC,FCC_LOCAL,FCC_LIGAR,FCT,R_INICIAL,R_FINAL,ARC,ART,EP,D",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "descricao",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "terceiro",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dtinicio",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "dtfim",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "dtestipulada",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "changelogDate": "20180126113228",
+    "entityTableName": "situacao",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

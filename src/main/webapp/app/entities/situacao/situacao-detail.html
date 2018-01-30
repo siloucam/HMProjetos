@@ -1,0 +1,51 @@
+
+<div>
+    <h2><span data-translate="hmProjetosApp.situacao.detail.title">Situacao</span> {{vm.situacao.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="hmProjetosApp.situacao.tipo">Tipo</span></dt>
+        <dd>
+            <span data-translate="{{'hmProjetosApp.TipoSituacao.' + vm.situacao.tipo}}">{{vm.situacao.tipo}}</span>
+        </dd>
+        <dt><span data-translate="hmProjetosApp.situacao.descricao">Descricao</span></dt>
+        <dd>
+            <span>{{vm.situacao.descricao}}</span>
+        </dd>
+        <dt><span data-translate="hmProjetosApp.situacao.terceiro">Terceiro</span></dt>
+        <dd>
+            <span>{{vm.situacao.terceiro}}</span>
+        </dd>
+        <dt><span data-translate="hmProjetosApp.situacao.dtinicio">Dtinicio</span></dt>
+        <dd>
+            <span>{{vm.situacao.dtinicio | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span data-translate="hmProjetosApp.situacao.dtfim">Dtfim</span></dt>
+        <dd>
+            <span>{{vm.situacao.dtfim | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span data-translate="hmProjetosApp.situacao.dtestipulada">Dtestipulada</span></dt>
+        <dd>
+            <span>{{vm.situacao.dtestipulada | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span data-translate="hmProjetosApp.situacao.servico">Servico</span></dt>
+        <dd>
+            <a ui-sref="servico-detail({id:vm.situacao.servico.id})">{{vm.situacao.servico.id}}</a>
+        </dd>
+        <dt><span data-translate="hmProjetosApp.situacao.responsavel">Responsavel</span></dt>
+        <dd>
+            <a ui-sref="extend-user-detail({id:vm.situacao.responsavel.id})">{{vm.situacao.responsavel.id}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="situacao-detail.edit({id:vm.situacao.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

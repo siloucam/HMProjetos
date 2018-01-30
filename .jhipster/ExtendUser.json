@@ -1,0 +1,32 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "user",
+            "otherEntityName": "user",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "extendUser"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "situacao",
+            "otherEntityName": "situacao",
+            "otherEntityRelationshipName": "responsavel"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "tipo",
+            "fieldType": "TipoCargo",
+            "fieldValues": "SECRETARIA,DESENHO,GERENCIA"
+        }
+    ],
+    "changelogDate": "20180126113221",
+    "entityTableName": "extend_user",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

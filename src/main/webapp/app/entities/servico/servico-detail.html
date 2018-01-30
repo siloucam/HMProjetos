@@ -1,0 +1,180 @@
+
+<div>
+    <h2>{{vm.servico.codigo}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="hmProjetosApp.servico.cliente">Cliente</span></dt>
+        <dd>
+            <a ui-sref="cliente-detail({id:vm.servico.cliente.id})">{{vm.servico.cliente.nome}}</a>
+        </dd>
+        <dt><span data-translate="hmProjetosApp.servico.tipo">Tipo</span></dt>
+        <dd>
+            <span data-translate="{{'hmProjetosApp.TipoServico.' + vm.servico.tipo}}">{{vm.servico.tipo}}</span>
+        </dd>
+        <dt><span data-translate="hmProjetosApp.servico.descricao">Descricao</span></dt>
+        <dd>
+            <span>{{vm.servico.descricao}}</span>
+        </dd>
+        <dt><span data-translate="hmProjetosApp.servico.endereco">Endereco</span></dt>
+        <dd>
+            <span>{{vm.servico.endereco}}</span>
+        </dd>
+        <dt><span data-translate="hmProjetosApp.servico.bairro">Bairro</span></dt>
+        <dd>
+            <span>{{vm.servico.bairro}}</span>
+        </dd>
+        <dt><span data-translate="hmProjetosApp.servico.cidade">Cidade</span></dt>
+        <dd>
+            <span>{{vm.servico.cidade}}</span>
+        </dd>
+        <dt><span data-translate="hmProjetosApp.servico.estado">Estado</span></dt>
+        <dd>
+            <span>{{vm.servico.estado}}</span>
+        </dd>
+        <dt><span data-translate="hmProjetosApp.servico.cep">Cep</span></dt>
+        <dd>
+            <span>{{vm.servico.cep}}</span>
+        </dd>
+        <dt><span data-translate="hmProjetosApp.servico.inicio">Inicio</span></dt>
+        <dd>
+            <span>{{vm.servico.inicio | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span data-translate="hmProjetosApp.servico.fim">Fim</span></dt>
+        <dd>
+            <span>{{vm.servico.fim | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span data-translate="hmProjetosApp.servico.iptu">Iptu</span></dt>
+        <dd>
+            <span>{{vm.servico.iptu}}</span>
+        </dd>
+        <dt><span data-translate="hmProjetosApp.servico.link">Link</span></dt>
+        <dd>
+            <span>{{vm.servico.link}}</span>
+        </dd>
+        
+        
+<dt><span>Orçamento</span></dt>
+<dd>
+<div>
+    <div class="container-fluid" ng-if="!TemOrcamento()">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ng-click="newOrcamento()" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="table-responsive" ng-if="TemOrcamento()">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    
+                    <th><span >Valor</span></th>
+                    
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="orcamento in vm.orcamentos track by orcamento.id">
+                   
+                    <td>{{orcamento.valor}}</td>
+                    
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="orcamento-detail({id:orcamento.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
+                            </button>
+                           
+                            
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</dd>
+
+<dt><span>Transações</span></dt>
+<dd >
+<div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ng-click="newTransacao()" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="table-responsive"  ng-if="TemTransacao()">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+
+                    <th><span >Valor</span></th>
+                    <th><span >Data</span></th>
+                    <th><span >Descricao</span></th>
+                    <th><span >Operação</span></th>
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="transacao in vm.transacaos track by transacao.id">
+
+                    <td>{{transacao.valor}}</td>
+                        <td>{{transacao.data | date:'mediumDate'}}</td>
+                    <td>{{transacao.descricao}}</td>
+                    <td data-translate="{{transacao.operacao}}">{{transacao.operacao}}</td>
+
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="transacao-detail({id:transacao.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="transacao.edit({id:transacao.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="transacao.delete({id:transacao.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</dd>
+
+        
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="servico-detail.edit({id:vm.servico.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

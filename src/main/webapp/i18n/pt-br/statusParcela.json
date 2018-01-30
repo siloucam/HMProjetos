@@ -1,0 +1,10 @@
+{
+    "hmProjetosApp": {
+        "StatusParcela" : {
+            "null": "",
+            "PENDENTE": "PENDENTE",
+            "EFETUADA": "EFETUADA",
+            "ATRASADA": "ATRASADA"
+        }
+    }
+}

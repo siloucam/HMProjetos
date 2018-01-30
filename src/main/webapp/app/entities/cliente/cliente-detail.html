@@ -1,0 +1,143 @@
+
+<div>
+    <h2><span></span> {{vm.cliente.nome}}</h2>
+    <hr>
+    <dl class="dl-horizontal jh-entity-details">
+        
+        <dt><span data-translate="hmProjetosApp.cliente.endereco">Endereco</span></dt>
+        <dd>
+            <span>{{vm.cliente.endereco}}</span>
+        </dd>
+        <dt><span data-translate="hmProjetosApp.cliente.bairro">Bairro</span></dt>
+        <dd>
+            <span>{{vm.cliente.bairro}}</span>
+        </dd>
+        <dt><span data-translate="hmProjetosApp.cliente.cidade">Cidade</span></dt>
+        <dd>
+            <span>{{vm.cliente.cidade}}</span>
+        </dd>
+        <dt><span data-translate="hmProjetosApp.cliente.estado">Estado</span></dt>
+        <dd>
+            <span>{{vm.cliente.estado}}</span>
+        </dd>
+        <dt><span data-translate="hmProjetosApp.cliente.cep">Cep</span></dt>
+        <dd>
+            <span>{{vm.cliente.cep}}</span>
+        </dd>
+        <dt><span data-translate="hmProjetosApp.cliente.email">Email</span></dt>
+        <dd>
+            <span>{{vm.cliente.email}}</span>
+        </dd>
+        <dt><span data-translate="hmProjetosApp.cliente.indicacao">Indicacao</span></dt>
+        <dd>
+            <span>{{vm.cliente.indicacao}}</span>
+        </dd>
+        <dt><span data-translate="hmProjetosApp.cliente.documento">Documento</span></dt>
+        <dd>
+            <span>{{vm.cliente.documento}}</span>
+        </dd>
+
+
+
+
+<dt><span>Telefones</span></dt>
+<dd>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ng-click="newTel()" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+        <div class="table-responsive" ng-if="TemTelefone()">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span>Contato</span></th>
+                    <th><span >Numero</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="telefone in vm.telefones track by telefone.id">
+                    <td>{{telefone.contato}}</td>
+                    <td>{{telefone.numero}}</td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button ng-click="deleteTel({id:telefone.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</dd>
+
+
+<dt><span>Serviços</span></dt>
+<dd>
+<div>
+    <br/>
+    <div class="table-responsive" ng-if="TemServico()">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span>Codigo</span></th>
+                    <th><span>Descricao</span></th>
+                    <th><span>Data de Inicio</span></th>
+                    <th><span>Data de Fim</span></th>
+                     <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="servico in vm.servicos track by servico.id">
+                    
+                    <td><a ui-sref="servico-detail({id:servico.id})">{{servico.codigo}}</a></td>
+                    <td>{{servico.descricao}}</td>
+                        <td>{{servico.inicio | date:'mediumDate'}}</td>
+                        <td>{{servico.fim | date:'mediumDate'}}</td>
+                        <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="servico-detail({id:servico.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+</dd>
+
+
+
+
+
+
+
+
+
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="cliente-detail.edit({id:vm.cliente.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

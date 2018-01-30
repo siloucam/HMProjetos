@@ -1,0 +1,50 @@
+(function() {
+    'use strict';
+    angular
+        .module('hmProjetosApp')
+        .factory('Servico', Servico);
+
+    Servico.$inject = ['$resource', 'DateUtils'];
+
+    function Servico ($resource, DateUtils) {
+        var resourceUrl =  'api/servicos/:id';
+
+        return $resource(resourceUrl, {}, {
+            'queryByCliente': {
+                url: 'api/servicos/clientes/:id',
+                method: 'GET',
+                isArray: true
+            },
+            'query': { method: 'GET', isArray: true},
+            'get': {
+                method: 'GET',
+                transformResponse: function (data) {
+                    if (data) {
+                        data = angular.fromJson(data);
+                        data.inicio = DateUtils.convertLocalDateFromServer(data.inicio);
+                        data.fim = DateUtils.convertLocalDateFromServer(data.fim);
+                    }
+                    return data;
+                }
+            },
+            'update': {
+                method: 'PUT',
+                transformRequest: function (data) {
+                    var copy = angular.copy(data);
+                    copy.inicio = DateUtils.convertLocalDateToServer(copy.inicio);
+                    copy.fim = DateUtils.convertLocalDateToServer(copy.fim);
+                    return angular.toJson(copy);
+                }
+            },
+            'save': {
+                method: 'POST',
+                transformRequest: function (data) {
+                    var copy = angular.copy(data);
+                    copy.inicio = DateUtils.convertLocalDateToServer(copy.inicio);
+                    copy.fim = DateUtils.convertLocalDateToServer(copy.fim);
+                    return angular.toJson(copy);
+                }
+            }
+        });
+    }
+})();

@@ -1,0 +1,76 @@
+<div>
+    <h2 data-translate="hmProjetosApp.cliente.home.title">Clientes</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="cliente.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="hmProjetosApp.cliente.home.createLabel">
+                        Create new Cliente
+                    </span>
+                </button>
+            </div>
+            <div class="col-xs-4">
+                
+                    
+            </div>
+            <div class="col-xs-4 no-padding-right">
+
+                <div class="glyphicon glyphicon-search"></div>
+                <input type="text" placeholder="Buscar" class="form-control" name="filtro" id="field_nome"
+                    ng-model="vm.filtro" style="width: 80%; display: inline-block;" 
+                    />
+
+            </div>
+            
+        </div>
+    </div>
+
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span data-translate="hmProjetosApp.cliente.nome">Nome</span></th>
+                    <th><span data-translate="hmProjetosApp.cliente.endereco">Endereco</span></th>
+                    <th><span data-translate="hmProjetosApp.cliente.bairro">Bairro</span></th>
+                    <th><span data-translate="hmProjetosApp.cliente.cidade">Cidade</span></th>
+                    <th><span data-translate="hmProjetosApp.cliente.documento">Documento</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="cliente in vm.clientes track by cliente.id">
+                    <td>{{cliente.nome}}</td>
+                    <td>{{cliente.endereco}}</td>
+                    <td>{{cliente.bairro}}</td>
+                    <td>{{cliente.cidade}}</td>
+                    <td>{{cliente.documento}}</td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="cliente-detail({id:cliente.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="cliente.edit({id:cliente.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="cliente.delete({id:cliente.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

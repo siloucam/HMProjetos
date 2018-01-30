@@ -1,0 +1,26 @@
+{
+    "hmProjetosApp": {
+        "transacao" : {
+            "home": {
+                "title": "Transacaos",
+                "createLabel": "Criar novo Transacao",
+                "createOrEditLabel": "Criar ou editar Transacao"
+            },
+            "created": "Um novo Transacao foi criado com o identificador {{ param }}",
+            "updated": "Um Transacao foi atualizado com o identificador {{ param }}",
+            "deleted": "Um Transacao foi deletado com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir Transacao {{ id }}?"
+            },
+            "detail": {
+                "title": "Transacao"
+            },
+            "valor": "Valor",
+            "data": "Data",
+            "descricao": "Descricao",
+            "operacao": "Operacao",
+            "parcela": "Parcela",
+            "servico": "Servico"
+        }
+    }
+}

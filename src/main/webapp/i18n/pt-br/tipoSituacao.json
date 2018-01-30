@@ -1,0 +1,19 @@
+{
+    "hmProjetosApp": {
+        "TipoSituacao" : {
+            "null": "",
+            "FM": "FM",
+            "FD_LIVRE": "FD_LIVRE",
+            "FD_HC": "FD_HC",
+            "FCC_LOCAL": "FCC_LOCAL",
+            "FCC_LIGAR": "FCC_LIGAR",
+            "FCT": "FCT",
+            "R_INICIAL": "R_INICIAL",
+            "R_FINAL": "R_FINAL",
+            "ARC": "ARC",
+            "ART": "ART",
+            "EP": "EP",
+            "D": "D"
+        }
+    }
+}

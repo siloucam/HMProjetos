@@ -1,0 +1,97 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "situacao",
+            "otherEntityName": "situacao",
+            "otherEntityRelationshipName": "servico"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "transacao",
+            "otherEntityName": "transacao",
+            "otherEntityRelationshipName": "servico"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "orcamento",
+            "otherEntityName": "orcamento",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "servico"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "cliente",
+            "otherEntityName": "cliente",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "tipo",
+            "fieldType": "TipoServico",
+            "fieldValues": "PAQ,ASS,PRS",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "codigo",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "descricao",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "endereco",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "bairro",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "cidade",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "estado",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 2
+        },
+        {
+            "fieldName": "cep",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "inicio",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "fim",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "iptu",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "link",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180126113224",
+    "entityTableName": "servico",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

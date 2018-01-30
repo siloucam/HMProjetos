@@ -1,0 +1,10 @@
+{
+    "hmProjetosApp": {
+        "TipoServico" : {
+            "null": "",
+            "PAQ": "PAQ",
+            "ASS": "ASS",
+            "PRS": "PRS"
+        }
+    }
+}

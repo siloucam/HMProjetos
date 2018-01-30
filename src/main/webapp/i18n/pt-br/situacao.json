@@ -1,0 +1,28 @@
+{
+    "hmProjetosApp": {
+        "situacao" : {
+            "home": {
+                "title": "Situacaos",
+                "createLabel": "Criar novo Situacao",
+                "createOrEditLabel": "Criar ou editar Situacao"
+            },
+            "created": "Um novo Situacao foi criado com o identificador {{ param }}",
+            "updated": "Um Situacao foi atualizado com o identificador {{ param }}",
+            "deleted": "Um Situacao foi deletado com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir Situacao {{ id }}?"
+            },
+            "detail": {
+                "title": "Situacao"
+            },
+            "tipo": "Tipo",
+            "descricao": "Descricao",
+            "terceiro": "Terceiro",
+            "dtinicio": "Dtinicio",
+            "dtfim": "Dtfim",
+            "dtestipulada": "Dtestipulada",
+            "servico": "Servico",
+            "responsavel": "Responsavel"
+        }
+    }
+}

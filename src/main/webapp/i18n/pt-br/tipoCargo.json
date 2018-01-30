@@ -1,0 +1,10 @@
+{
+    "hmProjetosApp": {
+        "TipoCargo" : {
+            "null": "",
+            "SECRETARIA": "SECRETARIA",
+            "DESENHO": "DESENHO",
+            "GERENCIA": "GERENCIA"
+        }
+    }
+}
