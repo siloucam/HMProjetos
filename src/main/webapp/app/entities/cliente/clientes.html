@@ -19,7 +19,7 @@
 
                 <div class="glyphicon glyphicon-search"></div>
                 <input type="text" placeholder="Buscar" class="form-control" name="filtro" id="field_nome"
-                    ng-model="vm.filtro" style="width: 80%; display: inline-block;" 
+                    ng-model="vm.filtro" ng-change="Filtrar()" style="width: 80%; display: inline-block;" 
                     />
 
             </div>
@@ -33,7 +33,7 @@
             <thead>
                 <tr>
                     <th><span data-translate="hmProjetosApp.cliente.nome">Nome</span></th>
-                    <th><span data-translate="hmProjetosApp.cliente.endereco">Endereco</span></th>
+                    <th><span>Endereço</span></th>
                     <th><span data-translate="hmProjetosApp.cliente.bairro">Bairro</span></th>
                     <th><span data-translate="hmProjetosApp.cliente.cidade">Cidade</span></th>
                     <th><span data-translate="hmProjetosApp.cliente.documento">Documento</span></th>
@@ -65,7 +65,7 @@
                                     ui-sref="cliente.delete({id:cliente.id})"
                                     class="btn btn-danger btn-sm">
                                 <span class="glyphicon glyphicon-remove-circle"></span>
-                                <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
+                                <span class="hidden-sm-down"></span>
                             </button>
                         </div>
                     </td>

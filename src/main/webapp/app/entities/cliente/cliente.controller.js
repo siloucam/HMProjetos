@@ -5,19 +5,16 @@
         .module('hmProjetosApp')
         .controller('ClienteController', ClienteController);
 
-    ClienteController.$inject = ['Cliente'];
+    ClienteController.$inject = ['Cliente','$scope'];
 
-    function ClienteController(Cliente) {
+    function ClienteController(Cliente,$scope) {
 
         var vm = this;
 
         vm.clientes = [];
 
-        /* event listener */
-        document.getElementsByName("filtro")[0].addEventListener('change', Filtrar);
-
         /* function */
-        function Filtrar(){
+         $scope.Filtrar = function(){
 
             Cliente.query(function(result) {
 
@@ -47,6 +44,9 @@
 
         function loadAll() {
             Cliente.query(function(result) {
+
+                
+
 
                 vm.clientes = result;
                 vm.searchQuery = null;

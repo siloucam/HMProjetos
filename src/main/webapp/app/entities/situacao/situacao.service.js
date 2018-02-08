@@ -10,6 +10,11 @@
         var resourceUrl =  'api/situacaos/:id';
 
         return $resource(resourceUrl, {}, {
+            'queryByServico': {
+                url: 'api/situacaos/servicos/:id',
+                method: 'GET',
+                isArray: true
+            },
             'query': { method: 'GET', isArray: true},
             'get': {
                 method: 'GET',

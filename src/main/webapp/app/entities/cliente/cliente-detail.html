@@ -6,24 +6,9 @@
         
         <dt><span data-translate="hmProjetosApp.cliente.endereco">Endereco</span></dt>
         <dd>
-            <span>{{vm.cliente.endereco}}</span>
+            <span>{{vm.cliente.endereco}} - {{vm.cliente.bairro}} - {{vm.cliente.cidade}} - {{vm.cliente.estado}} - {{vm.cliente.cep}}</span>
         </dd>
-        <dt><span data-translate="hmProjetosApp.cliente.bairro">Bairro</span></dt>
-        <dd>
-            <span>{{vm.cliente.bairro}}</span>
-        </dd>
-        <dt><span data-translate="hmProjetosApp.cliente.cidade">Cidade</span></dt>
-        <dd>
-            <span>{{vm.cliente.cidade}}</span>
-        </dd>
-        <dt><span data-translate="hmProjetosApp.cliente.estado">Estado</span></dt>
-        <dd>
-            <span>{{vm.cliente.estado}}</span>
-        </dd>
-        <dt><span data-translate="hmProjetosApp.cliente.cep">Cep</span></dt>
-        <dd>
-            <span>{{vm.cliente.cep}}</span>
-        </dd>
+        
         <dt><span data-translate="hmProjetosApp.cliente.email">Email</span></dt>
         <dd>
             <span>{{vm.cliente.email}}</span>
@@ -82,16 +67,24 @@
 
 <dt><span>Serviços</span></dt>
 <dd>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ng-click="newServico()" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button>
+            </div>
+        </div>
+    </div>
 <div>
-    <br/>
     <div class="table-responsive" ng-if="TemServico()">
         <table class="jh-table table table-striped">
             <thead>
                 <tr>
-                    <th><span>Codigo</span></th>
+                    <th style="min-width:120px"><span>Codigo</span></th>
                     <th><span>Descricao</span></th>
-                    <th><span>Data de Inicio</span></th>
-                    <th><span>Data de Fim</span></th>
+                    <th style="min-width:100px"><span>Inicio</span></th>
+                    <th style="min-width:100px"><span>Fim</span></th>
                      <th></th>
                 </tr>
             </thead>

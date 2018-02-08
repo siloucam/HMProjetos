@@ -25,9 +25,9 @@
                 <option value="ASS" data-translate="hmProjetosApp.TipoServico.ASS">ASS</option>
                 <option value="PRS" data-translate="hmProjetosApp.TipoServico.PRS">PRS</option>
                 </select>
-
+                -
                 <input type="text" placeholder="Buscar" class="form-control" name="filtronumero" id="field_nome"
-                    ng-model="vm.filtronumero" style="width: 50%; display: inline-block;" 
+                    ng-model="vm.filtronumero" ng-change="Filtrar()" style="width: 50%; display: inline-block;" 
                     />
 
             </div>
@@ -40,13 +40,13 @@
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
                     
                    
-                    <th jh-sort-by="codigo"><span data-translate="hmProjetosApp.servico.codigo">Codigo</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="codigo"><span data-translate="hmProjetosApp.servico.codigo">Codigo</span><span class="glyphicon glyphicon-sort"></span>   </th>
                   
                     
-                    <th jh-sort-by="inicio"><span data-translate="hmProjetosApp.servico.inicio">Inicio</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="fim"><span data-translate="hmProjetosApp.servico.fim">Fim</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="inicio"><span data-translate="hmProjetosApp.servico.inicio">Inicio</span><span class="glyphicon glyphicon-sort"></span>   </th>
+                    <th jh-sort-by="fim"><span data-translate="hmProjetosApp.servico.fim">Fim</span><span class="glyphicon glyphicon-sort"></span>   </th>
                     
-                    <th jh-sort-by="cliente.id"><span data-translate="hmProjetosApp.servico.cliente">Cliente</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="cliente.id"><span data-translate="hmProjetosApp.servico.cliente">Cliente</span>   </th>
                     <th></th>
                 </tr>
             </thead>
@@ -54,10 +54,8 @@
                 <tr ng-repeat="servico in vm.servicos track by servico.id">
                     
                     <td>{{servico.codigo}}</td>
-                   
-                        <td>{{servico.inicio | date:'mediumDate'}}</td>
-                        <td>{{servico.fim | date:'mediumDate'}}</td>
-
+                        <td>{{servico.inicio | date:'shortDate'}}</td>
+                        <td>{{servico.fim | date:'shortDate'}}</td>
                     <td>
                         <a ui-sref="cliente-detail({id:servico.cliente.id})">{{servico.cliente.nome}}</a>
                     </td>

@@ -1,0 +1,23 @@
+{
+    "hmProjetosApp": {
+        "codigos" : {
+            "home": {
+                "title": "Codigos",
+                "createLabel": "Criar novo Codigos",
+                "createOrEditLabel": "Criar ou editar Codigos"
+            },
+            "created": "Um novo Codigos foi criado com o identificador {{ param }}",
+            "updated": "Um Codigos foi atualizado com o identificador {{ param }}",
+            "deleted": "Um Codigos foi deletado com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir Codigos {{ id }}?"
+            },
+            "detail": {
+                "title": "Codigos"
+            },
+            "tipo": "Tipo",
+            "ano": "Ano",
+            "numero": "Numero"
+        }
+    }
+}

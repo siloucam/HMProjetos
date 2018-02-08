@@ -14,64 +14,46 @@
         vm.clear = clear;
         vm.datePickerOpenStatus = {};
         vm.openCalendar = openCalendar;
+        
         vm.save = save;
         vm.servicos = Servico.query();
-
-        // var parcelas_servico = [];
-
-        // for(var i=0;i<vm.parcelas.length;i++){
-
-        //         if(vm.parcelas[i].servicoid == vm.servico.id){
-        //             parcelas_servico.push(vm.parcelas[i]);
-        //             }
-        //         }
-
-        // vm.parcelas = parcelas_servico;
         
-        vm.orcamento = Orcamento.queryByServico(vm.transacao.servico);
+        // vm.orcamento = Orcamento.queryByServico(vm.transacao.servico);
+        vm.orcamento = [];
 
-        // $scope.loadParcelas = function(){
-        
-        // console.log("D");
+        Orcamento.queryByServico({id: vm.transacao.servico.id}, function(result) {
+                vm.orcamento = result;
 
-        // console.log(vm.transacao.servico.id);
+                Parcela.queryByOrcamento({id: result[0].id}, function(result) {
+                
+                var parcelas = [];
 
-        // console.log(vm.orcamento);
+                //console.log(result);
 
+                for(var i = 0; i < result.length; i++){
+                    console.log(result[i]);
+                    if(result[i].status != "EFETUADA"){
+                        parcelas.push(result[i]);
+                    }
+                }
+
+                vm.parcelas = parcelas;
+                });
+
+                vm.searchQuery = null;
+            });
+
+
+        $scope.chooseParcela = function(){
+            vm.transacao.descricao = "Pagamento parcela " + vm.transacao.parcela.descricao;
+            vm.transacao.valor = vm.transacao.parcela.valor;
+        }
      
 
-     $timeout(function () {
-        vm.parcelas = Parcela.queryByOrcamento(vm.orcamento[0]);
-    }, 1000);
-
-        // console.log(vm.parcelas);
-
-        // }
-
-
-
-        // Promise.resolve(Orcamento.queryByServico(vm.transacao.servico)).then(function(value) {
-        //     console.log(value); // "Success"
-        //     console.log("Success for Orcamento");
-        //     vm.orcamento = value;
-
-        //     Promise.resolve(Parcela.queryByOrcamento(vm.orcamento)).then(function(value2) {
-        //     console.log(value2); // "Success"
-        //     console.log("Success for Parcela");
-
-        //     vm.parcelas = value2;
-        // }, function(value2) {
-        //  // not called
-        // });
-
-
-        // }, function(value) {
-        //  // not called
-        // });
-
-
-
-        
+    //  $timeout(function () {
+    //     vm.parcelas = Parcela.queryByOrcamento(vm.orcamento[0]);
+    // }, 1000);
+       
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
@@ -84,10 +66,33 @@
         function save () {
             vm.isSaving = true;
             if (vm.transacao.id !== null) {
+
+                if(vm.transacao.parcela!=null){
+                vm.transacao.parcela.dtefetuada = vm.transacao.data;
+
+                Parcela.update(vm.transacao.parcela, onParcelaSaveSuccess, onParcelaSaveError);
+                }
+
                 Transacao.update(vm.transacao, onSaveSuccess, onSaveError);
             } else {
+
+                //console.log(vm.transacao.parcela);
+                if(vm.transacao.parcela!=null){
+                vm.transacao.parcela.dtefetuada = vm.transacao.data;
+
+                Parcela.update(vm.transacao.parcela, onParcelaSaveSuccess, onParcelaSaveError);
+                }
+
                 Transacao.save(vm.transacao, onSaveSuccess, onSaveError);
             }
+        }
+
+         function onParcelaSaveSuccess (result) {
+            $scope.$emit('hmProjetosApp:parcelaUpdate', result);
+        }
+
+        function onParcelaSaveError () {
+        
         }
 
         function onSaveSuccess (result) {

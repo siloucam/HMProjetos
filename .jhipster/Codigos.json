@@ -1,0 +1,24 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "tipo",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "ano",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "numero",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20180205123722",
+    "entityTableName": "codigos",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

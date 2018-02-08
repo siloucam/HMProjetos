@@ -5,9 +5,9 @@
         .module('hmProjetosApp')
         .controller('ServicoController', ServicoController);
 
-    ServicoController.$inject = ['Servico', 'ParseLinks', 'AlertService', 'paginationConstants'];
+    ServicoController.$inject = ['Servico', 'ParseLinks', 'AlertService', 'paginationConstants','$scope'];
 
-    function ServicoController(Servico, ParseLinks, AlertService, paginationConstants) {
+    function ServicoController(Servico, ParseLinks, AlertService, paginationConstants, $scope) {
 
         var vm = this;
 
@@ -27,19 +27,13 @@
 
         loadAll();
 
-
-        /* function */
-
-        document.getElementsByName("filtrotipo")[0].addEventListener('change', Filtrar);
-        document.getElementsByName("filtronumero")[0].addEventListener('change', Filtrar);
-
-        function Filtrar(){
+        $scope.Filtrar = function(){
 
             Servico.query(function(result) {
 
                 var servicosfiltrados = [];
 
-                console.log("Filtrando por: " + vm.filtrotipo + " e " + vm.filtronumero)
+                //console.log("Filtrando por: " + vm.filtrotipo + " e " + vm.filtronumero)
 
                 
                 for(var i=0;i<result.length;i++){

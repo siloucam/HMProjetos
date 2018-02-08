@@ -5,9 +5,9 @@
         .module('hmProjetosApp')
         .factory('Auth', Auth);
 
-    Auth.$inject = ['$rootScope', '$state', '$sessionStorage', '$q', '$translate', 'Principal', 'AuthServerProvider', 'Account', 'LoginService', 'Register', 'Activate', 'Password', 'PasswordResetInit', 'PasswordResetFinish'];
+    Auth.$inject = ['ExtendUser','$rootScope', '$state', '$sessionStorage', '$q', '$translate', 'Principal', 'AuthServerProvider', 'Account', 'LoginService', 'Register', 'Activate', 'Password', 'PasswordResetInit', 'PasswordResetFinish'];
 
-    function Auth ($rootScope, $state, $sessionStorage, $q, $translate, Principal, AuthServerProvider, Account, LoginService, Register, Activate, Password, PasswordResetInit, PasswordResetFinish) {
+    function Auth (ExtendUser, $rootScope, $state, $sessionStorage, $q, $translate, Principal, AuthServerProvider, Account, LoginService, Register, Activate, Password, PasswordResetInit, PasswordResetFinish) {
         var service = {
             activateAccount: activateAccount,
             authorize: authorize,
@@ -92,6 +92,16 @@
 
             return Register.save(account,
                 function () {
+                    // console.log("IN SAVE");
+                    // console.log(account);
+
+                    // var extenduser = new ExtendUser();
+                    // extenduser.tipo = "SECRETARIA";
+                    // extenduser.user = account;
+                    // console.log(extenduser);
+
+                    // ExtendUser.save(extenduser);
+
                     return cb(account);
                 },
                 function (err) {

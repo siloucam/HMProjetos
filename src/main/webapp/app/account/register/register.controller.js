@@ -6,9 +6,9 @@
         .controller('RegisterController', RegisterController);
 
 
-    RegisterController.$inject = ['$translate', '$timeout', 'Auth', 'LoginService', 'errorConstants'];
+    RegisterController.$inject = ['$translate', '$timeout', 'Auth', 'LoginService', 'errorConstants','ExtendUser'];
 
-    function RegisterController ($translate, $timeout, Auth, LoginService, errorConstants) {
+    function RegisterController ($translate, $timeout, Auth, LoginService, errorConstants, ExtendUser) {
         var vm = this;
 
         vm.doNotMatch = null;

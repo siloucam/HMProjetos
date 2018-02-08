@@ -10,7 +10,7 @@
     function OrcamentoParcelaDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Parcela, Orcamento) {
         var vm = this;
 
-        var repetir = 0;
+        vm.repetir = 0;
 
         vm.parcela = entity;
         vm.clear = clear;
@@ -38,8 +38,25 @@
             if (vm.parcela.id !== null) {
                 Parcela.update(vm.parcela, onSaveSuccess, onSaveError);
             } else {
-                console.log(repetir);
-                Parcela.save(vm.parcela, onSaveSuccess, onSaveError);
+                console.log(vm.parcela.dtestipulada.getMonth());
+
+                var parcelas = [];
+                var mes = [];
+
+                for(var i=(vm.repetir);i>=0;i--){
+
+                    parcelas[i] = angular.copy(vm.parcela);
+
+                    mes[i] = angular.copy(vm.parcela.dtestipulada.getMonth()) + i;
+
+                    parcelas[i].dtestipulada.setMonth(mes[i]);
+
+                    parcelas[i].descricao = "(" + (i+1) + "/" + (vm.repetir+1) + ")";
+
+                console.log(parcelas[i].dtestipulada);
+                console.log(parcelas[i]);
+                Parcela.save(parcelas[i], onSaveSuccess, onSaveError);
+                }
             }
         }
 

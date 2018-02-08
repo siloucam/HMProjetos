@@ -30,6 +30,7 @@ public class ExtendUser implements Serializable {
 
     @OneToOne
     @JoinColumn(unique = true)
+    //@MapsId
     private User user;
 
     @OneToMany(mappedBy = "responsavel")

@@ -5,9 +5,9 @@
         .module('hmProjetosApp')
         .controller('TransacaoDeleteController',TransacaoDeleteController);
 
-    TransacaoDeleteController.$inject = ['$uibModalInstance', 'entity', 'Transacao'];
+    TransacaoDeleteController.$inject = ['$uibModalInstance', 'entity', 'Transacao','Parcela'];
 
-    function TransacaoDeleteController($uibModalInstance, entity, Transacao) {
+    function TransacaoDeleteController($uibModalInstance, entity, Transacao, Parcela) {
         var vm = this;
 
         vm.transacao = entity;
@@ -19,10 +19,30 @@
         }
 
         function confirmDelete (id) {
+
+            console.log(vm.transacao);
+
+            if(vm.transacao.parcela != null){
+
+                vm.transacao.parcela.dtefetuada = null;
+
+                Parcela.update(vm.transacao.parcela);
+
+            }
+
+
             Transacao.delete({id: id},
                 function () {
                     $uibModalInstance.close(true);
                 });
         }
+
+
+       
+
+
+
+
+
     }
 })();

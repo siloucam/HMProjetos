@@ -15,6 +15,7 @@
                 "parcela": "Parcela",
                 "transacao": "Transacao",
                 "situacao": "Situacao",
+                "codigos": "Codigos",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

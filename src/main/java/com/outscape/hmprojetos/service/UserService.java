@@ -11,6 +11,9 @@ import com.outscape.hmprojetos.security.SecurityUtils;
 import com.outscape.hmprojetos.service.util.RandomUtil;
 import com.outscape.hmprojetos.service.dto.UserDTO;
 
+import com.outscape.hmprojetos.repository.ExtendUserRepository;
+import com.outscape.hmprojetos.domain.ExtendUser;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cache.CacheManager;
@@ -25,6 +28,9 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.stream.Collectors;
+
+import com.outscape.hmprojetos.domain.enumeration.TipoCargo;
+
 
 /**
  * Service class for managing users.
@@ -43,11 +49,14 @@ public class UserService {
 
     private final CacheManager cacheManager;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository, CacheManager cacheManager) {
+    private final ExtendUserRepository extendUserRepository;
+
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository, CacheManager cacheManager, ExtendUserRepository extendUserRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.authorityRepository = authorityRepository;
         this.cacheManager = cacheManager;
+        this.extendUserRepository = extendUserRepository;
     }
 
     public Optional<User> activateRegistration(String key) {
@@ -91,8 +100,7 @@ public class UserService {
             });
     }
 
-    public User registerUser(UserDTO userDTO, String password) {
-
+    public User registerUser(UserDTO userDTO, String password, TipoCargo tipo) {
         User newUser = new User();
         Authority authority = authorityRepository.findOne(AuthoritiesConstants.USER);
         Set<Authority> authorities = new HashSet<>();
@@ -106,15 +114,21 @@ public class UserService {
         newUser.setImageUrl(userDTO.getImageUrl());
         newUser.setLangKey(userDTO.getLangKey());
         // new user is not active
-        newUser.setActivated(false);
+        newUser.setActivated(true);
         // new user gets registration key
-        newUser.setActivationKey(RandomUtil.generateActivationKey());
+        newUser.setActivationKey(null);
         authorities.add(authority);
         newUser.setAuthorities(authorities);
         userRepository.save(newUser);
         cacheManager.getCache(UserRepository.USERS_BY_LOGIN_CACHE).evict(newUser.getLogin());
         cacheManager.getCache(UserRepository.USERS_BY_EMAIL_CACHE).evict(newUser.getEmail());
         log.debug("Created Information for User: {}", newUser);
+
+        ExtendUser newUserExtra = new ExtendUser();
+        newUserExtra.setUser(newUser);
+        newUserExtra.setTipo(tipo);
+        extendUserRepository.save(newUserExtra);
+
         return newUser;
     }
 
@@ -141,6 +155,7 @@ public class UserService {
         user.setResetKey(RandomUtil.generateResetKey());
         user.setResetDate(Instant.now());
         user.setActivated(true);
+        user.setActivationKey(null);
         userRepository.save(user);
         cacheManager.getCache(UserRepository.USERS_BY_LOGIN_CACHE).evict(user.getLogin());
         cacheManager.getCache(UserRepository.USERS_BY_EMAIL_CACHE).evict(user.getEmail());

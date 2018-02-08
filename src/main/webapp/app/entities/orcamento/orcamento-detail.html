@@ -40,7 +40,7 @@
         <table class="jh-table table table-striped">
             <thead>
                 <tr>
-                    
+                    <th><span>Nº</span></th>
                     <th><span>Status</span></th>
                     <th><span>Valor</span></th>
                     <th><span>Data Estipulada</span></th>
@@ -52,10 +52,11 @@
             <tbody>
                 <tr ng-repeat="parcela in vm.parcelas track by parcela.id">
                     
+                    <td>{{parcela.descricao}}</td>
                     <td data-translate="{{parcela.status}}" ng-class="parcela.status">{{parcela.status}}</td>
                     <td>{{parcela.valor}}</td>
-                        <td>{{parcela.dtestipulada | date:'mediumDate'}}</td>
-                        <td>{{parcela.dtefetuada | date:'mediumDate'}}</td>
+                        <td>{{parcela.dtestipulada | date:'shortDate'}}</td>
+                        <td>{{parcela.dtefetuada | date:'shortDate'}}</td>
                    
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
@@ -100,10 +101,10 @@
     </dl>
 
     <button type="submit"
-            ui-sref="{{ vm.previousState }}"
+            ng-click="Back()"
             class="btn btn-info">
         <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
-    </button>
+    </button>    
 
     <button type="button" ui-sref="orcamento-detail.edit({id:vm.orcamento.id})" class="btn btn-primary">
         <span class="glyphicon glyphicon-pencil"></span>

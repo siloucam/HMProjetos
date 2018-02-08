@@ -3,6 +3,7 @@ package com.outscape.hmprojetos.web.rest.vm;
 import com.outscape.hmprojetos.service.dto.UserDTO;
 import javax.validation.constraints.Size;
 
+import com.outscape.hmprojetos.domain.enumeration.TipoCargo;
 /**
  * View Model extending the UserDTO, which is meant to be used in the user management UI.
  */
@@ -15,12 +16,18 @@ public class ManagedUserVM extends UserDTO {
     @Size(min = PASSWORD_MIN_LENGTH, max = PASSWORD_MAX_LENGTH)
     private String password;
 
+    private TipoCargo tipo;
+
     public ManagedUserVM() {
         // Empty constructor needed for Jackson.
     }
 
     public String getPassword() {
         return password;
+    }
+
+    public TipoCargo getTipo() {
+        return tipo;
     }
 
     public void setPassword(String password) {

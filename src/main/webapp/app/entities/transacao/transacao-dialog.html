@@ -8,15 +8,29 @@
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
-        <div class="form-group" ng-show="vm.transacao.id">
-            <label for="id" >ID</label>
-            <input type="text" class="form-control" id="id" name="id"
-                    ng-model="vm.transacao.id" readonly />
-        </div>
-        <div class="form-group">
-            <label class="control-label"  for="field_valor">Valor</label>
+
+
+    <div class="form-group">
+    <div class="row">
+    <div class="col-sm-4">
+      <label class="control-label"  for="field_operacao">Operacao</label>
+            <select class="form-control" name="operacao" ng-model="vm.transacao.operacao" id="field_operacao" required>
+                <option value="CREDITO" >CREDITO</option>
+                <option value="DEBITO" >DEBITO</option>
+                <option value="PARCELA" >PARCELA</option>
+                
+            </select>
+            <div ng-show="editForm.operacao.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.operacao.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+    </div>
+    <div class="col-sm-4">
+        <label class="control-label"  for="field_valor">Valor</label>
             <input type="number" class="form-control" name="valor" id="field_valor"
-                    ng-model="vm.transacao.valor"
+                    ng-model="vm.transacao.valor" ng-disabled="vm.transacao.operacao == 'PARCELA'"
                     required/>
             <div ng-show="editForm.valor.$invalid">
                 <p class="help-block"
@@ -28,11 +42,11 @@
                     This field should be a number.
                 </p>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label"  for="field_data">Data</label>
+    </div>
+    <div class="col-sm-4">
+      <label class="control-label"  for="field_data">Data</label>
                 <div class="input-group">
-                    <input id="field_data" type="text" class="form-control" name="data" uib-datepicker-popup="{{dateformat}}" ng-model="vm.transacao.data" is-open="vm.datePickerOpenStatus.data"
+                    <input id="field_data" type="text" class="form-control" name="data" uib-datepicker-popup="dd/MM/yyyy" ng-model="vm.transacao.data" is-open="vm.datePickerOpenStatus.data"
                     required/>
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-default" ng-click="vm.openCalendar('data')"><i class="glyphicon glyphicon-calendar"></i></button>
@@ -44,35 +58,35 @@
                     This field is required.
                 </p>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label"  for="field_descricao">Descricao</label>
-            <input type="text" class="form-control" name="descricao" id="field_descricao"
-                    ng-model="vm.transacao.descricao"
-                    />
-        </div>
-        <div class="form-group">
-            <label class="control-label"  for="field_operacao">Operacao</label>
-            <select class="form-control" name="operacao" ng-model="vm.transacao.operacao" id="field_operacao" required>
-                <option value="CREDITO" >CREDITO</option>
-                <option value="DEBITO" >DEBITO</option>
-                <option value="PARCELA" >PARCELA</option>
-            </select>
-            <div ng-show="editForm.operacao.$invalid">
-                <p class="help-block"
-                    ng-show="editForm.operacao.$error.required" data-translate="entity.validation.required">
-                    This field is required.
-                </p>
-            </div>
+    </div>
+    </div>
+    </div>
+
+        <div class="form-group hidden">
+            <label for="id" >ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.transacao.id" readonly />
         </div>
 
         <div class="form-group" ng-if="vm.transacao.operacao == 'PARCELA'">
             <label for="field_parcela">Parcela</label>
-            <select class="form-control" id="field_parcela" name="parcela" ng-model="vm.transacao.parcela" ng-options="parcela as parcela.id for parcela in vm.parcelas | orderBy:'id' track by parcela.id">
+            <select class="form-control" id="field_parcela" ng-change="chooseParcela()" name="parcela" ng-model="vm.transacao.parcela" ng-options="parcela as parcela.descricao for parcela in vm.parcelas | orderBy:'id' track by parcela.id">
                 <option value=""></option>
             </select>
         </div>
         <div class="form-group">
+
+        <div class="form-group">
+            <label class="control-label"  for="field_descricao">Descricao</label>
+            <textarea type="text" class="form-control" name="descricao" id="field_descricao"
+                    ng-model="vm.transacao.descricao" ng-disabled="vm.transacao.operacao == 'PARCELA'"
+                    />
+        </div>
+
+        
+
+        
+        <div class="form-group hidden">
             <label for="field_servico">Servico</label>
             <select class="form-control" id="field_servico" name="servico" ng-model="vm.transacao.servico" ng-options="servico as servico.id for servico in vm.servicos track by servico.id">
                 <option value=""></option>

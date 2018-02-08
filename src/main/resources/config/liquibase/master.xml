@@ -13,6 +13,7 @@
     <include file="config/liquibase/changelog/20180126113226_added_entity_Parcela.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180126113227_added_entity_Transacao.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180126113228_added_entity_Situacao.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180205123722_added_entity_Codigos.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20180126113221_added_entity_constraints_ExtendUser.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180126113223_added_entity_constraints_Telefone.xml" relativeToChangelogFile="false"/>

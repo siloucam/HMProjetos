@@ -4,67 +4,82 @@
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 ng-click="vm.clear()">&times;</button>
-        <h4 class="modal-title" id="myServicoLabel" data-translate="hmProjetosApp.servico.home.createOrEditLabel">Create or edit a Servico</h4>
+        <h4 class="modal-title" id="myServicoLabel">Criar ou editar Serviço</h4>
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
-        <div class="form-group" ng-show="vm.servico.id">
+        <div class="form-group hidden" ng-show="vm.servico.id">
             <label for="id" data-translate="global.field.id">ID</label>
             <input type="text" class="form-control" id="id" name="id"
                     ng-model="vm.servico.id" readonly />
         </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="hmProjetosApp.servico.tipo" for="field_tipo">Tipo</label>
-            <select class="form-control" name="tipo" ng-model="vm.servico.tipo" id="field_tipo" required>
-                <option value="PAQ" data-translate="hmProjetosApp.TipoServico.PAQ">PAQ</option>
-                <option value="ASS" data-translate="hmProjetosApp.TipoServico.ASS">ASS</option>
-                <option value="PRS" data-translate="hmProjetosApp.TipoServico.PRS">PRS</option>
+        
+
+
+    <div class="form-group">
+    <div class="row">
+    <div class="col-sm-5">
+      <label  for="field_cliente">Cliente</label>
+            <select class="form-control" id="field_cliente" name="cliente" ng-model="vm.servico.cliente" ng-options="cliente as cliente.nome for cliente in vm.clientes track by cliente.id">
+                <option value=""></option>
             </select>
-            <div ng-show="editForm.tipo.$invalid">
-                <p class="help-block"
-                    ng-show="editForm.tipo.$error.required" data-translate="entity.validation.required">
-                    This field is required.
-                </p>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="hmProjetosApp.servico.codigo" for="field_codigo">Codigo</label>
+    </div>
+    <div class="col-sm-2">
+        <label class="control-label"  for="field_tipo">Tipo</label>
+            <select class="form-control" name="tipo" ng-change="GerarCodigo()" ng-model="vm.servico.tipo" id="field_tipo" required>
+                <option value="PAQ" >PAQ</option>
+                <option value="ASS" >ASS</option>
+                <option value="PRS" >PRS</option>
+            </select>
+    </div>
+    <div class="col-sm-5">
+      <label class="control-label"  for="field_codigo">Codigo</label>
             <input type="text" class="form-control" name="codigo" id="field_codigo"
                     ng-model="vm.servico.codigo"
-                    required/>
-            <div ng-show="editForm.codigo.$invalid">
-                <p class="help-block"
-                    ng-show="editForm.codigo.$error.required" data-translate="entity.validation.required">
-                    This field is required.
-                </p>
-            </div>
-        </div>
+                    required disabled/>
+    </div>
+    </div>
+    </div>
+
         <div class="form-group">
-            <label class="control-label" data-translate="hmProjetosApp.servico.descricao" for="field_descricao">Descricao</label>
-            <input type="text" class="form-control" name="descricao" id="field_descricao"
+            <label class="control-label" for="field_descricao">Descricao</label>
+            <textarea type="text" class="form-control" name="descricao" id="field_descricao"
                     ng-model="vm.servico.descricao"
                     />
         </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="hmProjetosApp.servico.endereco" for="field_endereco">Endereco</label>
+
+
+
+
+
+<div class="form-group">
+    <div class="row">
+    <div class="col-sm-7">
+            <label class="control-label"  for="field_endereco">Endereco</label>
             <input type="text" class="form-control" name="endereco" id="field_endereco"
                     ng-model="vm.servico.endereco"
                     />
-        </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="hmProjetosApp.servico.bairro" for="field_bairro">Bairro</label>
+    </div>
+    <div class="col-sm-5">
+      <label class="control-label"  for="field_bairro">Bairro</label>
             <input type="text" class="form-control" name="bairro" id="field_bairro"
                     ng-model="vm.servico.bairro"
                     />
-        </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="hmProjetosApp.servico.cidade" for="field_cidade">Cidade</label>
+    </div>
+    </div>
+    </div>
+
+
+    <div class="form-group">
+    <div class="row">
+    <div class="col-sm-5">
+      <label class="control-label"  for="field_cidade">Cidade</label>
             <input type="text" class="form-control" name="cidade" id="field_cidade"
                     ng-model="vm.servico.cidade"
                     />
-        </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="hmProjetosApp.servico.estado" for="field_estado">Estado</label>
+    </div>
+    <div class="col-sm-2">
+        <label class="control-label" for="field_estado">Estado</label>
             <input type="text" class="form-control" name="estado" id="field_estado"
                     ng-model="vm.servico.estado"
                     ng-maxlength="2"/>
@@ -74,52 +89,68 @@
                     This field cannot be longer than 2 characters.
                 </p>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="hmProjetosApp.servico.cep" for="field_cep">Cep</label>
+    </div>
+    <div class="col-sm-5">
+      <label class="control-label" for="field_cep">Cep</label>
             <input type="text" class="form-control" name="cep" id="field_cep"
-                    ng-model="vm.servico.cep"
+                    ng-model="vm.servico.cep" ng-blur="buscaCEP()"
                     />
-        </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="hmProjetosApp.servico.inicio" for="field_inicio">Inicio</label>
+                    <div ng-show="vm.cepinvalido">
+                <p class="help-block">
+                    CEP Inválido.
+                </p>
+                </div>
+    </div>
+    </div>
+    </div>
+
+
+
+    <div class="form-group">
+    <div class="row">
+    <div class="col-sm-6">
+      <label class="control-label"  for="field_inicio">Data de Inicio</label>
                 <div class="input-group">
-                    <input id="field_inicio" type="text" class="form-control" name="inicio" uib-datepicker-popup="{{dateformat}}" ng-model="vm.servico.inicio" is-open="vm.datePickerOpenStatus.inicio"
+                    <input id="field_inicio" type="text" class="form-control" name="inicio" uib-datepicker-popup="dd/MM/yyyy" ng-model="vm.servico.inicio" is-open="vm.datePickerOpenStatus.inicio"
                     />
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-default" ng-click="vm.openCalendar('inicio')"><i class="glyphicon glyphicon-calendar"></i></button>
                     </span>
                 </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="hmProjetosApp.servico.fim" for="field_fim">Fim</label>
+    </div>
+    <div class="col-sm-6">
+      <label class="control-label"  for="field_fim">Data de Fim</label>
                 <div class="input-group">
-                    <input id="field_fim" type="text" class="form-control" name="fim" uib-datepicker-popup="{{dateformat}}" ng-model="vm.servico.fim" is-open="vm.datePickerOpenStatus.fim"
+                    <input id="field_fim" type="text" class="form-control" name="fim" uib-datepicker-popup="dd/MM/yyyy" ng-model="vm.servico.fim" is-open="vm.datePickerOpenStatus.fim"
                     />
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-default" ng-click="vm.openCalendar('fim')"><i class="glyphicon glyphicon-calendar"></i></button>
                     </span>
                 </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="hmProjetosApp.servico.iptu" for="field_iptu">Iptu</label>
+    </div>
+    </div>
+    </div>
+
+
+<div class="form-group">
+    <div class="row">
+    <div class="col-sm-6">
+      <label class="control-label"  for="field_iptu">Iptu</label>
             <input type="text" class="form-control" name="iptu" id="field_iptu"
                     ng-model="vm.servico.iptu"
                     />
-        </div>
-        <div class="form-group">
-            <label class="control-label" data-translate="hmProjetosApp.servico.link" for="field_link">Link</label>
+    </div>
+    <div class="col-sm-6">
+      <label class="control-label" for="field_link">Link</label>
             <input type="text" class="form-control" name="link" id="field_link"
                     ng-model="vm.servico.link"
                     />
-        </div>
+    </div>
+    </div>
+    </div>
 
-        <div class="form-group">
-            <label data-translate="hmProjetosApp.servico.cliente" for="field_cliente">Cliente</label>
-            <select class="form-control" id="field_cliente" name="cliente" ng-model="vm.servico.cliente" ng-options="cliente as cliente.nome for cliente in vm.clientes track by cliente.id">
-                <option value=""></option>
-            </select>
-        </div>
+
+        
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">

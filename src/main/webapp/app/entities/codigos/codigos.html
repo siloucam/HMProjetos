@@ -1,13 +1,13 @@
 <div>
-    <h2>Cargos</h2>
+    <h2 data-translate="hmProjetosApp.codigos.home.title">Codigos</h2>
     <jhi-alert></jhi-alert>
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-4 no-padding-left">
-                <button class="btn btn-primary" ui-sref="extend-user.new" >
+                <button class="btn btn-primary" ui-sref="codigos.new" >
                     <span class="glyphicon glyphicon-plus"></span>
-                    <span >
-                        Criar ou editar Cargos
+                    <span  data-translate="hmProjetosApp.codigos.home.createLabel">
+                        Create new Codigos
                     </span>
                 </button>
             </div>
@@ -18,35 +18,35 @@
         <table class="jh-table table table-striped">
             <thead>
                 <tr>
-                    <th><span>Usuário</span></th>
-                    <th><span>Cargo</span></th>
+                    <th><span data-translate="global.field.id">ID</span></th>
+                    <th><span data-translate="hmProjetosApp.codigos.tipo">Tipo</span></th>
+                    <th><span data-translate="hmProjetosApp.codigos.ano">Ano</span></th>
+                    <th><span data-translate="hmProjetosApp.codigos.numero">Numero</span></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="extendUser in vm.extendUsers track by extendUser.id">
-                    
-                    <td>
-                        {{extendUser.user.login}}
-                    </td>
-                    <td data-translate="{{'hmProjetosApp.TipoCargo.' + extendUser.tipo}}">{{extendUser.tipo}}</td>
-                    
+                <tr ng-repeat="codigos in vm.codigos track by codigos.id">
+                    <td><a ui-sref="codigos-detail({id:codigos.id})">{{codigos.id}}</a></td>
+                    <td>{{codigos.tipo}}</td>
+                    <td>{{codigos.ano}}</td>
+                    <td>{{codigos.numero}}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"
-                                    ui-sref="extend-user-detail({id:extendUser.id})"
+                                    ui-sref="codigos-detail({id:codigos.id})"
                                     class="btn btn-info btn-sm">
                                 <span class="glyphicon glyphicon-eye-open"></span>
                                 <span class="hidden-sm-down" data-translate="entity.action.view"></span>
                             </button>
                             <button type="submit"
-                                    ui-sref="extend-user.edit({id:extendUser.id})"
+                                    ui-sref="codigos.edit({id:codigos.id})"
                                     class="btn btn-primary btn-sm">
                                 <span class="glyphicon glyphicon-pencil"></span>
                                 <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
                             </button>
                             <button type="submit"
-                                    ui-sref="extend-user.delete({id:extendUser.id})"
+                                    ui-sref="codigos.delete({id:codigos.id})"
                                     class="btn btn-danger btn-sm">
                                 <span class="glyphicon glyphicon-remove-circle"></span>
                                 <span class="hidden-sm-down" data-translate="entity.action.delete"></span>

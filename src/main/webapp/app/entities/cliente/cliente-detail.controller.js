@@ -92,6 +92,7 @@
                         }
                     }
                 }).result.then(function() {
+                    vm.servicos = [];
                     vm.telefones = [];
                     loadAll();
                 }, function() {
@@ -99,6 +100,41 @@
                 });
         }
 
+        $scope.newServico = function(){
+        $uibModal.open({
+                    templateUrl: 'app/entities/servico/servico-dialog.html',
+                    controller: 'ServicoDialogController',
+                    controllerAs: 'vm',
+                    backdrop: 'static',
+                    size: 'lg',
+                    resolve: {
+                        entity: function () {
+                            return {
+                                cliente: vm.cliente,
+                                tipo: null,
+                                codigo: null,
+                                descricao: null,
+                                endereco: vm.cliente.endereco,
+                                bairro: vm.cliente.bairro,
+                                cidade: vm.cliente.cidade,
+                                estado: vm.cliente.estado,
+                                cep: vm.cliente.cep,
+                                inicio: null,
+                                fim: null,
+                                iptu: null,
+                                link: null,
+                                id: null
+                            };
+                        }
+                    }
+                }).result.then(function($stateParams) {
+                      vm.servicos = [];
+                      vm.telefones = [];
+                      loadAll();
+                }, function() {
+                    
+                });
+        }
         
 
     }
