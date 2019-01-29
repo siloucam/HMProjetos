@@ -42,6 +42,7 @@
                    
                     <th jh-sort-by="codigo"><span data-translate="hmProjetosApp.servico.codigo">Codigo</span><span class="glyphicon glyphicon-sort"></span>   </th>
                   
+                    <th><span>Descrição</span></th>
                     
                     <th jh-sort-by="inicio"><span data-translate="hmProjetosApp.servico.inicio">Inicio</span><span class="glyphicon glyphicon-sort"></span>   </th>
                     <th jh-sort-by="fim"><span data-translate="hmProjetosApp.servico.fim">Fim</span><span class="glyphicon glyphicon-sort"></span>   </th>
@@ -54,6 +55,8 @@
                 <tr ng-repeat="servico in vm.servicos track by servico.id">
                     
                     <td>{{servico.codigo}}</td>
+                    <td>{{servico.descricao}}</td>
+
                         <td>{{servico.inicio | date:'shortDate'}}</td>
                         <td>{{servico.fim | date:'shortDate'}}</td>
                     <td>

@@ -35,7 +35,19 @@
 
                     if(vm.servico.tipo == result[i].tipo){
 
-                        vm.servico.codigo = vm.servico.tipo + "-" + result[i].ano + "." + result[i].numero
+                         var numerocerto;
+
+                         if(result[i].numero < 10) numerocerto = "00" + result[i].numero;
+                         if(result[i].numero >= 10 && result[i].numero < 100) numerocerto = "0" + result[i].numero;
+                         if(result[i].numero >= 100) numerocerto = result[i].numero;
+
+                        // if(result[i].numero < 10){ numerocerto = "00" + result[i].numero; }
+                        // else if(result[i].numero >= 10 && result[i].numero < 100){ numerocerto = "0" + result[i].numero;}
+                        // else {numerocerto = result[i].numero;}
+
+                        // vm.servico.codigo = vm.servico.tipo + " " + result[i].ano + "." + numerocerto;
+
+                        vm.servico.codigo = vm.servico.tipo + " " + result[i].ano + "." + numerocerto;
 
                     }
 
