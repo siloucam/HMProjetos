@@ -15,10 +15,10 @@
             "fieldType": "Integer"
         }
     ],
-    "changelogDate": "20180205123722",
+    "changelogDate": "20190217161801",
     "entityTableName": "codigos",
     "dto": "no",
     "pagination": "no",
-    "service": "no",
-    "jpaMetamodelFiltering": false
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true
 }

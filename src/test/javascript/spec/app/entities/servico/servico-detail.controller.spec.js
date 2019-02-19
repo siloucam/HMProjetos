@@ -4,7 +4,7 @@ describe('Controller Tests', function() {
 
     describe('Servico Management Detail Controller', function() {
         var $scope, $rootScope;
-        var MockEntity, MockPreviousState, MockServico, MockSituacao, MockTransacao, MockOrcamento, MockCliente;
+        var MockEntity, MockPreviousState, MockServico, MockCodigoPrefeitura, MockLinkExterno, MockSituacao, MockTransacao, MockDescricaoServico, MockCliente;
         var createController;
 
         beforeEach(inject(function($injector) {
@@ -13,9 +13,11 @@ describe('Controller Tests', function() {
             MockEntity = jasmine.createSpy('MockEntity');
             MockPreviousState = jasmine.createSpy('MockPreviousState');
             MockServico = jasmine.createSpy('MockServico');
+            MockCodigoPrefeitura = jasmine.createSpy('MockCodigoPrefeitura');
+            MockLinkExterno = jasmine.createSpy('MockLinkExterno');
             MockSituacao = jasmine.createSpy('MockSituacao');
             MockTransacao = jasmine.createSpy('MockTransacao');
-            MockOrcamento = jasmine.createSpy('MockOrcamento');
+            MockDescricaoServico = jasmine.createSpy('MockDescricaoServico');
             MockCliente = jasmine.createSpy('MockCliente');
             
 
@@ -25,9 +27,11 @@ describe('Controller Tests', function() {
                 'entity': MockEntity,
                 'previousState': MockPreviousState,
                 'Servico': MockServico,
+                'CodigoPrefeitura': MockCodigoPrefeitura,
+                'LinkExterno': MockLinkExterno,
                 'Situacao': MockSituacao,
                 'Transacao': MockTransacao,
-                'Orcamento': MockOrcamento,
+                'DescricaoServico': MockDescricaoServico,
                 'Cliente': MockCliente
             };
             createController = function() {

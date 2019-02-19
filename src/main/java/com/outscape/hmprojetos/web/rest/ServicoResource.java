@@ -122,6 +122,8 @@ public class ServicoResource {
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(servico));
     }
 
+    
+
     /**
      * DELETE  /servicos/:id : delete the "id" servico.
      *

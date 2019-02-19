@@ -1,0 +1,24 @@
+
+{
+    "hmProjetosApp": {
+        "codigoPrefeitura" : {
+            "home": {
+                "title": "Codigo Prefeituras",
+                "createLabel": "Criar novo Codigo Prefeitura",
+                "createOrEditLabel": "Criar ou editar Codigo Prefeitura"
+            },
+            "created": "Um novo Codigo Prefeitura foi criado com o identificador {{ param }}",
+            "updated": "Um Codigo Prefeitura foi atualizado com o identificador {{ param }}",
+            "deleted": "Um Codigo Prefeitura foi deletado com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir Codigo Prefeitura {{ id }}?"
+            },
+            "detail": {
+                "title": "Codigo Prefeitura"
+            },
+            "numero": "Numero",
+            "ano": "Ano",
+            "servico": "Servico"
+        }
+    }
+}

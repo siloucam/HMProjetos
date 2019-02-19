@@ -16,7 +16,7 @@
 logging:
     level:
         ROOT: DEBUG
-        com.outscape.hmprojetos: DEBUG
+        com: DEBUG
         io.github.jhipster: DEBUG
 
 spring:
@@ -32,15 +32,18 @@ spring:
         serialization.indent_output: true
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:h2:file:./target/h2db/db/hmprojetos;DB_CLOSE_DELAY=-1
-        username: HMProjetos
-        password:
-    h2:
-        console:
-            enabled: false
+        url: jdbc:mysql://localhost:3306/hmprojetos?useUnicode=true&characterEncoding=utf8&useSSL=false
+        username: root
+        password: senha23
+        hikari:
+            data-source-properties:
+                cachePrepStmts: true
+                prepStmtCacheSize: 250
+                prepStmtCacheSqlLimit: 2048
+                useServerPrepStmts: true
     jpa:
-        database-platform: io.github.jhipster.domain.util.FixedH2Dialect
-        database: H2
+        database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+        database: MYSQL
         show-sql: true
         properties:
             hibernate.id.new_generator_mappings: true
@@ -89,10 +92,6 @@ server:
 jhipster:
     http:
         version: V_1_1 # To use HTTP/2 you will need SSL support (see above the "server.ssl" configuration)
-    cache: # Cache configuration
-        ehcache: # Ehcache configuration
-            time-to-live-seconds: 3600 # By default objects stay 1 hour in the cache
-            max-entries: 100 # Number of objects in each cache entry
     # CORS is only enabled by default with the "dev" profile, so BrowserSync can access the API
     cors:
         allowed-origins: "*"

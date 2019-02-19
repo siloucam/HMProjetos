@@ -1,0 +1,27 @@
+
+<div>
+    <h2><span data-translate="hmProjetosApp.tipoSituacao.detail.title">Tipo Situacao</span> {{vm.tipoSituacao.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="hmProjetosApp.tipoSituacao.nome">Nome</span></dt>
+        <dd>
+            <span>{{vm.tipoSituacao.nome}}</span>
+        </dd>
+        <dt><span data-translate="hmProjetosApp.tipoSituacao.sigla">Sigla</span></dt>
+        <dd>
+            <span>{{vm.tipoSituacao.sigla}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="tipo-situacao-detail.edit({id:vm.tipoSituacao.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

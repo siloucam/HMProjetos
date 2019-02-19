@@ -1,0 +1,137 @@
+
+entity MeuServico{
+	
+}
+
+entity DescricaoServico{
+	nome String required
+    tipo TipoServico required
+}
+
+entity DescricaoSituacao{
+	nome String
+}
+
+relationship ManyToOne{
+	Servico{descricao} to DescricaoServico
+}
+
+relationship ManyToOne{
+	Situacao{descricao} to DescricaoSituacao
+}
+
+relationship ManyToOne{
+	DescricaoSituacao{situacao} to TipoSituacao
+}
+
+enum TipoServico{
+	PAQ, ASS, PRS
+}
+
+enum OP{
+	CREDITO, DEBITO, SERVICO
+}
+
+entity TipoSituacao{
+	nome String
+    sigla String
+}
+
+enum TipoCargo{
+	SECRETARIA, DESENHO, GERENCIA
+}
+
+entity Codigos{
+	tipo String
+	ano Integer
+    numero Integer
+}
+
+entity ExtendUser{
+	tipo TipoCargo
+}
+
+entity Cliente{
+	nome String required 
+	endereco String
+    bairro String
+    cidade String
+    estado String maxlength(2) 
+    cep String
+    email String
+    indicacao String
+    documento String
+}
+
+entity Telefone{
+	contato String
+	numero String required
+}
+
+entity Servico {
+	tipo TipoServico required
+    codigo String required
+	observacao String
+    valor Float
+    forma String
+	endereco String
+    bairro String
+    cidade String
+    estado String maxlength(2) 
+    cep String
+    inicio LocalDate
+    fim LocalDate
+    iptu String
+    link String
+}
+
+entity Transacao{
+valor Float required
+data LocalDate required
+descricao String
+operacao OP required
+}
+
+relationship ManyToOne{
+	Situacao{tipo} to TipoSituacao
+}
+
+entity Situacao{
+    observacao String 
+    terceiro String
+    dtinicio LocalDate 
+    dtfim LocalDate
+    dtestipulada LocalDate
+}
+
+relationship OneToOne{
+	ExtendUser{user} to User
+}
+
+relationship OneToMany{
+	Servico{situacao} to Situacao{servico}
+}
+
+relationship OneToMany{
+	ExtendUser{situacao} to Situacao{responsavel}
+}
+
+relationship OneToMany{
+	Servico{transacao} to Transacao{servico}
+}
+
+relationship OneToMany {
+	Cliente{telefone} to Telefone{cliente}
+}
+
+relationship OneToMany {
+	Cliente{servico} to Servico{cliente}
+}
+
+
+
+
+paginate Cliente, Servico, Situacao, Telefone with infinite-scroll
+
+
+filter all

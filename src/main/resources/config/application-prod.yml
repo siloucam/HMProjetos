@@ -16,7 +16,7 @@
 logging:
     level:
         ROOT: INFO
-        com.outscape.hmprojetos: INFO
+        com: INFO
         io.github.jhipster: INFO
 
 spring:
@@ -93,14 +93,10 @@ jhipster:
         version: V_1_1 # To use HTTP/2 you will need SSL support (see above the "server.ssl" configuration)
         cache: # Used by the CachingHttpHeadersFilter
             timeToLiveInDays: 1461
-    cache: # Cache configuration
-        ehcache: # Ehcache configuration
-            time-to-live-seconds: 3600 # By default objects stay 1 hour in the cache
-            max-entries: 1000 # Number of objects in each cache entry
     security:
         authentication:
             jwt:
-                secret: 9fff4169bb6a6a56719098b75cca1e4847fe936c
+                secret: e6014a300176a590c94aaed69fdda183a49aa209
                 # Token is valid 24 hours
                 token-validity-in-seconds: 86400
                 token-validity-in-seconds-for-remember-me: 2592000

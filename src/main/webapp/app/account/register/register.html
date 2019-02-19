@@ -3,8 +3,8 @@
         <div class="col-md-8 col-md-offset-2">
             <h1 data-translate="register.title">Registration</h1>
 
-            <div class="alert alert-success" ng-show="vm.success">
-                <strong>Cadastro salvo!</strong>
+            <div class="alert alert-success" ng-show="vm.success" data-translate="register.messages.success">
+                <strong>Registration saved!</strong> Please check your email for confirmation.
             </div>
 
             <div class="alert alert-danger" ng-show="vm.error" data-translate="register.messages.error.fail">
@@ -111,15 +111,6 @@
                         </p>
                     </div>
                 </div>
-
-                <div class="form-group">
-            <label class="control-label"  for="field_tipo">Setor</label>
-            <select class="form-control" name="tipo" ng-model="vm.registerAccount.tipo" id="field_tipo">
-                <option value="SECRETARIA">Secretaria</option>
-                <option value="DESENHO">Desenho</option>
-                <option value="GERENCIA">Gerência</option>
-            </select>
-        </div>
 
                 <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary" data-translate="register.form.button">Register</button>
             </form>

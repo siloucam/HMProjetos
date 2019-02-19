@@ -21,10 +21,10 @@
             ]
         }
     ],
-    "changelogDate": "20180126113223",
+    "changelogDate": "20190217161804",
     "entityTableName": "telefone",
     "dto": "no",
-    "pagination": "no",
-    "service": "no",
-    "jpaMetamodelFiltering": false
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true
 }

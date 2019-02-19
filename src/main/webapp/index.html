@@ -32,7 +32,9 @@
             <!-- Angular views -->
         </div>
 
-        
+        <div class="footer" ng-cloak>
+            <p data-translate="footer">This is your footer</p>
+        </div>
     </div>
     <noscript>
         <h1>You must enable javascript to view this page.</h1>
@@ -110,6 +112,12 @@
     <script src="app/entities/transacao/transacao.state.js"></script>
     <script src="app/entities/transacao/transacao.service.js"></script>
     <script src="app/entities/transacao/transacao.controller.js"></script>
+    <script src="app/entities/tipo-situacao/tipo-situacao-dialog.controller.js"></script>
+    <script src="app/entities/tipo-situacao/tipo-situacao-detail.controller.js"></script>
+    <script src="app/entities/tipo-situacao/tipo-situacao-delete-dialog.controller.js"></script>
+    <script src="app/entities/tipo-situacao/tipo-situacao.state.js"></script>
+    <script src="app/entities/tipo-situacao/tipo-situacao.service.js"></script>
+    <script src="app/entities/tipo-situacao/tipo-situacao.controller.js"></script>
     <script src="app/entities/telefone/telefone-dialog.controller.js"></script>
     <script src="app/entities/telefone/telefone-detail.controller.js"></script>
     <script src="app/entities/telefone/telefone-delete-dialog.controller.js"></script>
@@ -128,19 +136,18 @@
     <script src="app/entities/servico/servico.state.js"></script>
     <script src="app/entities/servico/servico.service.js"></script>
     <script src="app/entities/servico/servico.controller.js"></script>
-    <script src="app/entities/parcela/parcela-dialog.controller.js"></script>
-    <script src="app/entities/parcela/parcela-detail.controller.js"></script>
-    <script src="app/entities/parcela/parcela-delete-dialog.controller.js"></script>
-    <script src="app/entities/parcela/parcela.state.js"></script>
-    <script src="app/entities/parcela/parcela.service.js"></script>
-    <script src="app/entities/parcela/parcela.controller.js"></script>
-    <script src="app/entities/orcamento/orcamento-parcela-dialog.controller.js"></script>
-    <script src="app/entities/orcamento/orcamento-dialog.controller.js"></script>
-    <script src="app/entities/orcamento/orcamento-detail.controller.js"></script>
-    <script src="app/entities/orcamento/orcamento-delete-dialog.controller.js"></script>
-    <script src="app/entities/orcamento/orcamento.state.js"></script>
-    <script src="app/entities/orcamento/orcamento.service.js"></script>
-    <script src="app/entities/orcamento/orcamento.controller.js"></script>
+    <script src="app/entities/meu-servico/meu-servico-dialog.controller.js"></script>
+    <script src="app/entities/meu-servico/meu-servico-detail.controller.js"></script>
+    <script src="app/entities/meu-servico/meu-servico-delete-dialog.controller.js"></script>
+    <script src="app/entities/meu-servico/meu-servico.state.js"></script>
+    <script src="app/entities/meu-servico/meu-servico.service.js"></script>
+    <script src="app/entities/meu-servico/meu-servico.controller.js"></script>
+    <script src="app/entities/link-externo/link-externo-dialog.controller.js"></script>
+    <script src="app/entities/link-externo/link-externo-detail.controller.js"></script>
+    <script src="app/entities/link-externo/link-externo-delete-dialog.controller.js"></script>
+    <script src="app/entities/link-externo/link-externo.state.js"></script>
+    <script src="app/entities/link-externo/link-externo.service.js"></script>
+    <script src="app/entities/link-externo/link-externo.controller.js"></script>
     <script src="app/entities/extend-user/extend-user-dialog.controller.js"></script>
     <script src="app/entities/extend-user/extend-user-detail.controller.js"></script>
     <script src="app/entities/extend-user/extend-user-delete-dialog.controller.js"></script>
@@ -148,19 +155,37 @@
     <script src="app/entities/extend-user/extend-user.service.js"></script>
     <script src="app/entities/extend-user/extend-user.controller.js"></script>
     <script src="app/entities/entity.state.js"></script>
+    <script src="app/entities/descricao-situacao/descricao-situacao-dialog.controller.js"></script>
+    <script src="app/entities/descricao-situacao/descricao-situacao-detail.controller.js"></script>
+    <script src="app/entities/descricao-situacao/descricao-situacao-delete-dialog.controller.js"></script>
+    <script src="app/entities/descricao-situacao/descricao-situacao.state.js"></script>
+    <script src="app/entities/descricao-situacao/descricao-situacao.service.js"></script>
+    <script src="app/entities/descricao-situacao/descricao-situacao.controller.js"></script>
+    <script src="app/entities/descricao-servico/descricao-servico-dialog.controller.js"></script>
+    <script src="app/entities/descricao-servico/descricao-servico-detail.controller.js"></script>
+    <script src="app/entities/descricao-servico/descricao-servico-delete-dialog.controller.js"></script>
+    <script src="app/entities/descricao-servico/descricao-servico.state.js"></script>
+    <script src="app/entities/descricao-servico/descricao-servico.service.js"></script>
+    <script src="app/entities/descricao-servico/descricao-servico.controller.js"></script>
     <script src="app/entities/codigos/codigos-dialog.controller.js"></script>
     <script src="app/entities/codigos/codigos-detail.controller.js"></script>
     <script src="app/entities/codigos/codigos-delete-dialog.controller.js"></script>
     <script src="app/entities/codigos/codigos.state.js"></script>
     <script src="app/entities/codigos/codigos.service.js"></script>
     <script src="app/entities/codigos/codigos.controller.js"></script>
-    <script src="app/entities/cliente/cliente-telefone-dialog.controller.js"></script>
+    <script src="app/entities/codigo-prefeitura/codigo-prefeitura-dialog.controller.js"></script>
+    <script src="app/entities/codigo-prefeitura/codigo-prefeitura-detail.controller.js"></script>
+    <script src="app/entities/codigo-prefeitura/codigo-prefeitura-delete-dialog.controller.js"></script>
+    <script src="app/entities/codigo-prefeitura/codigo-prefeitura.state.js"></script>
+    <script src="app/entities/codigo-prefeitura/codigo-prefeitura.service.js"></script>
+    <script src="app/entities/codigo-prefeitura/codigo-prefeitura.controller.js"></script>
     <script src="app/entities/cliente/cliente-dialog.controller.js"></script>
     <script src="app/entities/cliente/cliente-detail.controller.js"></script>
     <script src="app/entities/cliente/cliente-delete-dialog.controller.js"></script>
     <script src="app/entities/cliente/cliente.state.js"></script>
     <script src="app/entities/cliente/cliente.service.js"></script>
     <script src="app/entities/cliente/cliente.controller.js"></script>
+    <script src="app/entities/cliente/cliente-telefone-dialog.controller.js"></script>
     <script src="app/components/util/truncate-words.filter.js"></script>
     <script src="app/components/util/truncate-characters.filter.js"></script>
     <script src="app/components/util/sort-by.directive.js"></script>

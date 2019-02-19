@@ -1,0 +1,24 @@
+
+{
+    "hmProjetosApp": {
+        "linkExterno" : {
+            "home": {
+                "title": "Link Externos",
+                "createLabel": "Criar novo Link Externo",
+                "createOrEditLabel": "Criar ou editar Link Externo"
+            },
+            "created": "Um novo Link Externo foi criado com o identificador {{ param }}",
+            "updated": "Um Link Externo foi atualizado com o identificador {{ param }}",
+            "deleted": "Um Link Externo foi deletado com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir Link Externo {{ id }}?"
+            },
+            "detail": {
+                "title": "Link Externo"
+            },
+            "nome": "Nome",
+            "link": "Link",
+            "servico": "Servico"
+        }
+    }
+}

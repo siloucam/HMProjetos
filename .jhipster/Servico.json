@@ -3,6 +3,18 @@
     "relationships": [
         {
             "relationshipType": "one-to-many",
+            "relationshipName": "codprefeitura",
+            "otherEntityName": "codigoPrefeitura",
+            "otherEntityRelationshipName": "servico"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "linkexterno",
+            "otherEntityName": "linkExterno",
+            "otherEntityRelationshipName": "servico"
+        },
+        {
+            "relationshipType": "one-to-many",
             "relationshipName": "situacao",
             "otherEntityName": "situacao",
             "otherEntityRelationshipName": "servico"
@@ -14,11 +26,10 @@
             "otherEntityRelationshipName": "servico"
         },
         {
-            "relationshipType": "one-to-one",
-            "relationshipName": "orcamento",
-            "otherEntityName": "orcamento",
-            "ownerSide": false,
-            "otherEntityRelationshipName": "servico"
+            "relationshipType": "many-to-one",
+            "relationshipName": "descricao",
+            "otherEntityName": "descricaoServico",
+            "otherEntityField": "id"
         },
         {
             "relationshipType": "many-to-one",
@@ -44,7 +55,15 @@
             ]
         },
         {
-            "fieldName": "descricao",
+            "fieldName": "observacao",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "valor",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "forma",
             "fieldType": "String"
         },
         {
@@ -78,20 +97,12 @@
         {
             "fieldName": "fim",
             "fieldType": "LocalDate"
-        },
-        {
-            "fieldName": "iptu",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "link",
-            "fieldType": "String"
         }
     ],
-    "changelogDate": "20180126113224",
+    "changelogDate": "20190217161807",
     "entityTableName": "servico",
     "dto": "no",
     "pagination": "infinite-scroll",
-    "service": "no",
-    "jpaMetamodelFiltering": false
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true
 }

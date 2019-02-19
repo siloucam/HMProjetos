@@ -1,19 +1,23 @@
+
 {
     "hmProjetosApp": {
-        "TipoSituacao" : {
-            "null": "",
-            "FM": "FM",
-            "FD_LIVRE": "FD_LIVRE",
-            "FD_HC": "FD_HC",
-            "FCC_LOCAL": "FCC_LOCAL",
-            "FCC_LIGAR": "FCC_LIGAR",
-            "FCT": "FCT",
-            "R_INICIAL": "R_INICIAL",
-            "R_FINAL": "R_FINAL",
-            "ARC": "ARC",
-            "ART": "ART",
-            "EP": "EP",
-            "D": "D"
+        "tipoSituacao" : {
+            "home": {
+                "title": "Tipo Situacaos",
+                "createLabel": "Criar novo Tipo Situacao",
+                "createOrEditLabel": "Criar ou editar Tipo Situacao"
+            },
+            "created": "Um novo Tipo Situacao foi criado com o identificador {{ param }}",
+            "updated": "Um Tipo Situacao foi atualizado com o identificador {{ param }}",
+            "deleted": "Um Tipo Situacao foi deletado com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir Tipo Situacao {{ id }}?"
+            },
+            "detail": {
+                "title": "Tipo Situacao"
+            },
+            "nome": "Nome",
+            "sigla": "Sigla"
         }
     }
 }

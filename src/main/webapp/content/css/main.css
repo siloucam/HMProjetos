@@ -108,16 +108,8 @@ Main page styles
     display: inline-block;
     width: 347px;
     height: 497px;
-    background: url("Home.png") no-repeat center top;
+    background: url("../images/hipster.png") no-repeat center top;
     background-size: contain;
-}
-
-.ATRASADA{
-    color:red;
-}
-
-.EFETUADA{
-    color:green;
 }
 
 /* wait autoprefixer update to allow simple generation of high pixel density media query */

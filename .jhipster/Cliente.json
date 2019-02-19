@@ -59,10 +59,10 @@
             "fieldType": "String"
         }
     ],
-    "changelogDate": "20180126113222",
+    "changelogDate": "20190217161803",
     "entityTableName": "cliente",
     "dto": "no",
     "pagination": "infinite-scroll",
-    "service": "no",
-    "jpaMetamodelFiltering": false
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true
 }

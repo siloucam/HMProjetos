@@ -19,8 +19,6 @@ spring:
         name: HMProjetos
     jackson:
         serialization.write_dates_as_timestamps: false
-    cache:
-        type: simple
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
         url: jdbc:h2:mem:HMProjetos;DB_CLOSE_DELAY=-1
@@ -88,7 +86,7 @@ jhipster:
     security:
         authentication:
             jwt:
-                secret: 9fff4169bb6a6a56719098b75cca1e4847fe936c
+                secret: e6014a300176a590c94aaed69fdda183a49aa209
                 # Token is valid 24 hours
                 token-validity-in-seconds: 86400
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration

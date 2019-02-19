@@ -2,14 +2,6 @@
     "fluentMethods": true,
     "relationships": [
         {
-            "relationshipType": "one-to-one",
-            "relationshipName": "parcela",
-            "otherEntityName": "parcela",
-            "otherEntityField": "id",
-            "ownerSide": true,
-            "otherEntityRelationshipName": "transacao"
-        },
-        {
             "relationshipType": "many-to-one",
             "relationshipName": "servico",
             "otherEntityName": "servico",
@@ -38,16 +30,16 @@
         {
             "fieldName": "operacao",
             "fieldType": "OP",
-            "fieldValues": "CREDITO,DEBITO,PARCELA",
+            "fieldValues": "CREDITO,DEBITO,SERVICO",
             "fieldValidateRules": [
                 "required"
             ]
         }
     ],
-    "changelogDate": "20180126113227",
+    "changelogDate": "20190217161808",
     "entityTableName": "transacao",
     "dto": "no",
     "pagination": "no",
-    "service": "no",
-    "jpaMetamodelFiltering": false
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true
 }

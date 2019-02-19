@@ -1,0 +1,21 @@
+
+{
+    "hmProjetosApp": {
+        "meus_servicos" : {
+            "home": {
+                "title": "Meus Servicos",
+                "createLabel": "Criar novo Meus Servicos",
+                "createOrEditLabel": "Criar ou editar Meus Servicos"
+            },
+            "created": "Um novo Meus Servicos foi criado com o identificador {{ param }}",
+            "updated": "Um Meus Servicos foi atualizado com o identificador {{ param }}",
+            "deleted": "Um Meus Servicos foi deletado com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir Meus Servicos {{ id }}?"
+            },
+            "detail": {
+                "title": "Meus Servicos"
+            }
+        }
+    }
+}

@@ -1,3 +1,4 @@
+
 {
     "hmProjetosApp": {
         "servico" : {
@@ -17,7 +18,9 @@
             },
             "tipo": "Tipo",
             "codigo": "Codigo",
-            "descricao": "Descricao",
+            "observacao": "Observacao",
+            "valor": "Valor",
+            "forma": "Forma",
             "endereco": "Endereco",
             "bairro": "Bairro",
             "cidade": "Cidade",
@@ -25,11 +28,11 @@
             "cep": "Cep",
             "inicio": "Inicio",
             "fim": "Fim",
-            "iptu": "Iptu",
-            "link": "Link",
+            "codprefeitura": "Codprefeitura",
+            "linkexterno": "Linkexterno",
             "situacao": "Situacao",
             "transacao": "Transacao",
-            "orcamento": "Orcamento",
+            "descricao": "Descricao",
             "cliente": "Cliente"
         }
     }

@@ -1,0 +1,39 @@
+
+{
+    "hmProjetosApp": {
+        "servico" : {
+            "home": {
+                "title": "Servicos",
+                "createLabel": "Criar novo Servico",
+                "createOrEditLabel": "Criar ou editar Servico"
+            },
+            "created": "Um novo Servico foi criado com o identificador {{ param }}",
+            "updated": "Um Servico foi atualizado com o identificador {{ param }}",
+            "deleted": "Um Servico foi deletado com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir Servico {{ id }}?"
+            },
+            "detail": {
+                "title": "Servico"
+            },
+            "tipo": "Tipo",
+            "codigo": "Codigo",
+            "observacao": "Observacao",
+            "valor": "Valor",
+            "forma": "Forma",
+            "endereco": "Endereco",
+            "bairro": "Bairro",
+            "cidade": "Cidade",
+            "estado": "Estado",
+            "cep": "Cep",
+            "inicio": "Inicio",
+            "fim": "Fim",
+            "iptu": "Iptu",
+            "link": "Link",
+            "situacao": "Situacao",
+            "transacao": "Transacao",
+            "descricao": "Descricao",
+            "cliente": "Cliente"
+        }
+    }
+}

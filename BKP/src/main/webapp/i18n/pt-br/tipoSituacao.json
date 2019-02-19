@@ -1,0 +1,23 @@
+
+{
+    "hmProjetosApp": {
+        "tipoSituacao" : {
+            "home": {
+                "title": "Tipos de Situação",
+                "createLabel": "Criar novo Tipo de Situação",
+                "createOrEditLabel": "Criar ou editar Tipo de Situação"
+            },
+            "created": "Um novo Tipo de Situação foi criado com o identificador {{ param }}",
+            "updated": "Um Tipo de Situação foi atualizado com o identificador {{ param }}",
+            "deleted": "Um Tipo de Situação foi deletado com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir Tipo de Situação {{ id }}?"
+            },
+            "detail": {
+                "title": "Tipo Situacao"
+            },
+            "nome": "Nome",
+            "sigla": "Sigla"
+        }
+    }
+}

@@ -7,15 +7,19 @@
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "Entidades",
+                "meuServico": "Meu Servico",
+                "descricaoServico": "Descricao Servico",
+                "descricaoSituacao": "Descricao Situacao",
+                "tipoSituacao": "Tipo Situacao",
+                "codigos": "Codigos",
                 "extendUser": "Extend User",
                 "cliente": "Cliente",
                 "telefone": "Telefone",
+                "codigoPrefeitura": "Codigo Prefeitura",
+                "linkExterno": "Link Externo",
                 "servico": "Servico",
-                "orcamento": "Orcamento",
-                "parcela": "Parcela",
                 "transacao": "Transacao",
                 "situacao": "Situacao",
-                "codigos": "Codigos",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

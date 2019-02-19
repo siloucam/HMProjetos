@@ -1,0 +1,78 @@
+package com.service.dto;
+
+import java.io.Serializable;
+import com.domain.enumeration.TipoServico;
+import io.github.jhipster.service.filter.BooleanFilter;
+import io.github.jhipster.service.filter.DoubleFilter;
+import io.github.jhipster.service.filter.Filter;
+import io.github.jhipster.service.filter.FloatFilter;
+import io.github.jhipster.service.filter.IntegerFilter;
+import io.github.jhipster.service.filter.LongFilter;
+import io.github.jhipster.service.filter.StringFilter;
+
+
+
+
+
+
+/**
+ * Criteria class for the DescricaoServico entity. This class is used in DescricaoServicoResource to
+ * receive all the possible filtering options from the Http GET request parameters.
+ * For example the following could be a valid requests:
+ * <code> /descricao-servicos?id.greaterThan=5&amp;attr1.contains=something&amp;attr2.specified=false</code>
+ * As Spring is unable to properly convert the types, unless specific {@link Filter} class are used, we need to use
+ * fix type specific filters.
+ */
+public class DescricaoServicoCriteria implements Serializable {
+    /**
+     * Class for filtering TipoServico
+     */
+    public static class TipoServicoFilter extends Filter<TipoServico> {
+    }
+
+    private static final long serialVersionUID = 1L;
+
+
+    private LongFilter id;
+
+    private StringFilter nome;
+
+    private TipoServicoFilter tipo;
+
+    public DescricaoServicoCriteria() {
+    }
+
+    public LongFilter getId() {
+        return id;
+    }
+
+    public void setId(LongFilter id) {
+        this.id = id;
+    }
+
+    public StringFilter getNome() {
+        return nome;
+    }
+
+    public void setNome(StringFilter nome) {
+        this.nome = nome;
+    }
+
+    public TipoServicoFilter getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoServicoFilter tipo) {
+        this.tipo = tipo;
+    }
+
+    @Override
+    public String toString() {
+        return "DescricaoServicoCriteria{" +
+                (id != null ? "id=" + id + ", " : "") +
+                (nome != null ? "nome=" + nome + ", " : "") +
+                (tipo != null ? "tipo=" + tipo + ", " : "") +
+            "}";
+    }
+
+}

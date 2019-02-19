@@ -1,0 +1,23 @@
+
+{
+    "hmProjetosApp": {
+        "descricaoServico" : {
+            "home": {
+                "title": "Descricao Servicos",
+                "createLabel": "Criar novo Descricao Servico",
+                "createOrEditLabel": "Criar ou editar Descricao Servico"
+            },
+            "created": "Um novo Descricao Servico foi criado com o identificador {{ param }}",
+            "updated": "Um Descricao Servico foi atualizado com o identificador {{ param }}",
+            "deleted": "Um Descricao Servico foi deletado com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir Descricao Servico {{ id }}?"
+            },
+            "detail": {
+                "title": "Descricao Servico"
+            },
+            "nome": "Nome",
+            "tipo": "Tipo"
+        }
+    }
+}

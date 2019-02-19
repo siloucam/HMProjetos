@@ -1,0 +1,62 @@
+<div>
+    <h2 data-translate="hmProjetosApp.codigoPrefeitura.home.title">Codigo Prefeituras</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="codigo-prefeitura.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="hmProjetosApp.codigoPrefeitura.home.createLabel">
+                        Create new Codigo Prefeitura
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span data-translate="global.field.id">ID</span></th>
+                    <th><span data-translate="hmProjetosApp.codigoPrefeitura.numero">Numero</span></th>
+                    <th><span data-translate="hmProjetosApp.codigoPrefeitura.ano">Ano</span></th>
+                    <th><span data-translate="hmProjetosApp.codigoPrefeitura.servico">Servico</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="codigoPrefeitura in vm.codigoPrefeituras track by codigoPrefeitura.id">
+                    <td><a ui-sref="codigo-prefeitura-detail({id:codigoPrefeitura.id})">{{codigoPrefeitura.id}}</a></td>
+                    <td>{{codigoPrefeitura.numero}}</td>
+                    <td>{{codigoPrefeitura.ano}}</td>
+                    <td>
+                        <a ui-sref="servico-detail({id:codigoPrefeitura.servico.id})">{{codigoPrefeitura.servico.id}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="codigo-prefeitura-detail({id:codigoPrefeitura.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="codigo-prefeitura.edit({id:codigoPrefeitura.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="codigo-prefeitura.delete({id:codigoPrefeitura.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

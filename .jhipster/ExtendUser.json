@@ -23,10 +23,10 @@
             "fieldValues": "SECRETARIA,DESENHO,GERENCIA"
         }
     ],
-    "changelogDate": "20180126113221",
+    "changelogDate": "20190217161802",
     "entityTableName": "extend_user",
     "dto": "no",
     "pagination": "no",
-    "service": "no",
-    "jpaMetamodelFiltering": false
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true
 }
