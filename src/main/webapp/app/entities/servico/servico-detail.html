@@ -7,7 +7,7 @@
 
     <input type="text" name="" ng-model="vm.codigozao" ng-model-options='{ debounce: 1000 }' ng-change="mudaServico()" style="height: 50px;
     width: 100%;
-    font-size: 30px;">
+    font-size: 30px;padding-left: 10px;">
 
     <hr>
 
@@ -39,12 +39,12 @@
 
         <dt><span>Descrição</span></dt>
         <dd>
-         {{vm.servico.descricao.nome}}
-     </dd>
+           {{vm.servico.descricao.nome}}
+       </dd>
 
-     <dt><span>Orçamento</span></dt>
-     <dd>
-        <span>{{vm.servico.valor| currency:'R$ '}} ({{vm.servico.forma}})</span>
+       <dt><span>Orçamento</span></dt>
+       <dd>
+        <span>{{vm.servico.valor| currency:'R$ '}} <span ng-if="vm.servico.forma">({{vm.servico.forma}})</span></span>
     </dd>
         <!-- <dt><span>Forma de Pagamento</span></dt>
         <dd>
@@ -52,12 +52,108 @@
         </dd> -->
         <dt><span data-translate="hmProjetosApp.servico.endereco">Endereco</span></dt>
         <dd>
-            <span>{{vm.servico.endereco}} - {{vm.servico.bairro}} - {{vm.servico.cidade}} - {{vm.servico.estado}} - {{vm.servico.cep}}</span>
+            <span>{{vm.servico.endereco}} <span ng-if="vm.servico.bairro">- {{vm.servico.bairro}}</span> <span ng-if="vm.servico.cidade">- {{vm.servico.cidade}}</span> <span ng-if="vm.servico.estado">- {{vm.servico.estado}}</span> <span ng-if="vm.servico.cep">- {{vm.servico.cep}}</span></span>
         </dd>
         <dt><span>Inicio/Fim</span></dt>
         <dd>
             <span>{{vm.servico.inicio | date:'shortDate'}}<span ng-if="vm.servico.fim"> - {{vm.servico.fim | date:'shortDate'}}</span></span>
         </dd>
+
+        <dt><span>Protocolos Prefeitura</span></dt>
+        <dd>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-4 no-padding-left">
+                        <button class="btn btn-primary" ng-click="newPrefeitura()" >
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="jh-table table table-striped">
+                    <thead>
+                        <tr>
+                            <th><span></span></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="codigoPrefeitura in vm.codigoPrefeituras track by codigoPrefeitura.id">
+                            <td><a ng-click="sitePrefeitura(codigoPrefeitura.numero,codigoPrefeitura.ano)">{{codigoPrefeitura.numero}}/{{codigoPrefeitura.ano}}</a> 
+
+                                <!-- <button ng-click="sitePrefeitura(codigoPrefeitura.numero,codigoPrefeitura.ano)" class="btn btn-info">
+            <span class="glyphicon glyphicon-globe"></span>
+            </button> -->
+
+            <!-- <button style="margin-left: 10px;" ng-click="puxaPrefeitura(codigoPrefeitura.numero,codigoPrefeitura.ano)" class="btn btn-info">
+            <span class="glyphicon glyphicon-refresh"></span>
+            </button> -->
+
+            <span ng-if="vm.prefeiturasearch">Processando...</span>
+            <span ng-if="vm.prefeituraOk">Atualizado!</span>
+            <span ng-if="vm.prefeituraFail" style="color: red">Falhou.</span>
+
+                            </td>
+                            <td class="text-right">
+                                <div class="btn-group flex-btn-group-container">
+                                    <button type="submit"
+                                    ng-click="deletePrefeitura(codigoPrefeitura.id)"
+                                    class="btn btn-danger btn-sm">
+                                    <span class="glyphicon glyphicon-remove-circle"></span>
+                                    <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </dd>
+
+     <dt><span>Links Externos</span></dt>
+        <dd>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-4 no-padding-left">
+                        <button class="btn btn-primary" ng-click="newLinkExterno()" >
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="jh-table table table-striped">
+                    <thead>
+                        <tr>
+                            <th><span></span></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                <tr ng-repeat="linkExterno in vm.linkExternos track by linkExterno.id">
+                    
+                    <td><a href="{{linkExterno.link}}" target="_blank">{{linkExterno.nome}}</a></td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ng-click="deleteLinkExterno(linkExterno.id)"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+            </table>
+        </div>
+    </dd>
+
+
+
+
+
         <!-- <dt><span data-translate="hmProjetosApp.servico.fim">Fim</span></dt>
         <dd>
             
@@ -81,57 +177,57 @@
             <span ng-if="vm.prefeiturasearch">Processando...</span>
             <span ng-if="vm.prefeituraOk">Atualizado!</span>
             <span ng-if="vm.prefeituraFail" style="color: red">Falhou.</span>
-    </dd> -->
-</dl>
+        </dd> -->
+    </dl>
 
-<uib-tabset active="activeJustified" justified="true">
-    <uib-tab index="0" heading="Situações">
+    <uib-tabset active="activeJustified" justified="true">
+        <uib-tab index="0" heading="Situações">
 
-        <br>
-        <dt></dt>
-        <dd>
+            <br>
+            <dt></dt>
+            <dd>
 
-            <div>
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-xs-4 no-padding-left">
-                            <button class="btn btn-primary" ng-click="newSituacao()" >
-                                <span class="glyphicon glyphicon-plus"></span>
-                            </button>
+                <div>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-xs-4 no-padding-left">
+                                <button class="btn btn-primary" ng-click="newSituacao()" >
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="table-responsive">
-                    <table class="jh-table table table-striped">
-                        <thead>
-                            <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
-                                <th><span>Tipo</span> </span></th>
-                                <th><span>Descrição</span> </span></th>
-                                <th><span>Data Inicio</span> </th>
-                                <th><span>Data Fim</span> </span></th>
-                                <th><span>Data Estipulada</span> </th>
-                                <th><span>Terceiro</span></th>
-                                <th><span>Responsável</span></th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
-                            <tr ng-repeat="situacao in vm.situacaos track by situacao.id">
+                    <div class="table-responsive">
+                        <table class="jh-table table table-striped">
+                            <thead>
+                                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
+                                    <th><span>Tipo</span> </span></th>
+                                    <th><span>Descrição</span> </span></th>
+                                    <th><span>Data Inicio</span> </th>
+                                    <th><span>Data Fim</span> </span></th>
+                                    <th><span>Data Estipulada</span> </th>
+                                    <th><span>Terceiro</span></th>
+                                    <th><span>Responsável</span></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
+                                <tr ng-repeat="situacao in vm.situacaos track by situacao.id">
 
-                                <td>
-                                    {{situacao.tipo.nome}}
-                                </td>
-                                <td>
-                                    {{situacao.observacao}}
-                                </td>
-                                <td>{{situacao.dtinicio | date:'shortDate'}}</td>
-                                <td>{{situacao.dtfim | date:'shortDate'}}</td>
-                                <td>{{situacao.dtestipulada | date:'shortDate'}}</td>
-                                <td>{{situacao.terceiro}}</td>
-                                <td>{{situacao.responsavel.user.firstName}}
+                                    <td ng-class="{'gray': situacao.dtfim}">
+                                        {{situacao.tipo.nome}}
+                                    </td>
+                                    <td ng-class="{'gray': situacao.dtfim}">
+                                        {{situacao.observacao}}
+                                    </td>
+                                    <td  ng-class="{'gray': situacao.dtfim}">{{situacao.dtinicio | date:'shortDate'}}</td>
+                                    <td  ng-class="{'gray': situacao.dtfim}">{{situacao.dtfim | date:'shortDate'}}</td>
+                                    <td  ng-class="{'gray': situacao.dtfim}">{{situacao.dtestipulada | date:'shortDate'}}</td>
+                                    <td  ng-class="{'gray': situacao.dtfim}">{{situacao.terceiro}}</td>
+                                    <td  ng-class="{'gray': situacao.dtfim}">{{situacao.responsavel.user.firstName}}
 
-                                    <td class="text-right">
-                                        <div class="btn-group flex-btn-group-container">
+                                        <td class="text-right">
+                                            <div class="btn-group flex-btn-group-container">
                                <!--  <button type="submit"
                                 ui-sref="situacao-detail({id:situacao.id})"
                                 class="btn btn-info btn-sm">
@@ -173,7 +269,7 @@
             </tr>
         </thead>
         <tbody>
-            <td>{{vm.saldotaxas| currency:'R$ '}}</td>
+            <td ng-class="{'red': vm.saldotaxas < 0, 'green':vm.saldotaxas > 0}">{{vm.saldotaxas| currency:'R$ '}}</td>
             <td>{{vm.pagoservico| currency:'R$ '}}</td>
             <td>{{vm.servico.valor - vm.pagoservico| currency:'R$ '}}</td>
         </tbody>

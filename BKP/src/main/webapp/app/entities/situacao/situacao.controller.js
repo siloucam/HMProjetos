@@ -26,9 +26,7 @@
         // loadAll();
 
         loadFiltros();
-
         loadAll();
-
 
         $scope.printToCart = function(printSectionId) {
         var innerContents = document.getElementById(printSectionId).outerHTML;
@@ -38,7 +36,6 @@
         popupWinindow.document.close();
         // window.print();
       }
-
 
 
         $scope.gerarRelatorio = function(){

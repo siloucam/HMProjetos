@@ -3,8 +3,8 @@
         <div class="col-md-8 col-md-offset-2">
             <h1 data-translate="register.title">Registration</h1>
 
-            <div class="alert alert-success" ng-show="vm.success" data-translate="register.messages.success">
-                <strong>Registration saved!</strong> Please check your email for confirmation.
+            <div class="alert alert-success" ng-show="vm.success">
+                <strong>Cadastro salvo com sucesso!</strong>
             </div>
 
             <div class="alert alert-danger" ng-show="vm.error" data-translate="register.messages.error.fail">
@@ -48,6 +48,11 @@
                             Your username can only contain letters and digits.
                     </p>
                     </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="firstName">Nome</label>
+                    <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Seu Nome"
+                           ng-model="vm.registerAccount.firstName" ng-minlength=1 ng-maxlength=50 required maxlength="50">
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="email" data-translate="global.form.email">Email</label>
@@ -115,9 +120,9 @@
                 <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary" data-translate="register.form.button">Register</button>
             </form>
             <p></p>
-            <div class="alert alert-warning" data-translate="global.messages.info.authenticated" translate-compile>
+         <!--    <div class="alert alert-warning" data-translate="global.messages.info.authenticated" translate-compile>
                 If you want to <a class="alert-link" href="" ng-click="vm.login()">sign in</a>, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").
-            </div>
+            </div> -->
         </div>
     </div>
 </div>

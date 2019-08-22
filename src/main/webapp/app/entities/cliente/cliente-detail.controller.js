@@ -18,6 +18,9 @@
 
         loadAll();
 
+        console.log("Cliente: ");
+        console.log(vm.cliente);
+
         function loadAll() {
 
             Telefone.queryByCliente({Cid: vm.cliente.id}, function(result) {

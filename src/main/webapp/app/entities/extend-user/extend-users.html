@@ -1,13 +1,13 @@
 <div>
-    <h2 data-translate="hmProjetosApp.extendUser.home.title">Extend Users</h2>
+    <h2>Alocações de Cargo</h2>
     <jhi-alert></jhi-alert>
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-4 no-padding-left">
                 <button class="btn btn-primary" ui-sref="extend-user.new" >
                     <span class="glyphicon glyphicon-plus"></span>
-                    <span  data-translate="hmProjetosApp.extendUser.home.createLabel">
-                        Create new Extend User
+                    <span>
+                        Criar nova Alocação
                     </span>
                 </button>
             </div>
@@ -18,27 +18,29 @@
         <table class="jh-table table table-striped">
             <thead>
                 <tr>
-                    <th><span data-translate="global.field.id">ID</span></th>
-                    <th><span data-translate="hmProjetosApp.extendUser.tipo">Tipo</span></th>
-                    <th><span data-translate="hmProjetosApp.extendUser.user">User</span></th>
+                    <!-- <th><span data-translate="global.field.id">ID</span></th> -->
+                    <th><span>Usuário</span></th>
+                    <th><span>Cargo</span></th>
+                    
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="extendUser in vm.extendUsers track by extendUser.id">
-                    <td><a ui-sref="extend-user-detail({id:extendUser.id})">{{extendUser.id}}</a></td>
-                    <td data-translate="{{'hmProjetosApp.TipoCargo.' + extendUser.tipo}}">{{extendUser.tipo}}</td>
+                    <!-- <td><a ui-sref="extend-user-detail({id:extendUser.id})">{{extendUser.id}}</a></td> -->
                     <td>
-                        {{extendUser.user.id}}
+                        {{extendUser.user.firstName}}
                     </td>
+                    <td data-translate="{{'hmProjetosApp.TipoCargo.' + extendUser.tipo}}">{{extendUser.tipo}}</td>
+                    
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
-                            <button type="submit"
+                            <!-- <button type="submit"
                                     ui-sref="extend-user-detail({id:extendUser.id})"
                                     class="btn btn-info btn-sm">
                                 <span class="glyphicon glyphicon-eye-open"></span>
                                 <span class="hidden-sm-down" data-translate="entity.action.view"></span>
-                            </button>
+                            </button> -->
                             <button type="submit"
                                     ui-sref="extend-user.edit({id:extendUser.id})"
                                     class="btn btn-primary btn-sm">

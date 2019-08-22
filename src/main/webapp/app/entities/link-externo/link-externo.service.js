@@ -10,6 +10,11 @@
         var resourceUrl =  'api/link-externos/:id';
 
         return $resource(resourceUrl, {}, {
+            'queryByServico': {
+                url: 'api/link-externos/?servicoId.equals=:Cid',
+                method: 'GET',
+                isArray: true
+            },
             'query': { method: 'GET', isArray: true},
             'get': {
                 method: 'GET',

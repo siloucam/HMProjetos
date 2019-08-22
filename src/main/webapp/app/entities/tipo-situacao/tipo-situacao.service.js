@@ -10,6 +10,11 @@
         var resourceUrl =  'api/tipo-situacaos/:id';
 
         return $resource(resourceUrl, {}, {
+            'queryById' : {
+                url: 'api/tipo-situacaos/?id.equals=:iid',
+                method: 'GET',
+                isArray: true
+            },
             'query': { method: 'GET', isArray: true},
             'get': {
                 method: 'GET',

@@ -14,7 +14,44 @@ Hide ng-cloak on page load, https://docs.angularjs.org/api/ng/directive/ngCloak
 /* ==========================================================================
 Development Ribbon
 ========================================================================== */
+
+.disabled{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -999999;
+    visibility: hidden;
+}
+
+.text-white{
+    color: white !important;
+}
+
+.welldisabled{
+    background: rgba(0,0,0,0);
+    border-color: rgba(0,0,0,0);
+}
+
+.bodyclass{
+    background-image: url("background.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    min-height: 100vh;
+}
+
+.gray{
+    color: #6d6d6d;
+}
+.green{
+    color: green;
+}
+.red{
+    color: red;
+}
+
 .ribbon {
+    visibility: hidden;
     background-color: #a00;
     box-shadow: 0 0 10px #888;
     left: -3.5em;
@@ -62,6 +99,10 @@ navbar text
     color: #444;
 }
 
+.navbar-default{
+    border-radius: 0px !important;
+}
+
 /* ==========================================================================
 Browser Upgrade Prompt
 ========================================================================== */
@@ -106,8 +147,8 @@ Main page styles
 
 .hipster {
     display: inline-block;
-    width: 347px;
-    height: 497px;
+    width: 400px;
+    height: 400px;
     background: url("../images/hipster.png") no-repeat center top;
     background-size: contain;
 }

@@ -1,7 +1,7 @@
 <div>
-    <h2 data-translate="hmProjetosApp.meuServico.home.title">Meu Servicos</h2>
+    <h2>Meus Serviços</h2>
     <jhi-alert></jhi-alert>
-    <div class="container-fluid">
+    <!-- <div class="container-fluid">
         <div class="row">
             <div class="col-xs-4 no-padding-left">
                 <button class="btn btn-primary" ui-sref="meu-servico.new" >
@@ -12,39 +12,87 @@
                 </button>
             </div>
         </div>
-    </div>
+    </div> -->
     <br/>
-    <div class="table-responsive">
-        <table class="jh-table table table-striped">
-            <thead>
-                <tr>
-                    <th><span data-translate="global.field.id">ID</span></th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="meuServico in vm.meuServicos track by meuServico.id">
-                    <td><a ui-sref="meu-servico-detail({id:meuServico.id})">{{meuServico.id}}</a></td>
-                    <td class="text-right">
-                        <div class="btn-group flex-btn-group-container">
-                            <button type="submit"
-                                    ui-sref="meu-servico-detail({id:meuServico.id})"
+    <div class="table-responsive" id="toPrint">
+
+    <h2><span ng-if="vm.tipo">{{vm.tipo.nome}}</span><span ng-if="vm.tipo && vm.responsavel"> - </span><span ng-if="vm.responsavel">{{vm.responsavel.user.firstName}}</span></h2>
+
+    <table class="jh-table table table-striped">
+        <thead>
+            <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
+                <!-- <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th> -->
+
+                <th><span>Tipo</span></span></th>
+
+                <th jh-sort-by="servico.id"><span>Serviço</span></span></th>
+
+                <!-- <th jh-sort-by="tipo.id"><span data-translate="hmProjetosApp.situacao.tipo">Tipo</span> <span class="glyphicon glyphicon-sort"></span></th> -->
+
+                <th><span>Cliente</span></th>
+
+                <th jh-sort-by="observacao"><span>Descrição</span></th>
+                <!-- <th jh-sort-by="terceiro"><span data-translate="hmProjetosApp.situacao.terceiro">Terceiro</span> <span class="glyphicon glyphicon-sort"></span></th> -->
+                <th jh-sort-by="dtinicio"><span>Data Inicio</span> <span class="glyphicon glyphicon-sort"></span></th>
+                <!-- <th jh-sort-by="dtfim"><span>Data Fim</span> <span class="glyphicon glyphicon-sort"></span></th> -->
+                <th jh-sort-by="dtestipulada"><span>Data Estipulada</span> <span class="glyphicon glyphicon-sort"></span></th>
+                <!-- <th jh-sort-by="descricao.id"><span data-translate="hmProjetosApp.situacao.descricao">Descricao</span> <span class="glyphicon glyphicon-sort"></span></th> -->
+
+
+                <th jh-sort-by="responsavel.id"><span>Responsável</span></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
+            <tr ng-repeat="situacao in vm.situacaos track by situacao.id">
+                <!-- <td><a ui-sref="situacao-detail({id:situacao.id})">{{situacao.id}}</a></td> -->
+
+                  <td>
+                        {{situacao.tipo.nome}}
+                    </td>
+
+                <td>
+                    <a ui-sref="servico-detail({id:situacao.servico.id})">{{situacao.servico.codigo}}</a>
+                </td>
+
+                <td>
+                    <a ui-sref="cliente-detail({id:situacao.servico.cliente.id})">{{situacao.servico.cliente.nome}}</a>
+                </td>
+
+                  
+                    <td>{{situacao.observacao}}</td>
+                    <!-- <td>{{situacao.terceiro}}</td> -->
+                    <td>{{situacao.dtinicio | date:'shortDate'}}</td>
+                    <!-- <td>{{situacao.dtfim | date:'shortDate'}}</td> -->
+                    <td>{{situacao.dtestipulada | date:'shortDate'}}</td>
+                    <!-- <td>
+                        <a ui-sref="descricao-situacao-detail({id:situacao.descricao.id})">{{situacao.descricao.id}}</a>
+                    </td> -->
+                    
+
+                    <td>
+                     {{situacao.responsavel.user.firstName}}
+                 </td>
+                 <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                            <!-- <button type="submit"
+                                    ui-sref="situacao-detail({id:situacao.id})"
                                     class="btn btn-info btn-sm">
                                 <span class="glyphicon glyphicon-eye-open"></span>
                                 <span class="hidden-sm-down" data-translate="entity.action.view"></span>
-                            </button>
-                            <button type="submit"
-                                    ui-sref="meu-servico.edit({id:meuServico.id})"
+                            </button> -->
+                           <!--  <button type="submit"
+                                    ui-sref="situacao.edit({id:situacao.id})"
                                     class="btn btn-primary btn-sm">
                                 <span class="glyphicon glyphicon-pencil"></span>
                                 <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
                             </button>
                             <button type="submit"
-                                    ui-sref="meu-servico.delete({id:meuServico.id})"
+                                    ui-sref="situacao.delete({id:situacao.id})"
                                     class="btn btn-danger btn-sm">
                                 <span class="glyphicon glyphicon-remove-circle"></span>
                                 <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
-                            </button>
+                            </button> -->
                         </div>
                     </td>
                 </tr>

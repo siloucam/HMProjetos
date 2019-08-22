@@ -45,10 +45,12 @@
 
             vm.situacaos = [];
 
-            console.log(vm.tipo);
-            console.log(vm.responsavel);
+            console.log("Gerando relatório com:")
+            console.log("Tipo: " + vm.tipo);
+            console.log("Responsavel: " + vm.responsavel);
+            console.log("Terceiro: " + vm.terceiro);
 
-            if(vm.tipo && !vm.responsavel){
+            if(vm.tipo && !vm.responsavel && !vm.terceiro){
 
                 Situacao.queryByTipo({
                     Tid:vm.tipo.id,
@@ -115,9 +117,50 @@
                 }
 
             }
+            if(!vm.tipo && vm.terceiro){
+                //Query por terceiro
+                Situacao.queryByTerceiro({
+                    Terceiro:vm.terceiro,
+                    sort: sort()
+                }, function(data){
+                    console.log(data);
+                    vm.situacaos = data;
+                }, function(){
+                    // console.log("Erro");
+                });
+
+                function sort() {
+                var result = [vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc')];
+                if (vm.predicate !== 'id') {
+                    result.push('id');
+                }
+                return result;
+                }
+            }
+            if(vm.tipo && vm.terceiro){
+                //Query por tipo e terceiro
+                Situacao.queryByTipoTerceiro({
+                    Terceiro:vm.terceiro,
+                    Tid:vm.tipo.id,
+                    sort: sort()
+                }, function(data){
+                    console.log(data);
+                    vm.situacaos = data;
+                }, function(){
+                    // console.log("Erro");
+                });
+
+                function sort() {
+                var result = [vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc')];
+                if (vm.predicate !== 'id') {
+                    result.push('id');
+                }
+                return result;
+                }
+            }
 
 
-            if(!vm.tipo && !vm.responsavel){
+            if(!vm.tipo && !vm.responsavel && !vm.terceiro){
                 loadAll();
             }
 
@@ -139,7 +182,7 @@
 
         function loadAll () {
 
-            Situacao.query({
+            Situacao.queryAtuais({
                 page: vm.page,
                 size: vm.itemsPerPage,
                 sort: sort()

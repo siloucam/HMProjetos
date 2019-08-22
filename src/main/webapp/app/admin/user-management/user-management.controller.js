@@ -2,12 +2,12 @@
     'use strict';
 
     angular
-        .module('hmProjetosApp')
-        .controller('UserManagementController', UserManagementController);
+    .module('hmProjetosApp')
+    .controller('UserManagementController', UserManagementController);
 
-    UserManagementController.$inject = ['Principal', 'User', 'ParseLinks', 'AlertService', '$state', 'pagingParams', 'paginationConstants', 'JhiLanguageService'];
+    UserManagementController.$inject = ['ExtendUser', '$uibModal', '$scope' ,'Principal', 'User', 'ParseLinks', 'AlertService', '$state', 'pagingParams', 'paginationConstants', 'JhiLanguageService'];
 
-    function UserManagementController(Principal, User, ParseLinks, AlertService, $state, pagingParams, paginationConstants, JhiLanguageService) {
+    function UserManagementController(ExtendUser, $uibModal, $scope, Principal, User, ParseLinks, AlertService, $state, pagingParams, paginationConstants, JhiLanguageService) {
         var vm = this;
 
         vm.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
@@ -34,9 +34,42 @@
             vm.currentAccount = account;
         });
 
+        $scope.newUser = function(){
+
+            $uibModal.open({
+                templateUrl: 'app/admin/user-management/user-management-dialog.html',
+                controller: 'UserManagementDialogController',
+                controllerAs: 'vm',
+                backdrop: 'static',
+                size: 'lg',
+                resolve: {
+                    entity: function () {
+                        return {
+                            id: null, login: null, firstName: null, lastName: null, email: null,
+                            activated: true, langKey: null, createdBy: null, createdDate: null,
+                            lastModifiedBy: null, lastModifiedDate: null, resetDate: null,
+                            resetKey: null, authorities: null, password: null
+                        };
+                    }
+                }
+            }).result.then(function() {
+
+                vm.loadAll();
+                    // $state.go('user-management', null, { reload: true });
+                }, function() {
+                    // $state.go('user-management');
+                });
+        }
+
         function setActive (user, isActivated) {
             user.activated = isActivated;
             User.update(user, function () {
+
+                var extend = new ExtendUser();
+                extend.user = user;
+
+                ExtendUser.save(extend);
+
                 vm.loadAll();
                 vm.clear();
             });

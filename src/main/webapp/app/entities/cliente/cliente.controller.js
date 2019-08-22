@@ -28,25 +28,30 @@
         /* function */
          $scope.Filtrar = function(){
 
-            Cliente.query(function(result) {
+            Cliente.queryFilter({filtro: vm.filtro}, function(result){
+                vm.clientes = result;                
+            })
 
-                var clientesfiltrados = [];
 
-                if(vm.filtro!=null){
-                for(var i=0;i<result.length;i++){
+            // Cliente.query(function(result) {
 
-                // console.log(result[i].nome + " inclui " + vm.filtro + "?");
-                // console.log(result[i].nome.includes(vm.filtro));
+            //     var clientesfiltrados = [];
 
-                if(result[i].nome.toLowerCase().includes(vm.filtro.toLowerCase())){
-                    clientesfiltrados.push(result[i]);
-                }
-                }
-            }
+            //     if(vm.filtro!=null){
+            //     for(var i=0;i<result.length;i++){
 
-                vm.clientes = clientesfiltrados;
-                vm.searchQuery = null;
-            });
+            //     // console.log(result[i].nome + " inclui " + vm.filtro + "?");
+            //     // console.log(result[i].nome.includes(vm.filtro));
+
+            //     if(result[i].nome.toLowerCase().includes(vm.filtro.toLowerCase())){
+            //         clientesfiltrados.push(result[i]);
+            //     }
+            //     }
+            // }
+
+            //     vm.clientes = clientesfiltrados;
+            //     vm.searchQuery = null;
+            // });
         }
 
 

@@ -10,6 +10,11 @@
         var resourceUrl =  'api/clientes/:id';
 
         return $resource(resourceUrl, {}, {
+            'queryFilter': {
+                url: 'api/clientes/?nome.contains=:filtro',
+                method: 'GET',
+                isArray: true
+            },
             'query': { method: 'GET', isArray: true},
             'get': {
                 method: 'GET',

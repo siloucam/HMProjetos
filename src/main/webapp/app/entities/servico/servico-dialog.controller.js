@@ -20,7 +20,8 @@
         vm.descricaoservicos = DescricaoServico.query(function(result){
             FiltrarDescricao();
         });
-        vm.clientes = Cliente.query();
+        // vm.clientes = Cliente.query();
+        // vm.clientes = [];
         vm.codigos = [];
         vm.filtrada;
 

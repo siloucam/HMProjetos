@@ -20,9 +20,8 @@
     <div class="row">
     <div class="col-sm-5">
       <label  for="field_cliente">Cliente</label>
-            <select class="form-control" id="field_cliente" name="cliente" ng-model="vm.servico.cliente" ng-options="cliente as cliente.nome for cliente in vm.clientes track by cliente.id">
-                <option value=""></option>
-            </select>
+            <input class="form-control" id="field_cliente" name="cliente" ng-model="vm.servico.cliente.nome" ng-disabled="true">
+            </input>
     </div>
     <div class="col-sm-2">
         <label class="control-label"  for="field_tipo">Tipo</label>

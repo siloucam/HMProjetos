@@ -18,6 +18,12 @@
             getAccount();
         });
 
+        var target = angular.element( document.querySelector( '#well' ) );
+
+        console.log(target);
+
+        target.addClass('welldisabled');
+
         getAccount();
 
         function getAccount() {

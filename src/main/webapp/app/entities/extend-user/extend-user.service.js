@@ -10,6 +10,11 @@
         var resourceUrl =  'api/extend-users/:id';
 
         return $resource(resourceUrl, {}, {
+            'queryByUser':{
+                url: 'api/extend-users?userId.equals=:Uid',
+                method: 'GET',
+                isArray: true
+            },
             'query': { method: 'GET', isArray: true},
             'get': {
                 method: 'GET',

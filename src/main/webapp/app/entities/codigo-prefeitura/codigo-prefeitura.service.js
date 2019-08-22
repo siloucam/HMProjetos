@@ -10,6 +10,11 @@
         var resourceUrl =  'api/codigo-prefeituras/:id';
 
         return $resource(resourceUrl, {}, {
+            'queryByServico': {
+                url: 'api/codigo-prefeituras/?servicoId.equals=:Cid',
+                method: 'GET',
+                isArray: true
+            },
             'query': { method: 'GET', isArray: true},
             'get': {
                 method: 'GET',

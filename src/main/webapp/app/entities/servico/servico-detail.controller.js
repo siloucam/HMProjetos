@@ -5,9 +5,9 @@
     .module('hmProjetosApp')
     .controller('ServicoDetailController', ServicoDetailController);
 
-    ServicoDetailController.$inject = ['$timeout','$window','$uibModal','$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Servico', 'Situacao', 'Transacao', 'DescricaoServico', 'Cliente', 'TipoSituacao'];
+    ServicoDetailController.$inject = ['$timeout','$window','$uibModal','$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Servico', 'Situacao', 'Transacao', 'DescricaoServico', 'Cliente', 'TipoSituacao', 'CodigoPrefeitura','LinkExterno'];
 
-    function ServicoDetailController($timeout, $window, $uibModal,$scope, $rootScope, $stateParams, previousState, entity, Servico, Situacao, Transacao, DescricaoServico, Cliente, TipoSituacao) {
+    function ServicoDetailController($timeout, $window, $uibModal,$scope, $rootScope, $stateParams, previousState, entity, Servico, Situacao, Transacao, DescricaoServico, Cliente, TipoSituacao, CodigoPrefeitura, LinkExterno) {
         var vm = this;
 
         vm.naoachou = true;
@@ -15,11 +15,11 @@
         vm.servico = entity;
         vm.previousState = previousState.name;
 
-
         vm.codigozao =  vm.servico.codigo;
 
         vm.transacaos = [];
         vm.situacaos = [];
+        vm.codigoPrefeituras = [];
 
         vm.saldotaxas = 0;
         vm.pagoservico = 0;
@@ -50,36 +50,38 @@
             for(var i = 0; i < vm.situacaos.length; i++){
 
                 // console.log(vm.situacaos[i].observacao.includes(texto));
-                if(vm.situacaos[i].observacao.includes(texto)) result = true;
 
+                if(vm.situacaos[i].observacao){
+                    if(vm.situacaos[i].observacao.includes(texto)) result = true;  
+                }
             }
 
             return result;
 
         }
 
-        $scope.sitePrefeitura = function() {
+        $scope.sitePrefeitura = function(numero,ano) {
 
-            var p_codigo;
-            var p_ano;
+            // var p_codigo;
+            // var p_ano;
 
-            var n = vm.servico.link.indexOf("/");
+            // var n = vm.servico.link.indexOf("/");
 
-            p_ano = vm.servico.link.slice(n+1);
-            p_codigo = vm.servico.link.slice(0,n);
+            // p_ano = vm.servico.link.slice(n+1);
+            // p_codigo = vm.servico.link.slice(0,n);
 
-            $window.open('http://www2.cachoeiro.es.gov.br:8080/ZimWeb/servlet/ZII?tipo_processo=1&numero_processo='+p_codigo+'&ano_processo='+p_ano+'&connection=producao&program=pwcd001&Procurar=Processar', '_blank');
+            $window.open('http://www2.cachoeiro.es.gov.br:8080/ZimWeb/servlet/ZII?tipo_processo=1&numero_processo='+numero+'&ano_processo='+ano+'&connection=producao&program=pwcd001&Procurar=Processar', '_blank');
         }
 
-        $scope.puxaPrefeitura = function() {
+        $scope.puxaPrefeitura = function(numero,ano) {
 
-            var p_codigo;
-            var p_ano;
+            // var p_codigo;
+            // var p_ano;
 
-            var n = vm.servico.link.indexOf("/");
+            // var n = vm.servico.link.indexOf("/");
 
-            p_ano = vm.servico.link.slice(n+1);
-            p_codigo = vm.servico.link.slice(0,n);
+            // p_ano = vm.servico.link.slice(n+1);
+            // p_codigo = vm.servico.link.slice(0,n);
 
             vm.prefeituraOk = false;
             vm.prefeituraFail = false;
@@ -87,8 +89,8 @@
 
             var jobj = [];
 
-            var processo = p_codigo;
-            var ano = p_ano;
+            var processo = numero;
+            var ano = ano;
 
             $.ajax({
                 type: "GET",
@@ -130,7 +132,7 @@
 
             // var tipo = new TipoSituacao();
 
-            TipoSituacao.queryById({iid: 4}, function(result) {
+            TipoSituacao.queryById({iid: 8}, function(result) {
                     // console.log(result);
                     vm.searchQuery = null;
 
@@ -168,10 +170,6 @@
 
                             //Se não tiver ainda vai criar as situações
 
-                            // vm.situsprefeitura[i].$promise.then(function(data){
-                            //    console.log(data);
-                            //     });
-
                             console.log("Não tem, vai tentar salvar hein");
 
                             // console.log(vm.situsprefeitura[i]);
@@ -187,22 +185,22 @@
 
                     console.log(vm.situsprefeitura);
 
-                   var timer = function() {
-            if(jobj.length == 0){
-                        console.log("ACHO NADA!");
-                        vm.prefeiturasearch = false;
-                        vm.prefeituraFail = true;
-                    }else{
+                    var timer = function() {
+                        if(jobj.length == 0){
+                            console.log("ACHO NADA!");
+                            vm.prefeiturasearch = false;
+                            vm.prefeituraFail = true;
+                        }else{
                            vm.prefeiturasearch = false;
-                            vm.prefeituraOk = true;
-                    }
-        }
+                           vm.prefeituraOk = true;
+                       }
+                   }
 
-                    
-                    $timeout(timer, 2000);
-                    $timeout(loadAll, 2000);
 
-                });
+                   $timeout(timer, 2000);
+                   $timeout(loadAll, 2000);
+
+               });
 
             // console.log(JSON.stringify(jobj));
         }).fail( function(xhr, textStatus, errorThrown) {
@@ -271,6 +269,18 @@
             // vm.orcamentos = null;
             vm.transacaos = null;
             vm.situacaos = null;
+            vm.codigoPrefeituras = null;
+            vm.linkExternos = null;
+
+            LinkExterno.queryByServico({Cid: vm.servico.id}, function(result) {
+                vm.linkExternos = result;
+                vm.searchQuery = null;
+            });
+
+            CodigoPrefeitura.queryByServico({Cid: vm.servico.id}, function(result) {
+                vm.codigoPrefeituras = result;
+                vm.searchQuery = null;
+            });
 
             Transacao.queryByServico({Cid: vm.servico.id}, function(result) {
                 vm.transacaos = result;
@@ -280,6 +290,7 @@
             });
             
             Situacao.queryByServico({Cid: vm.servico.id}, function(result) {
+
                 vm.situacaos = result;
                 vm.searchQuery = null;
             // console.log(result);
@@ -290,13 +301,112 @@
 
         }
 
+        
+
+        $scope.newLinkExterno = function(){
+
+            $uibModal.open({
+                templateUrl: 'app/entities/link-externo/link-externo-dialog.html',
+                controller: 'LinkExternoDialogController',
+                controllerAs: 'vm',
+                backdrop: 'static',
+                size: 'md',
+                resolve: {
+                    entity: function () {
+                        return {
+                            servico: vm.servico,
+                            nome: null,
+                            link: null,
+                            id: null
+                        };
+                    }
+                }
+            }).result.then(function() {
+
+                loadAll();
+
+                    //$state.go('transacao', null, { reload: 'transacao' });
+                }, function() {
+                    //$state.go('transacao');
+                });
+        }
+
+        $scope.newPrefeitura = function(){
+
+            $uibModal.open({
+                templateUrl: 'app/entities/codigo-prefeitura/codigo-prefeitura-dialog.html',
+                controller: 'CodigoPrefeituraDialogController',
+                controllerAs: 'vm',
+                backdrop: 'static',
+                size: 'md',
+                resolve: {
+                    entity: function () {
+                        return {
+                            servico: vm.servico,
+                            numero: null,
+                            ano: null,
+                            id: null
+                        };
+                    }
+                }
+            }).result.then(function() {
+
+                loadAll();
+
+                    //$state.go('transacao', null, { reload: 'transacao' });
+                }, function() {
+                    //$state.go('transacao');
+                });
+        }
+
+
+        $scope.deleteLinkExterno = function(Id) {
+            $uibModal.open({
+                templateUrl: 'app/entities/link-externo/link-externo-delete-dialog.html',
+                controller: 'LinkExternoDeleteController',
+                controllerAs: 'vm',
+                size: 'md',
+                resolve: {
+                    entity: ['LinkExterno', function(LinkExterno) {
+                        return LinkExterno.get({id : Id}).$promise;
+                    }]
+                }
+            }).result.then(function() {
+                    loadAll();
+                }, function() {
+
+                });
+        };
+
+        $scope.deletePrefeitura = function(Id) {
+            $uibModal.open({
+                templateUrl: 'app/entities/codigo-prefeitura/codigo-prefeitura-delete-dialog.html',
+                controller: 'CodigoPrefeituraDeleteController',
+                controllerAs: 'vm',
+                size: 'md',
+                resolve: {
+                    entity: ['CodigoPrefeitura', function(CodigoPrefeitura) {
+                        return CodigoPrefeitura.get({id : Id}).$promise;
+                    }]
+                }
+            }).result.then(function() {
+
+                    //Transacao.delete(Id);
+                    loadAll();
+                }, function() {
+
+                });
+        };
+
+
+
         $scope.newTransacao = function(){
             $uibModal.open({
                 templateUrl: 'app/entities/transacao/transacao-dialog.html',
                 controller: 'TransacaoDialogController',
                 controllerAs: 'vm',
                 backdrop: 'static',
-                size: 'lg',
+                size: 'md',
                 resolve: {
                     entity: function () {
                         return {

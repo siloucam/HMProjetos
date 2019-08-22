@@ -19,7 +19,7 @@
 
                 <div class="glyphicon glyphicon-search"></div>
                 <input type="text" placeholder="Buscar" class="form-control" name="filtro" id="field_nome"
-                    ng-model="vm.filtro" ng-change="Filtrar()" style="width: 80%; display: inline-block;" 
+                    ng-model="vm.filtro"  ng-model-options='{ debounce: 1000 }' ng-change="Filtrar()" style="width: 80%; display: inline-block;" 
                     />
 
             </div>

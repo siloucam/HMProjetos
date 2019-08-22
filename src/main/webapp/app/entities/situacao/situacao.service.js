@@ -10,23 +10,38 @@
         var resourceUrl =  'api/situacaos/:id';
 
         return $resource(resourceUrl, {}, {
+            'queryByTerceiro':{
+                url: 'api/situacaos/?terceiro.contains=:Terceiro&dtfim.specified=false&sort=dtinicio%2Cdesc',
+                method: 'GET',
+                isArray: true
+            },
+            'queryByTipoTerceiro':{
+                url: 'api/situacaos/?terceiro.contains=:Terceiro&dtfim.specified=false&tipoId.equals=:Tid&sort=dtinicio%2Cdesc',
+                method: 'GET',
+                isArray: true
+            },
             'queryByTipo':{
-                url: 'api/situacaos/?tipoId.equals=:Tid&dtfim.specified=false',
+                url: 'api/situacaos/?tipoId.equals=:Tid&dtfim.specified=false&sort=dtinicio%2Cdesc',
                 method: 'GET',
                 isArray: true
             },
             'queryByResponsavel':{
-                url: 'api/situacaos/?responsavelId.equals=:Rid&dtfim.specified=false',
+                url: 'api/situacaos/?responsavelId.equals=:Rid&dtfim.specified=false&sort=dtinicio%2Cdesc',
                 method: 'GET',
                 isArray: true
             },
             'queryByTipoResponsavel':{
-                url: 'api/situacaos/?tipoId.equals=:Tid&dtfim.specified=false&responsavelId.equals=:Rid',
+                url: 'api/situacaos/?tipoId.equals=:Tid&dtfim.specified=false&responsavelId.equals=:Rid&sort=dtinicio%2Cdesc',
                 method: 'GET',
                 isArray: true
             },
             'queryByServico': {
-                url: 'api/situacaos/?servicoId.equals=:Cid',
+                url: 'api/situacaos/?servicoId.equals=:Cid&sort=dtinicio%2Cdesc',
+                method: 'GET',
+                isArray: true
+            },
+            'queryAtuais': {
+                url: 'api/situacaos/?dtfim.specified=false&sort=dtinicio%2Cdesc',
                 method: 'GET',
                 isArray: true
             },
