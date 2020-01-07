@@ -10,6 +10,11 @@
         var resourceUrl =  'api/servicos/:id';
 
         return $resource(resourceUrl, {}, {
+            'queryFilterCodigo': {
+                url: 'api/servicos/?codigo.contains=:filtro',
+                method: 'GET',
+                isArray: true
+            },
             'queryByCodigo': {
                 url: 'api/servicos/?codigo.equals=:codigo',
                 method: 'GET',

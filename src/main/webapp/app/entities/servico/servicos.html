@@ -4,12 +4,12 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-4 no-padding-left">
-                <button class="btn btn-primary" ui-sref="servico.new" >
+                <!-- <button class="btn btn-primary" ui-sref="servico.new" >
                     <span class="glyphicon glyphicon-plus"></span>
                     <span>
                         Criar novo Serviço
                     </span>
-                </button>
+                </button> -->
             </div>
             <div class="col-xs-4">
                 
@@ -55,7 +55,9 @@
                 <tr ng-repeat="servico in vm.servicos track by servico.id">
                     <!-- <td><a ui-sref="servico-detail({id:servico.id})">{{servico.id}}</a></td> -->
                     <!-- <td data-translate="{{'hmProjetosApp.TipoServico.' + servico.tipo}}">{{servico.tipo}}</td> -->
-                    <td>{{servico.codigo}}</td>
+                    <td>
+                    <a ui-sref="servico-detail({id:servico.id})">{{servico.codigo}}</a>
+                </td>
                     <!-- <td>{{servico.observacao}}</td> -->
                     <!-- <td>{{servico.valor}}</td> -->
                     <!-- <td>{{servico.forma}}</td> -->

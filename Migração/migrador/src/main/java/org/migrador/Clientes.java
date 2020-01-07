@@ -2,12 +2,15 @@ package org.migrador;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -24,8 +27,11 @@ public class Clientes {
 		//ID DO ULTIMO TELEFONE DO BANCO
 		int id_telefone = 4;
 		
+		FileInputStream fis = new FileInputStream(SAMPLE_CSV_FILE_PATH);
+		InputStreamReader isr = new InputStreamReader(fis, "UTF-8");
+		
 		@SuppressWarnings("deprecation")
-		CSVReader reader = new CSVReader(new FileReader(SAMPLE_CSV_FILE_PATH), ';' , '"' , 0);
+		CSVReader reader = new CSVReader(isr, ';' , '"' , 0);
     	String[] nextLine;
     	
 //    	Writer writer = Files.newBufferedWriter(Paths.get("saida.csv"));
@@ -63,6 +69,7 @@ public class Clientes {
                      CEP = CEP.replaceAll(" ","");
             		};
                      
+            	
                      
             	fr.write("INSERT INTO hmprojetos.cliente values (" 
                         + id 
@@ -77,7 +84,7 @@ public class Clientes {
                         																+ "','" + nextLine[6]
                         +  "');\n");
             	
-            	//Criação dos INSERTS dos telefones
+            	//CriaÃ§Ã£o dos INSERTS dos telefones
             	if(!nextLine[7].isEmpty()) {
             	fr.write("INSERT INTO hmprojetos.telefone values ("
             			+ id_telefone

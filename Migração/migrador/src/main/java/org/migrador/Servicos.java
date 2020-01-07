@@ -69,10 +69,16 @@ public class Servicos {
             		
             		//Tipo e Codigo
             		String codigo = nextLine[0];
+            		
             		String tipo = codigo.substring(0,3);
             		
             		id_projeto = codigo.substring(6);
+            		
             		id_projeto = id_projeto.replace(".", "");
+            		
+            		//if(tipo.equals("PAQ")) id_projeto = "" + id_projeto;
+            		if(tipo.equals("PRS")) id_projeto = "1" + id_projeto;
+            		if(tipo.equals("ASS")) id_projeto = "2" + id_projeto;
             		
             		//Cliente
             		String id_cliente = nextLine[1];

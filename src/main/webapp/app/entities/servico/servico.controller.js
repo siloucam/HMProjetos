@@ -28,25 +28,29 @@
 
         $scope.Filtrar = function(){
 
-            Servico.query(function(result) {
+            Servico.queryFilterCodigo({filtro: vm.filtro}, function(result){
+                vm.servicos = result;                
+            })
 
-                var clientesfiltrados = [];
+            // Servico.query(function(result) {
 
-                if(vm.filtro!=null){
-                for(var i=0;i<result.length;i++){
+            //     var clientesfiltrados = [];
 
-                // console.log(result[i].nome + " inclui " + vm.filtro + "?");
-                // console.log(result[i].nome.includes(vm.filtro));
+            //     if(vm.filtro!=null){
+            //     for(var i=0;i<result.length;i++){
 
-                if(result[i].codigo.toLowerCase().includes(vm.filtro.toLowerCase()) || result[i].cliente.nome.toLowerCase().includes(vm.filtro.toLowerCase())){
-                    clientesfiltrados.push(result[i]);
-                }
-                }
-            }
+            //     // console.log(result[i].nome + " inclui " + vm.filtro + "?");
+            //     // console.log(result[i].nome.includes(vm.filtro));
 
-                vm.servicos = clientesfiltrados;
-                vm.searchQuery = null;
-            });
+            //     if(result[i].codigo.toLowerCase().includes(vm.filtro.toLowerCase()) || result[i].cliente.nome.toLowerCase().includes(vm.filtro.toLowerCase())){
+            //         clientesfiltrados.push(result[i]);
+            //     }
+            //     }
+            // }
+
+            //     vm.servicos = clientesfiltrados;
+            //     vm.searchQuery = null;
+            // });
         }
 
         function loadAll () {

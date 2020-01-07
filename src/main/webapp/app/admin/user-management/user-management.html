@@ -17,7 +17,7 @@
                 <th><span data-translate="userManagement.email">Email</span> </th>
                 <th></th>
                 <!-- <th  jh-sort-by="langKey"> <span data-translate="userManagement.langKey">Lang Key</span> <span class="glyphicon glyphicon-sort"></span></th>     -->            
-                <!-- <th><span data-translate="userManagement.profiles">Profiles</span></th>                 -->
+                <th><span data-translate="userManagement.profiles">Profiles</span></th>                
                 <th><span data-translate="userManagement.createdDate">Created Date</span></th>
                 <!-- <th jh-sort-by="lastModifiedBy"><span data-translate="userManagement.lastModifiedBy">Last Modified By</span> <span class="glyphicon glyphicon-sort"></span></th> -->
                 <!-- <th jh-sort-by="lastModifiedDate"><span data-translate="userManagement.lastModifiedDate">Last Modified Date</span> <span class="glyphicon glyphicon-sort"></span></th> -->
@@ -36,17 +36,17 @@
                     ng-disabled="vm.currentAccount.login === user.login" data-translate="userManagement.activated">Activated</button>
                 </td>
                 <!-- <td>{{user.langKey}}</td> -->
-                <!-- <td>
+                <td>
                     <div ng-repeat="authority in user.authorities">
                         <span class="label label-info">{{ authority }}</span>
                     </div>
-                </td> -->
+                </td>
                 <td>{{user.createdDate | date:'dd/MM/yy HH:mm'}}</td>
                 <!-- <td>{{user.lastModifiedBy}}</td> -->
                 <!-- <td>{{user.lastModifiedDate | date:'dd/MM/yy HH:mm'}}</td> -->
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
-                      <!--   <button type="submit"
+                        <button type="submit"
                         ui-sref="user-management-detail({login:user.login})"
                         class="btn btn-info btn-sm">
                         <span class="glyphicon glyphicon-eye-open"></span>
@@ -57,7 +57,7 @@
                     class="btn btn-primary btn-sm">
                     <span class="glyphicon glyphicon-pencil"></span>
                     <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
-                </button> -->
+                </button>
                 <button type="submit"
                 ui-sref="user-management.delete({login:user.login})"
                 class="btn btn-danger btn-sm" ng-disabled="vm.currentAccount.login === user.login">

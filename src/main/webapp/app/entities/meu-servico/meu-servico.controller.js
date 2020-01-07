@@ -36,6 +36,8 @@
                 
                 loadAll();
 
+
+
             });
         }
 
@@ -53,15 +55,18 @@
                 Rid:vm.extendUser.id,
                 sort: sort()
             }, function(data){
-                console.log(data);
                 vm.situacaos = data;
             }, function(){
-                    // console.log("Erro");
+                    console.log("Erro");
                 });
+
+            // Situacao.queryByResponsavel({Rid: vm.extendUser.id, sort: sort()}, function(result){
+            //     console.log(result);            
+            // })
 
             
         }, function(){
-                    // console.log("Erro");
+                    console.log("Erro");
                 });
 
            function sort() {
