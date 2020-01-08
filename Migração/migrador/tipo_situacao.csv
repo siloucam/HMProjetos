@@ -1,0 +1,20 @@
+id,nome,sigla
+1,"Fazer Medição",FM
+2,"Fazer Desenho",FD
+3,Desenhando,D
+4,Revisar,R
+5,"Fazer Contato Terceiro",FCT
+6,"Fazer Contato Cliente",FCC
+7,"Aguardando Resposta Cliente",ARC
+8,"Aguardando Resposta Terceiros",ART
+9,"Atividades Internas",AI
+10,"Montar Processo",MP
+11,Aguardando,A
+12,Entregar,E
+13,Arquivar,A
+14,"Cobrar Pagamento",CP
+15,"Acompanhamento de Notificações",AN
+16,"Acompanhamento de Usucapião",AU
+17,"Elaborando Processo",EP
+18,"Acompanhamento de Processos",AP
+20,"Não Especificado",NULL
