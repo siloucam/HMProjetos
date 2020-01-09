@@ -112,16 +112,27 @@ public class Servicos {
                     }else {
                     	dtfim = "null";
                     }
+                    
+                    String valor = null;
+                    if(!nextLine[12].isEmpty())
+                    	valor = nextLine[12];
             		
+                    String endereco = nextLine[3];
+                    endereco.replace("'", "");
+                    String obs = nextLine[2];
+                    obs.replace("'", "");
+                    String bairro = nextLine[4];
+                    bairro.replace("'", "");
+                    
             		fr.write("INSERT INTO hmprojetos.servico values (" 
                             + id_projeto
                             + ",'" + tipo
                             + "','" + codigo
-                            + "','" + nextLine[2] //observacao
-                            + "','" + nextLine[12] //valor
-                            + "','" + nextLine[13] //forma de pagamento
-                            + "','" + nextLine[3] //endereco
-                            + "','" + nextLine[4] //bairro
+                            + "','" + obs //observacao
+                            + "'," + valor //valor
+                            + ",'" + nextLine[13] //forma de pagamento
+                            + "','" + endereco //endereco
+                            + "','" + bairro //bairro
                             + "','" + nextLine[5] //cidade
                             + "','" + nextLine[6] //estado
                             + "','" + CEP //CEP

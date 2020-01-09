@@ -147,7 +147,7 @@ relationship OneToMany {
 
 
 
-paginate Cliente, Servico, Situacao, Telefone with infinite-scroll
+paginate Cliente, Servico, Telefone with infinite-scroll
 
 
 filter all

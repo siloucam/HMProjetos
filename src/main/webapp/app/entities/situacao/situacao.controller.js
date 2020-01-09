@@ -59,9 +59,10 @@
                     console.log(data);
                     vm.situacaos = data;
                 }, function(){
-                    // console.log("Erro");
+                    console.log("Erro");
                 });
-                // console.log("Busca por tipo só");
+                
+                console.log("Busca por tipo só");
 
                 function sort() {
                 var result = [vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc')];
@@ -76,6 +77,8 @@
                 // console.log("Busca por responsavel só");
 
                 Situacao.queryByResponsavel({
+                    page: vm.page,
+                    size: vm.itemsPerPage,
                     Rid:vm.responsavel.id,
                     sort: sort()
                 }, function(data){
@@ -98,6 +101,8 @@
                 // console.log("Busca pelos dois");
 
                 Situacao.queryByTipoResponsavel({
+                    page: vm.page,
+                    size: vm.itemsPerPage,
                     Rid:vm.responsavel.id,
                     Tid:vm.tipo.id,
                     sort: sort()
@@ -120,6 +125,8 @@
             if(!vm.tipo && vm.terceiro){
                 //Query por terceiro
                 Situacao.queryByTerceiro({
+                    page: vm.page,
+                    size: vm.itemsPerPage,
                     Terceiro:vm.terceiro,
                     sort: sort()
                 }, function(data){
@@ -140,6 +147,8 @@
             if(vm.tipo && vm.terceiro){
                 //Query por tipo e terceiro
                 Situacao.queryByTipoTerceiro({
+                    page: vm.page,
+                    size: vm.itemsPerPage,
                     Terceiro:vm.terceiro,
                     Tid:vm.tipo.id,
                     sort: sort()
