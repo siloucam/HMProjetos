@@ -36,7 +36,7 @@
                 isArray: true
             },
             'queryByServico': {
-                url: 'api/situacaos/?servicoId.equals=:Cid&sort=dtinicio%2Cdesc',
+                url: 'api/situacaos/?servicoId.equals=:Cid&sort_by=desc(dtinicio)',
                 method: 'GET',
                 isArray: true
             },

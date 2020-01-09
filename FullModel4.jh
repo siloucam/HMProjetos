@@ -1,3 +1,6 @@
+entity Terceiro{
+	nome String
+}
 
 entity MeuServico{
 	

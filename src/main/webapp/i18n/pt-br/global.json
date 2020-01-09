@@ -20,6 +20,7 @@
                 "servico": "Servico",
                 "transacao": "Transacao",
                 "situacao": "Situacao",
+                "terceiro": "Terceiro",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

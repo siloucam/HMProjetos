@@ -88,6 +88,12 @@
                                 <span>Tipo de Situação</span>
                             </a>
                         </li>
+                        <li ui-sref-active="active" has-authority="ROLE_ADMIN" >
+                                <a ui-sref="terceiro" ng-click="vm.collapseNavbar()">
+                                    <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
+                                    <span data-translate="global.menu.entities.terceiro">Terceiro</span>
+                                </a>
+                            </li>
                         <!-- <li ui-sref-active="active">
                             <a ui-sref="codigos" ng-click="vm.collapseNavbar()">
                                 <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
@@ -209,6 +215,7 @@
                         <!-- jhipster-needle-add-element-to-admin-menu - JHipster will add entities to the admin menu here -->
                     </ul>
                 </li>
+                        
                         <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
                    
                 

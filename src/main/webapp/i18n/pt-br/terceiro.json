@@ -1,0 +1,22 @@
+
+{
+    "hmProjetosApp": {
+        "terceiro" : {
+            "home": {
+                "title": "Terceiros",
+                "createLabel": "Criar novo Terceiro",
+                "createOrEditLabel": "Criar ou editar Terceiro"
+            },
+            "created": "Um novo Terceiro foi criado com o identificador {{ param }}",
+            "updated": "Um Terceiro foi atualizado com o identificador {{ param }}",
+            "deleted": "Um Terceiro foi deletado com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir Terceiro {{ id }}?"
+            },
+            "detail": {
+                "title": "Terceiro"
+            },
+            "nome": "Nome"
+        }
+    }
+}
