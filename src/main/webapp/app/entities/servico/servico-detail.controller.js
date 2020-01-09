@@ -29,6 +29,12 @@
         vm.prefeituraOk = false;
         vm.prefeituraFail = false;
 
+        vm.arrFromMyObj;
+
+        // $scope.arrFromMyObj = Object.keys(myObj).map(function(key) {
+        // return myObj[key];
+        // });
+
 
         $scope.Back = function(){
             $window.location.href = '/#/servico';
@@ -292,6 +298,12 @@
             Situacao.queryByServico({Cid: vm.servico.id}, function(result) {
 
                 vm.situacaos = result;
+
+                // $scope.arrFromMyObj = Object.keys(vm.situacaos).map(function(key) {
+                // return vm.situacaos[key];
+                // });
+
+
                 vm.searchQuery = null;
             // console.log(result);
 

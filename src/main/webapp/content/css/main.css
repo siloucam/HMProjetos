@@ -41,7 +41,8 @@ Development Ribbon
 }
 
 .gray{
-    color: #6d6d6d;
+    /*color: #6d6d6d;*/
+    background: beige;
 }
 .green{
     color: green;

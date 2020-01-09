@@ -5,9 +5,9 @@
         .module('hmProjetosApp')
         .controller('SituacaoDialogController', SituacaoDialogController);
 
-    SituacaoDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Situacao', 'DescricaoSituacao', 'TipoSituacao', 'Servico', 'ExtendUser'];
+    SituacaoDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Situacao', 'DescricaoSituacao', 'TipoSituacao', 'Servico', 'ExtendUser', 'Terceiro'];
 
-    function SituacaoDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Situacao, DescricaoSituacao, TipoSituacao, Servico, ExtendUser) {
+    function SituacaoDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Situacao, DescricaoSituacao, TipoSituacao, Servico, ExtendUser, Terceiro) {
         var vm = this;
 
         vm.situacao = entity;
@@ -19,6 +19,22 @@
         vm.tiposituacaos = TipoSituacao.query();
         vm.servicos = Servico.query();
         vm.extendusers = ExtendUser.query();
+        vm.terceiros = Terceiro.query();
+
+
+
+        vm.listEnabled = false;
+        if(vm.situacao.terceiro) vm.listEnabled = true;
+
+
+        vm.disableList = function(){
+            vm.listEnabled = true;
+        }
+        vm.enableList = function(){
+            vm.listEnabled = false;
+        }
+
+
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
