@@ -95,11 +95,10 @@ public class SituacaoResource {
      */
     @GetMapping("/situacaos")
     @Timed
-    public ResponseEntity<List<Situacao>> getAllSituacaos(SituacaoCriteria criteria, Pageable pageable) {
-        log.debug("REST request to get Situacaos by criteria: {}", criteria);
-        Page<Situacao> page = situacaoQueryService.findByCriteria(criteria, pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/situacaos");
-        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    public ResponseEntity<List<Situacao>> getAllSituacaos(SituacaoCriteria criteria) {
+    	log.debug("REST request to get Situacaos by criteria: {}", criteria);
+        List<Situacao> entityList = situacaoQueryService.findByCriteria(criteria);
+        return ResponseEntity.ok().body(entityList);
     }
 
     /**

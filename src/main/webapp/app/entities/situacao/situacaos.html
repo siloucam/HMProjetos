@@ -33,7 +33,7 @@
         <div class="col-sm-6">
             <div class="form-group">
                 <label for="field_responsavel">Responsável</label>
-                <select ng-disabled="vm.terceiro" class="form-control" ng-change="gerarRelatorio()" id="field_responsavel" name="responsavel" ng-model="vm.responsavel" ng-options="extendUser as extendUser.user.firstName for extendUser in vm.extendUsers track by extendUser.id">
+                <select ng-disabled="vm.terceiro" class="form-control" ng-change="gerarRelatorio()" id="field_responsavel" name="responsavel" ng-model="vm.responsavel" ng-options="user as user.firstName for user in vm.users track by users.id">
                     <option value=""></option>
                 </select>
             </div>

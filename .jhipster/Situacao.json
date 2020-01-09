@@ -51,7 +51,7 @@
     "changelogDate": "20190217161809",
     "entityTableName": "situacao",
     "dto": "no",
-    "pagination": "infinite-scroll",
+    "pagination": "no",
     "service": "serviceClass",
     "jpaMetamodelFiltering": true
 }

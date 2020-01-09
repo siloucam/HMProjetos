@@ -2,6 +2,9 @@ package com.service;
 
 import com.domain.Situacao;
 import com.repository.SituacaoRepository;
+
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -43,9 +46,9 @@ public class SituacaoService {
      * @return the list of entities
      */
     @Transactional(readOnly = true)
-    public Page<Situacao> findAll(Pageable pageable) {
+    public List<Situacao> findAll() {
         log.debug("Request to get all Situacaos");
-        return situacaoRepository.findAll(pageable);
+        return situacaoRepository.findAll();
     }
 
     /**

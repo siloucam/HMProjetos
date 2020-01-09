@@ -5,11 +5,13 @@
         .module('hmProjetosApp')
         .controller('SituacaoController', SituacaoController);
 
-    SituacaoController.$inject = ['ExtendUser','$scope','TipoSituacao','Situacao', 'ParseLinks', 'AlertService', 'paginationConstants'];
+    SituacaoController.$inject = ['User','ExtendUser','$scope','TipoSituacao','Situacao', 'ParseLinks', 'AlertService', 'paginationConstants'];
 
-    function SituacaoController(ExtendUser, $scope, TipoSituacao, Situacao, ParseLinks, AlertService, paginationConstants) {
+    function SituacaoController(User, ExtendUser, $scope, TipoSituacao, Situacao, ParseLinks, AlertService, paginationConstants) {
 
         var vm = this;
+
+        vm.users = [];
 
         vm.situacaos = [];
         vm.tipoSituacaos = [];
@@ -25,9 +27,10 @@
 
         // loadAll();
 
+        loadAllUsers();
         loadFiltros();
 
-        loadAll();
+        // loadAll();
 
 
         $scope.printToCart = function(printSectionId) {
@@ -40,6 +43,19 @@
       }
 
 
+
+function loadAllUsers () {
+            User.query({
+            }, onUserSuccess, onUserError);
+        }
+
+        function onUserSuccess(data, headers) {
+            vm.users = data;
+        }
+
+        function onUserError(error) {
+            AlertService.error(error.data.message);
+        }
 
         $scope.gerarRelatorio = function(){
 
@@ -170,7 +186,7 @@
 
 
             if(!vm.tipo && !vm.responsavel && !vm.terceiro){
-                loadAll();
+                vm.situacaos = [];
             }
 
 
@@ -192,8 +208,6 @@
         function loadAll () {
 
             Situacao.queryAtuais({
-                page: vm.page,
-                size: vm.itemsPerPage,
                 sort: sort()
             }, onSuccess, onError);
 
@@ -206,6 +220,9 @@
             }
 
             function onSuccess(data, headers) {
+
+                console.log(data);
+
                 vm.links = ParseLinks.parse(headers('link'));
                 vm.totalItems = headers('X-Total-Count');
                 for (var i = 0; i < data.length; i++) {
