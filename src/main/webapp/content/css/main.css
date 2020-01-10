@@ -33,10 +33,7 @@ Development Ribbon
 }
 
 .bodyclass{
-    background-image: url("background.jpg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+    background: #333;
     min-height: 100vh;
 }
 

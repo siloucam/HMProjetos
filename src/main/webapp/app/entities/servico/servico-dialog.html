@@ -34,7 +34,7 @@
     <div class="col-sm-5">
       <label class="control-label"  for="field_codigo">Codigo</label>
             <input type="text" class="form-control" name="codigo" id="field_codigo"
-                    ng-model="vm.servico.codigo"
+                    ng-model="vm.servico.codigo" ng-disabled="true"
                     required/>
     </div>
     </div>
@@ -50,6 +50,16 @@
             <select class="form-control" id="field_descricao" name="descricao" ng-model="vm.servico.descricao" ng-options="descricaoServico as descricaoServico.nome for descricaoServico in vm.filtrada track by descricaoServico.id">
                 <option value=""></option>
             </select>
+        </div>
+
+        <div class="form-group">
+            <label for="field_descricao">Observação</label>
+            <input type="text" class="form-control" name="observacao_servico" id="field_observacao_servico"
+                    ng-model="vm.servico.observacao"
+                    />
+            <!-- <select class="form-control" id="field_descricao" name="descricao" ng-model="vm.servico.descricao" ng-options="descricaoServico as descricaoServico.nome for descricaoServico in vm.filtrada track by descricaoServico.id">
+                <option value=""></option>
+            </select> -->
         </div>
 
 

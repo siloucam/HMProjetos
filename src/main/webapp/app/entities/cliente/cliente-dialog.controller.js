@@ -39,7 +39,7 @@
                 var cep = vm.cliente.cep;
 
                 //Verifica se campo cep possui valor informado.
-                if (cep != "") {
+                if (vm.cliente.cep) {
 
                     //Expressão regular para validar o CEP.
                     var validacep = /^[0-9]{8}$/;
@@ -86,8 +86,8 @@
                 } //end if.
                 else {
                     //cep sem valor, limpa formulário.
-                    limpa_formulario_cep();
-                    $scope.$apply()
+                    // limpa_formulario_cep();
+                    // $scope.$apply()
                 }
 
             }
@@ -129,10 +129,16 @@
             $uibModalInstance.close(result);
             vm.isSaving = false;
 
-            if(vm.contato!=null && vm.numero!=null){
+            if(vm.tel1!=null){
                     var telefone = new Telefone();
-                    telefone.contato = vm.contato;
-                    telefone.numero = vm.numero;
+                    telefone.numero = vm.tel1;
+                    telefone.cliente = result;
+                    Telefone.save(telefone);
+                }
+
+                if(vm.tel2!=null){
+                    var telefone = new Telefone();
+                    telefone.numero = vm.tel2;
                     telefone.cliente = result;
                     Telefone.save(telefone);
                 }
