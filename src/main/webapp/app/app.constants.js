@@ -5,6 +5,6 @@
         .module('hmProjetosApp')
         .constant('VERSION', "0.0.1-SNAPSHOT")
         .constant('DEBUG_INFO_ENABLED', false)
-        .constant('BUILD_TIMESTAMP', 1579549464384)
+        .constant('BUILD_TIMESTAMP', 1579803892968)
 ;
 })();
