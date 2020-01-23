@@ -15,6 +15,11 @@
                 method: 'GET',
                 isArray: true
             },
+            'queryFilterCliente': {
+                url: 'api/servicos/?clienteNome.contains=:nome',
+                method: 'GET',
+                isArray: true
+            },
             'queryByCodigo': {
                 url: 'api/servicos/?codigo.equals=:codigo',
                 method: 'GET',

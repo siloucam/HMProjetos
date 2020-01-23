@@ -53,6 +53,38 @@
             // });
         }
 
+        $scope.FiltrarCliente = function(){
+
+
+
+            // Servico.queryFilterCliente({nome: vm.filtrocliente}, function(result){
+
+
+            //      console.log(result);
+            //     vm.servicos = result;                
+            // })
+
+            // Servico.query(function(result) {
+
+            //     var clientesfiltrados = [];
+
+            //     if(vm.filtro!=null){
+            //     for(var i=0;i<result.length;i++){
+
+            //     // console.log(result[i].nome + " inclui " + vm.filtro + "?");
+            //     // console.log(result[i].nome.includes(vm.filtro));
+
+            //     if(result[i].codigo.toLowerCase().includes(vm.filtro.toLowerCase()) || result[i].cliente.nome.toLowerCase().includes(vm.filtro.toLowerCase())){
+            //         clientesfiltrados.push(result[i]);
+            //     }
+            //     }
+            // }
+
+            //     vm.servicos = clientesfiltrados;
+            //     vm.searchQuery = null;
+            // });
+        }
+
         function loadAll () {
             Servico.query({
                 page: vm.page,

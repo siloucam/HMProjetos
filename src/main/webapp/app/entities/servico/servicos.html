@@ -10,19 +10,24 @@
                         Criar novo Serviço
                     </span>
                 </button> -->
-            </div>
-            <div class="col-xs-4">
-                
-                
-                    
-            </div>
-            <div class="col-xs-4 no-padding-right">
 
                 <div class="glyphicon glyphicon-search"></div>
-                <input type="text" placeholder="Buscar" class="form-control" name="filtro" id="field_nome"
-                    ng-model="vm.filtro" ng-change="Filtrar()" style="width: 80%; display: inline-block;" 
+                <input type="text" placeholder="Buscar por Código" class="form-control" name="filtro" id="field_nome"
+                    ng-model="vm.filtro" ng-model-options='{ debounce: 1000 }' ng-change="Filtrar()" style="width: 80%; display: inline-block;" 
                     />
 
+            </div>
+            <div class="col-xs-4">
+                   
+            </div>
+            <div class="col-xs-4 no-padding-right">
+<!-- 
+                <div class="glyphicon glyphicon-search"></div>
+                <input type="text" placeholder="Buscar por Cliente" class="form-control" name="filtrocliente" id="field_nomeCliente"
+                    ng-model="vm.filtrocliente" ng-model-options='{ debounce: 1000 }' ng-change="FiltrarCliente()" style="width: 80%; display: inline-block;" 
+                    /> -->
+
+                
             </div>
         </div>
     </div>

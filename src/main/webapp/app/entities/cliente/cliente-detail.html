@@ -99,10 +99,11 @@
         <table class="jh-table table table-striped">
             <thead>
                 <tr>
-                    <th style="min-width:120px"><span>Codigo</span></th>
+                    <th><span>Codigo</span></th>
                     <th><span>Descricao</span></th>
-                    <th style="min-width:100px"><span>Endereço</span></th>
-                    <th style="min-width:100px"><span>Bairro</span></th>
+                    <th><span>Endereço</span></th>
+                    <th><span>Bairro</span></th>
+                    <th><span>Última Situação</span></th>
                      <th></th>
                 </tr>
             </thead>
@@ -113,6 +114,7 @@
                     <td>{{servico.descricao.nome}}</td>
                         <td>{{servico.endereco}}</td>
                         <td>{{servico.bairro}}</td>
+                        <td>{{servico.situacaos.tipo.nome}}</td>
                         <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"

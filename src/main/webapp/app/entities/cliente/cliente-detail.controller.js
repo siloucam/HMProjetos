@@ -5,9 +5,9 @@
     .module('hmProjetosApp')
     .controller('ClienteDetailController', ClienteDetailController);
 
-    ClienteDetailController.$inject = ['$http','$uibModal','$log','$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Cliente', 'Telefone', 'Servico'];
+    ClienteDetailController.$inject = ['$http','$uibModal','$log','$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Cliente', 'Telefone', 'Servico', 'Situacao'];
 
-    function ClienteDetailController($http, $uibModal, $log, $scope, $rootScope, $stateParams, previousState, entity, Cliente, Telefone, Servico) {
+    function ClienteDetailController($http, $uibModal, $log, $scope, $rootScope, $stateParams, previousState, entity, Cliente, Telefone, Servico, Situacao) {
         var vm = this;
 
         vm.cliente = entity;
@@ -15,6 +15,7 @@
 
         vm.telefones = [];
         vm.servicos = [];
+        vm.situacaos = [];
 
         loadAll();
 
@@ -31,7 +32,34 @@
             Servico.queryByCliente({Cid: vm.cliente.id}, function(result) {
                 vm.servicos = result;
                 vm.searchQuery = null;
+
+                for (var i = vm.servicos.length - 1; i >= 0; i--) {
+
+                    vm.servicos[i].situacaos = [];
+                    console.log(vm.servicos[i]);
+
+                Situacao.queryByServico({Cid: vm.servicos[i].id}, function(result){
+                    // console.log(result);
+                    var lastItem = result.pop();
+                    // vm.situacaos.push(lastItem);
+
+                    for (var i = vm.servicos.length - 1; i >= 0; i--) {
+                        console.log(vm.servicos[i].id);
+                        console.log(lastItem.servico.id);
+                        if(vm.servicos[i].id == lastItem.servico.id){
+                            vm.servicos[i].situacaos = lastItem;
+                        }
+                    }
+
+                    console.log(vm.servicos);
+
+                });
+            }
+
             });
+
+
+            
 
         }
 
