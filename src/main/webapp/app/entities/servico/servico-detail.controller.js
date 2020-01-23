@@ -5,14 +5,19 @@
     .module('hmProjetosApp')
     .controller('ServicoDetailController', ServicoDetailController);
 
-    ServicoDetailController.$inject = ['$timeout','$window','$uibModal','$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Servico', 'Situacao', 'Transacao', 'DescricaoServico', 'Cliente', 'TipoSituacao', 'CodigoPrefeitura','LinkExterno'];
+    ServicoDetailController.$inject = ['$timeout','$window','$uibModal','$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Servico', 'Situacao', 'Transacao', 'DescricaoServico', 'Cliente', 'TipoSituacao', 'CodigoPrefeitura','LinkExterno','Telefone'];
 
-    function ServicoDetailController($timeout, $window, $uibModal,$scope, $rootScope, $stateParams, previousState, entity, Servico, Situacao, Transacao, DescricaoServico, Cliente, TipoSituacao, CodigoPrefeitura, LinkExterno) {
+    function ServicoDetailController($timeout, $window, $uibModal,$scope, $rootScope, $stateParams, previousState, entity, Servico, Situacao, Transacao, DescricaoServico, Cliente, TipoSituacao, CodigoPrefeitura, LinkExterno, Telefone) {
         var vm = this;
 
         vm.naoachou = true;
 
         vm.servico = entity;
+
+        console.log(vm.servico);
+
+        vm.telefones = [];
+
         vm.previousState = previousState.name;
 
         vm.codigozao =  vm.servico.codigo;
@@ -30,6 +35,8 @@
         vm.prefeituraFail = false;
 
         vm.arrFromMyObj;
+
+        $scope.date = new Date();
 
         // $scope.arrFromMyObj = Object.keys(myObj).map(function(key) {
         // return myObj[key];
@@ -294,6 +301,11 @@
                 // console.log(result);
                 calculaSaldo();
             });
+
+            Telefone.queryByCliente({Cid: vm.servico.cliente.id}, function(result) {
+                vm.telefones = result;
+                vm.searchQuery = null;
+            });
             
             Situacao.queryByServico({Cid: vm.servico.id}, function(result) {
 
@@ -308,6 +320,7 @@
             // console.log(result);
 
             console.log(vm.situacaos);
+            console.log(vm.servico.cliente);
 
         });
 
@@ -545,6 +558,51 @@
 
             });
         }
+
+        $scope.printToCart = function(printSectionId) {
+
+
+        if(printSectionId == 'requerimento'){
+
+        document.getElementById(printSectionId).style.display = 'block';
+        var innerContents = document.getElementById(printSectionId).outerHTML;
+
+        var popupWinindow = window.open('', '_blank', 'scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
+        popupWinindow.document.open();
+        popupWinindow.document.write("<html><head><link rel='stylesheet' href='content/css/main.css'></head><body>" + innerContents + '</html>');
+        popupWinindow.document.close();
+
+        document.getElementById(printSectionId).style.display = 'none';
+
+        }else{
+
+        document.getElementById(printSectionId).style.display = 'block';
+        var innerContents = document.getElementById(printSectionId).outerHTML;
+
+        var popupWinindow = window.open('', '_blank', 'scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
+        popupWinindow.document.open();
+        popupWinindow.document.write("<html><head><link rel='stylesheet' href='content/css/main.css'><link rel='stylesheet' href='bower_components/bootstrap/dist/css/bootstrap.css'><link rel='stylesheet' href='bower_components/angular-loading-bar/build/loading-bar.css'></head><body onload='window.print()'>" + innerContents + '</html>');
+        popupWinindow.document.close();
+
+        document.getElementById(printSectionId).style.display = 'none';
+
+        }
+        // window.print();
+      }
+
+       $scope.printRequerimento = function(printSectionId) {
+
+        document.getElementById(printSectionId).style.display = 'block';
+        var innerContents = document.getElementById(printSectionId).outerHTML;
+
+        var popupWinindow = window.open('', '_blank', 'scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
+        popupWinindow.document.open();
+        popupWinindow.document.write("<html><head><link rel='stylesheet' href='content/css/main.css'></head><body>" + innerContents + '</html>');
+        popupWinindow.document.close();
+
+        document.getElementById(printSectionId).style.display = 'none';
+        // window.print();
+      }
 
         var unsubscribe = $rootScope.$on('hmProjetosApp:servicoUpdate', function(event, result) {
             vm.servico = result;

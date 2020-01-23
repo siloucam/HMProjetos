@@ -1,3 +1,16 @@
+<button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="cliente-detail.edit({id:vm.cliente.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+
+<div style="height: 30px;"></div>  
+
 
 <div>
     <h2><span></span> {{vm.cliente.nome}}</h2>
@@ -56,6 +69,11 @@
                                 <span class="glyphicon glyphicon-remove-circle"></span>
                                 <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
                             </button>
+                            <button ng-click="editTel({id:telefone.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
+                            </button>
                         </div>
                     </td>
                 </tr>
@@ -83,8 +101,8 @@
                 <tr>
                     <th style="min-width:120px"><span>Codigo</span></th>
                     <th><span>Descricao</span></th>
-                    <th style="min-width:100px"><span>Inicio</span></th>
-                    <th style="min-width:100px"><span>Fim</span></th>
+                    <th style="min-width:100px"><span>Endereço</span></th>
+                    <th style="min-width:100px"><span>Bairro</span></th>
                      <th></th>
                 </tr>
             </thead>
@@ -93,8 +111,8 @@
                     
                     <td><a ui-sref="servico-detail({id:servico.id})">{{servico.codigo}}</a></td>
                     <td>{{servico.descricao.nome}}</td>
-                        <td>{{servico.inicio | date:'mediumDate'}}</td>
-                        <td>{{servico.fim | date:'mediumDate'}}</td>
+                        <td>{{servico.endereco}}</td>
+                        <td>{{servico.bairro}}</td>
                         <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"
@@ -112,25 +130,9 @@
     </div>
 </div>
 </dd>
-
-
-
-
-
-
-
-
-
     </dl>
 
-    <button type="submit"
-            ui-sref="{{ vm.previousState }}"
-            class="btn btn-info">
-        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
-    </button>
-
-    <button type="button" ui-sref="cliente-detail.edit({id:vm.cliente.id})" class="btn btn-primary">
-        <span class="glyphicon glyphicon-pencil"></span>
-        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
-    </button>
+    
 </div>
+
+

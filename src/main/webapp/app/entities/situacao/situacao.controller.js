@@ -62,9 +62,9 @@ function loadAllUsers () {
             vm.situacaos = [];
 
             console.log("Gerando relatório com:")
-            console.log("Tipo: " + vm.tipo);
-            console.log("Responsavel: " + vm.responsavel);
-            console.log("Terceiro: " + vm.terceiro);
+            console.log(vm.tipo);
+            console.log(vm.responsavel);
+            console.log(vm.terceiro);
 
             if(vm.tipo && !vm.responsavel && !vm.terceiro){
 

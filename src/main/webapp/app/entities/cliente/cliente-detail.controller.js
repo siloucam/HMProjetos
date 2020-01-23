@@ -52,27 +52,7 @@
             return tem;
         };
 
-        $scope.deleteTel = function(Id) {
-            $uibModal.open({
-                templateUrl: 'app/entities/telefone/telefone-delete-dialog.html',
-                controller: 'TelefoneDeleteController',
-                controllerAs: 'vm',
-                size: 'md',
-                resolve: {
-                    entity: ['Telefone', function(Telefone) {
-                        return Telefone.get(Id).$promise;
-                    }]
-                }
-            }).result.then(function() {
-                vm.telefones = [];
-                Telefone.delete(Id);
-                loadAll();
-            }, function() {
-
-            });
-        };
-
-        $scope.newTel = function(){
+           $scope.newTel = function(){
             $uibModal.open({
                 templateUrl: 'app/entities/cliente/cliente-telefone-dialog.html',
                 controller: 'ClienteTelefoneDialogController',
@@ -96,6 +76,48 @@
             }, function() {
 
             });
+        }
+
+
+        $scope.deleteTel = function(Id) {
+            $uibModal.open({
+                templateUrl: 'app/entities/telefone/telefone-delete-dialog.html',
+                controller: 'TelefoneDeleteController',
+                controllerAs: 'vm',
+                size: 'md',
+                resolve: {
+                    entity: ['Telefone', function(Telefone) {
+                        return Telefone.get(Id).$promise;
+                    }]
+                }
+            }).result.then(function() {
+                vm.telefones = [];
+                Telefone.delete(Id);
+                loadAll();
+            }, function() {
+
+            });
+        };
+
+     
+        $scope.editTel = function(Id){
+            $uibModal.open({
+                    templateUrl: 'app/entities/cliente/cliente-telefone-dialog.html',
+                    controller: 'ClienteTelefoneDialogController',
+                    controllerAs: 'vm',
+                    size: 'md',
+                    resolve: {
+                        entity: ['Telefone', function(Telefone) {
+                            return Telefone.get(Id).$promise;
+                        }]
+                    }
+                }).result.then(function() {
+                    vm.servicos = [];
+                    vm.telefones = [];
+                    loadAll();
+                }, function() {
+                    
+                });
         }
 
         $scope.newServico = function(){

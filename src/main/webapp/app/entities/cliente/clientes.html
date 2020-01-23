@@ -31,24 +31,24 @@
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
                     <!-- <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th> -->
-                    <th jh-sort-by="nome"><span data-translate="hmProjetosApp.cliente.nome">Nome</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <!-- <th jh-sort-by="endereco"><span data-translate="hmProjetosApp.cliente.endereco">Endereco</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="bairro"><span data-translate="hmProjetosApp.cliente.bairro">Bairro</span> <span class="glyphicon glyphicon-sort"></span></th> -->
+                    <th jh-sort-by="nome"><span data-translate="hmProjetosApp.cliente.nome">Nome</span><span style="padding-left: 5px;" class="glyphicon glyphicon-sort"></span></th>
+                    <th>Endereco</th>
+                    <th>Bairro</th>
                    <!--  <th jh-sort-by="cidade"><span data-translate="hmProjetosApp.cliente.cidade">Cidade</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="estado"><span data-translate="hmProjetosApp.cliente.estado">Estado</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="cep"><span data-translate="hmProjetosApp.cliente.cep">Cep</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="email"><span data-translate="hmProjetosApp.cliente.email">Email</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="indicacao"><span data-translate="hmProjetosApp.cliente.indicacao">Indicacao</span> <span class="glyphicon glyphicon-sort"></span></th> -->
-                    <!-- <th jh-sort-by="documento"><span data-translate="hmProjetosApp.cliente.documento">Documento</span> --><!--  <span class="glyphicon glyphicon-sort"></span> --></th>
+                    <!-- <th jh-sort-by="documento"><span data-translate="hmProjetosApp.cliente.documento">Documento</span> --><!--  <span class="glyphicon glyphicon-sort"></span> -->
                     <th></th>
                 </tr>
             </thead>
             <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
                 <tr ng-repeat="cliente in vm.clientes track by cliente.id">
-                    <!-- <td><a ui-sref="cliente-detail({id:cliente.id})">{{cliente.id}}</a></td> -->
-                    <td>{{cliente.nome}}</td>
-                    <!-- <td>{{cliente.endereco}}</td>
-                    <td>{{cliente.bairro}}</td> -->
+                    <td><a ui-sref="cliente-detail({id:cliente.id})">{{cliente.nome}}</a></td>
+                    <!-- <td>{{cliente.nome}}</td> -->
+                    <td>{{cliente.endereco}}</td>
+                    <td>{{cliente.bairro}}</td>
                     <!-- <td>{{cliente.cidade}}</td>
                     <td>{{cliente.estado}}</td> -->
                     <!-- <td>{{cliente.cep}}</td> -->

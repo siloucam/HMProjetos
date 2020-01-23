@@ -28,6 +28,8 @@
         /* function */
          $scope.Filtrar = function(){
 
+            console.log(vm.filtro);
+
             Cliente.queryFilter({filtro: vm.filtro}, function(result){
                 vm.clientes = result;                
             })
