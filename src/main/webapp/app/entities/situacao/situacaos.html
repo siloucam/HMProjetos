@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-sm-12" style="margin-top: 20px;
             margin-bottom: 10px;"><h2 style="    display: inline;
-            ">Relatório por Situação</h2>
+            ">Relatórios</h2>
 
             <button class="btn btn-default" style="float: right;    display: inline;
             " ng-click="printToCart('toPrint')">
@@ -33,16 +33,31 @@
         <div class="col-sm-6">
             <div class="form-group">
                 <label for="field_responsavel">Responsável</label>
-                <select ng-disabled="vm.terceiro" class="form-control" ng-change="gerarRelatorio()" id="field_responsavel" name="responsavel" ng-model="vm.responsavel" ng-options="user as user.firstName for user in vm.users track by users.id">
+                <select ng-disabled="vm.terceiro" class="form-control" ng-model="vm.responsavel" ng-change="gerarRelatorio()" id="field_responsavel" name="responsavel"  ng-options="user as user.firstName for user in vm.users track by user.id">
                     <option value=""></option>
                 </select>
             </div>
         </div>
         <div class="col-sm-6">
-            <div class="form-group">
+
+            <div class="input-group form-group">
+                         <select ng-disabled="vm.responsavel" ng-if="!vm.listEnabled" ng-change="gerarRelatorio()" class="form-control" id="field_terceiro_select" name="terceiro_select" ng-model="vm.terceiro" ng-options="terceiro.nome as terceiro.nome for terceiro in vm.terceiros track by terceiro.id">
+                        <option value=""></option>
+                        </select>
+                        <input ng-disabled="vm.responsavel" ng-if="vm.listEnabled" ng-change="gerarRelatorio()" ng-model-options='{ debounce: 1000 }' type="text" class="form-control" name="terceiro" id="field_terceiro"
+                    ng-model="vm.terceiro"
+                    />
+                        <span class="input-group-btn">
+                            <button type="button" ng-if="vm.listEnabled" class="btn btn-default" ng-click="vm.enableList()"><i class="glyphicon glyphicon-tasks"></i></button>
+                            <button type="button" ng-if="!vm.listEnabled" class="btn btn-default" ng-click="vm.disableList()"><i class="glyphicon glyphicon-pencil"></i></button>
+                        </span>
+                    </div>
+
+            <!-- <div class="form-group">
                 <label for="field_terceiro">Terceiro</label>
                 <input ng-disabled="vm.responsavel" ng-change="gerarRelatorio()" ng-model-options='{ debounce: 1000 }' type="text" class="form-control" id="field_terceiro" name="terceiro" ng-model="vm.terceiro"/>
-            </div>
+                <option value=""></option>
+            </div> -->
         </div>
 
     </div>
@@ -85,16 +100,16 @@
 <br/>
 <div class="table-responsive" id="toPrint">
 
-    <h2><span ng-if="vm.tipo"> {{vm.tipo.nome}} </span><span style="float: right;" ng-if="vm.terceiro"> {{vm.terceiro}} </span><span style="float: right;padding-right: 10px" ng-if="vm.responsavel"> {{vm.responsavel.user.firstName}} </span></h2>
+    <h2><span ng-if="vm.tipo"> {{vm.tipo.nome}} </span><span style="float: right;" ng-if="vm.terceiro"> {{vm.terceiro}} </span><span style="float: right;padding-right: 10px" ng-if="vm.responsavel"> {{vm.responsavel.firstName}} </span></h2>
 
     <table class="jh-table table table-striped">
         <thead>
             <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
                 <!-- <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th> -->
 
-                <th><span>Tipo</span></span></th>
+                <th ng-if="!vm.tipo"><span>Tipo</span></span></th>
 
-                <th jh-sort-by="servico.id"><span>Serviço</span></span></th>
+                <th jh-sort-by="servico.id"  width="130" style="width: 130px;"><span>Serviço</span></span></th>
 
                 <!-- <th jh-sort-by="tipo.id"><span data-translate="hmProjetosApp.situacao.tipo">Tipo</span> <span class="glyphicon glyphicon-sort"></span></th> -->
 
@@ -102,14 +117,16 @@
 
                 <th jh-sort-by="observacao"><span>Descrição</span></th>
                 <!-- <th jh-sort-by="terceiro"><span data-translate="hmProjetosApp.situacao.terceiro">Terceiro</span> <span class="glyphicon glyphicon-sort"></span></th> -->
+                <th ng-if="vm.tipo"><span>Responsável</span></th>
                 <th jh-sort-by="dtinicio"><span>Data Inicio</span> <span class="glyphicon glyphicon-sort"></span></th>
                 <!-- <th jh-sort-by="dtfim"><span>Data Fim</span> <span class="glyphicon glyphicon-sort"></span></th> -->
-                <th jh-sort-by="dtestipulada"  ng-if="vm.responsavel"><span>Data Estipulada</span> <span class="glyphicon glyphicon-sort"></span></th>
+                <th jh-sort-by="dtestipulada"  ng-if="vm.responsavel || vm.tipo"><span>Data Estipulada</span> <span class="glyphicon glyphicon-sort"></span></th>
+                 <!-- <th jh-sort-by="dtestipulada"  ng-if="vm.tipo"><span>Data Estipulada</span> <span class="glyphicon glyphicon-sort"></span></th> -->
                 <!-- <th jh-sort-by="descricao.id"><span data-translate="hmProjetosApp.situacao.descricao">Descricao</span> <span class="glyphicon glyphicon-sort"></span></th> -->
 
-
-                <th ng-if="vm.responsavel"><span>Responsável</span></th>
-                <th ng-if="vm.terceiro"><span>Terceiro</span></th>
+                
+                <!-- <th ng-if="vm.responsavel"><span>Responsável</span></th> -->
+                <th ng-if="!vm.terceiro && (vm.tipo.id==5 || vm.tipo.id==8)"><span>Terceiro</span></th>
                 <th></th>
             </tr>
         </thead>
@@ -117,7 +134,7 @@
             <tr ng-repeat="situacao in vm.situacaos track by situacao.id">
                 <!-- <td><a ui-sref="situacao-detail({id:situacao.id})">{{situacao.id}}</a></td> -->
 
-                <td>
+                <td ng-if="!vm.tipo">
                     {{situacao.tipo.nome}}
                 </td>
 
@@ -132,18 +149,24 @@
 
                 <td>{{situacao.observacao}}</td>
                 <!-- <td>{{situacao.terceiro}}</td> -->
+                <td ng-if="vm.tipo">
+                       {{situacao.responsavel.user.firstName}}
+                   </td>
+
                 <td>{{situacao.dtinicio | date:'shortDate'}}</td>
                 <!-- <td>{{situacao.dtfim | date:'shortDate'}}</td> -->
-                <td ng-if="vm.responsavel">{{situacao.dtestipulada | date:'shortDate'}}</td>
+                <td ng-if="vm.responsavel || vm.tipo">{{situacao.dtestipulada | date:'shortDate'}}</td>
+                 <!-- <td ng-if="vm.tipo">{{situacao.dtestipulada | date:'shortDate'}}</td> -->
                     <!-- <td>
                         <a ui-sref="descricao-situacao-detail({id:situacao.descricao.id})">{{situacao.descricao.id}}</a>
                     </td> -->
                     
 
-                    <td ng-if="vm.responsavel">
+                    <!-- <td ng-if="vm.responsavel">
                        {{situacao.responsavel.user.firstName}}
-                   </td>
-                   <td ng-if="vm.terceiro">
+                   </td> -->
+                   
+                   <td ng-if="!vm.terceiro && (vm.tipo.id==5 || vm.tipo.id==8)">
                     {{situacao.terceiro}}
                    </td>
                    <td class="text-right">
