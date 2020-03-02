@@ -5,16 +5,16 @@
         .module('hmProjetosApp')
         .controller('SituacaoController', SituacaoController);
 
-    SituacaoController.$inject = ['User','ExtendUser','$scope','TipoSituacao','Situacao', 'ParseLinks', 'AlertService', 'paginationConstants','Terceiro'];
+    SituacaoController.$inject = ['User','ExtendUser','$scope','TipoSituacao','Situacao', 'ParseLinks', 'AlertService', 'paginationConstants','Terceiro', 'CodigoPrefeitura'];
 
-    function SituacaoController(User, ExtendUser, $scope, TipoSituacao, Situacao, ParseLinks, AlertService, paginationConstants, Terceiro) {
+    function SituacaoController(User, ExtendUser, $scope, TipoSituacao, Situacao, ParseLinks, AlertService, paginationConstants, Terceiro, CodigoPrefeitura) {
 
         var vm = this;
 
         vm.users = [];
         vm.user;
         vm.responsavel = null;
-
+        vm.codigosprefeitura = [];
         vm.situacaos = [];
         vm.tipoSituacaos = [];
         vm.loadPage = loadPage;
@@ -42,6 +42,22 @@
         popupWinindow.document.write("<html><head><link rel='stylesheet' href='content/css/main.css'><link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css'><link rel='stylesheet' href='bower_components/angular-loading-bar/build/loading-bar.css'></head><body onload='window.print()'>" + innerContents + '</html>');
         popupWinindow.document.close();
         // window.print();
+      }
+
+      $scope.printCodigosPrefeitura = function(codigos){
+        var string = "[Protocolo:";
+
+        console.log(codigos);
+
+        for(var i = 0; i < codigos.length; i++){
+            console.log(codigos[i]);
+            string = string + " " + codigos[i].numero + "/" + codigos[i].ano;
+        }
+
+        string = string + "]"
+
+        return string;
+
       }
 
 
@@ -84,14 +100,55 @@
             console.log("Terceiro:");
             console.log(vm.terceiro);
 
+            function checkProtocoloSituacao(protocolo) {
+                return age >= document.getElementById("ageToCheck").value;
+              }
+
             if(vm.tipo && !vm.responsavel && !vm.terceiro){
 
                 Situacao.queryByTipo({
                     Tid:vm.tipo.id,
                     sort: sort()
                 }, function(data){
-                    console.log(data);
+                    // console.log(data);
                     vm.situacaos = data;
+
+                    if(vm.tipo.id == 8){
+                        console.log("Tem que buscar os protocolos");
+
+                        CodigoPrefeitura.query({
+                        }, onCodigoSuccess, onCodigoError);
+
+                        function onCodigoSuccess(data, headers) {
+
+                            // console.log(data);
+
+                            for(var i = 0; i < vm.situacaos.length; i++){
+
+                                var p = [];
+
+                                for(var j = 0; j < data.length; j++){
+                                    if(vm.situacaos[i].servico.id == data[j].servico.id){
+                                        p.push(data[j]);
+                                    }
+                                }
+
+                                // console.log(p);
+                                // break;
+
+                                vm.situacaos[i].protocolos = p;
+
+                            }
+
+                            console.log(vm.situacaos);
+
+                        }
+                        function onCodigoError(){
+                            console.log("Deu ruim nos protocolos");
+                        }
+
+                    }
+
                 }, function(){
                     console.log("Erro");
                 });
@@ -247,6 +304,46 @@
                 }, function(data){
                     console.log(data);
                     vm.situacaos = data;
+
+                    if(vm.tipo.id == 8){
+                        console.log("Tem que buscar os protocolos");
+
+                        CodigoPrefeitura.query({
+                        }, onCodigoSuccess, onCodigoError);
+
+                        function onCodigoSuccess(data, headers) {
+
+                            // console.log(data);
+
+                            for(var i = 0; i < vm.situacaos.length; i++){
+
+                                var p = [];
+
+                                for(var j = 0; j < data.length; j++){
+                                    if(vm.situacaos[i].servico.id == data[j].servico.id){
+                                        p.push(data[j]);
+                                    }
+                                }
+
+                                // console.log(p);
+                                // break;
+
+                                vm.situacaos[i].protocolos = p;
+
+                            }
+
+                            console.log(vm.situacaos);
+
+                        }
+                        function onCodigoError(){
+                            console.log("Deu ruim nos protocolos");
+                        }
+
+                    }
+
+
+
+
                 }, function(){
                     // console.log("Erro");
                 });

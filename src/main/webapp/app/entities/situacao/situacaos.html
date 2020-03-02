@@ -117,16 +117,16 @@
 
                 <th jh-sort-by="observacao"><span>Descrição</span></th>
                 <!-- <th jh-sort-by="terceiro"><span data-translate="hmProjetosApp.situacao.terceiro">Terceiro</span> <span class="glyphicon glyphicon-sort"></span></th> -->
-                <th ng-if="vm.tipo"><span>Responsável</span></th>
+                <th ng-if="vm.tipo && vm.tipo.id!=8"><span>Responsável</span></th>
                 <th jh-sort-by="dtinicio"><span>Data Inicio</span> <span class="glyphicon glyphicon-sort"></span></th>
                 <!-- <th jh-sort-by="dtfim"><span>Data Fim</span> <span class="glyphicon glyphicon-sort"></span></th> -->
-                <th jh-sort-by="dtestipulada"  ng-if="vm.responsavel || vm.tipo"><span>Data Estipulada</span> <span class="glyphicon glyphicon-sort"></span></th>
+                <th jh-sort-by="dtestipulada"  ng-if="vm.responsavel || (vm.tipo && vm.tipo.id!=8)"><span>Data Estipulada</span> <span class="glyphicon glyphicon-sort"></span></th>
                  <!-- <th jh-sort-by="dtestipulada"  ng-if="vm.tipo"><span>Data Estipulada</span> <span class="glyphicon glyphicon-sort"></span></th> -->
                 <!-- <th jh-sort-by="descricao.id"><span data-translate="hmProjetosApp.situacao.descricao">Descricao</span> <span class="glyphicon glyphicon-sort"></span></th> -->
 
                 
                 <!-- <th ng-if="vm.responsavel"><span>Responsável</span></th> -->
-                <th ng-if="!vm.terceiro && (vm.tipo.id==5 || vm.tipo.id==8)"><span>Terceiro</span></th>
+                <th ng-if="(vm.tipo.id==5 || vm.tipo.id==8)"><span>Terceiro</span></th>
                 <th></th>
             </tr>
         </thead>
@@ -147,15 +147,20 @@
                 </td>
 
 
-                <td>{{situacao.observacao}}</td>
+                <td>{{situacao.observacao}}
+
+                    <span ng-if="vm.tipo && vm.tipo.id==8 && situacao.protocolos.length > 0 && situacao.terceiro.includes('Prefeitura')">{{printCodigosPrefeitura(situacao.protocolos)}}</span>
+
+                </td>
+
                 <!-- <td>{{situacao.terceiro}}</td> -->
-                <td ng-if="vm.tipo">
+                <td ng-if="vm.tipo && vm.tipo.id!=8">
                        {{situacao.responsavel.user.firstName}}
                    </td>
 
                 <td>{{situacao.dtinicio | date:'shortDate'}}</td>
                 <!-- <td>{{situacao.dtfim | date:'shortDate'}}</td> -->
-                <td ng-if="vm.responsavel || vm.tipo">{{situacao.dtestipulada | date:'shortDate'}}</td>
+                <td ng-if="vm.responsavel || (vm.tipo && vm.tipo.id!=8)">{{situacao.dtestipulada | date:'shortDate'}}</td>
                  <!-- <td ng-if="vm.tipo">{{situacao.dtestipulada | date:'shortDate'}}</td> -->
                     <!-- <td>
                         <a ui-sref="descricao-situacao-detail({id:situacao.descricao.id})">{{situacao.descricao.id}}</a>
@@ -166,7 +171,7 @@
                        {{situacao.responsavel.user.firstName}}
                    </td> -->
                    
-                   <td ng-if="!vm.terceiro && (vm.tipo.id==5 || vm.tipo.id==8)">
+                   <td ng-if="(vm.tipo.id==5 || vm.tipo.id==8)">
                     {{situacao.terceiro}}
                    </td>
                    <td class="text-right">

@@ -1,6 +1,10 @@
 <div>
     <h2>Meus Serviços</h2>
     <jhi-alert></jhi-alert>
+    <button class="btn btn-default" style="float: right;    display: inline;
+            " ng-click="printToCart('toPrint')">
+            <span class="glyphicon glyphicon-print"></span>
+        </button>
     <!-- <div class="container-fluid">
         <div class="row">
             <div class="col-xs-4 no-padding-left">
@@ -39,7 +43,7 @@
                 <!-- <th jh-sort-by="descricao.id"><span data-translate="hmProjetosApp.situacao.descricao">Descricao</span> <span class="glyphicon glyphicon-sort"></span></th> -->
 
 
-                <th jh-sort-by="responsavel.id"><span>Responsável</span></th>
+                <!-- <th jh-sort-by="responsavel.id"><span>Responsável</span></th> -->
                 <th></th>
             </tr>
         </thead>
@@ -69,10 +73,10 @@
                         <a ui-sref="descricao-situacao-detail({id:situacao.descricao.id})">{{situacao.descricao.id}}</a>
                     </td> -->
                     
-
+<!-- 
                     <td>
                      {{situacao.responsavel.user.firstName}}
-                 </td>
+                 </td> -->
                  <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                             <!-- <button type="submit"

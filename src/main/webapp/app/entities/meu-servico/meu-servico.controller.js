@@ -5,9 +5,9 @@
     .module('hmProjetosApp')
     .controller('MeuServicoController', MeuServicoController);
 
-    MeuServicoController.$inject = ['Principal','MeuServico','ExtendUser','Situacao'];
+    MeuServicoController.$inject = ['Principal','MeuServico','ExtendUser','Situacao','$scope'];
 
-    function MeuServicoController(Principal, MeuServico, ExtendUser, Situacao) {
+    function MeuServicoController(Principal, MeuServico, ExtendUser, Situacao, $scope) {
 
         var vm = this;
 
@@ -40,6 +40,15 @@
 
             });
         }
+
+        $scope.printToCart = function(printSectionId) {
+            var innerContents = document.getElementById(printSectionId).outerHTML;
+            var popupWinindow = window.open('', '_blank', 'scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
+            popupWinindow.document.open();
+            popupWinindow.document.write("<html><head><link rel='stylesheet' href='content/css/main.css'><link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css'><link rel='stylesheet' href='bower_components/angular-loading-bar/build/loading-bar.css'></head><body onload='window.print()'><h2>Serviços "+ vm.account.firstName +"</h2>" + innerContents + '</html>');
+            popupWinindow.document.close();
+            // window.print();
+          }
 
         function loadAll() {
 

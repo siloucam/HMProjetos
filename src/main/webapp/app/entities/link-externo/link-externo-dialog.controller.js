@@ -14,6 +14,7 @@
         vm.clear = clear;
         vm.save = save;
         vm.servicos = Servico.query();
+        vm.iptu = null;
 
         var iptu;
 
@@ -30,10 +31,10 @@
             //cria link pro IPTU
             if(vm.linkExterno.nome){
 
-                iptu = vm.linkExterno.nome;
+                vm.iptu = vm.linkExterno.nome;
 
                 vm.linkExterno.link = "http://www2.cachoeiro.es.gov.br:8080/ZimWeb/servlet/ZII?connection=producao&program=pwci001&vudTipoDocum=9&vudNoDocum="+iptu+"&vexercicio=2019";
-                vm.linkExterno.nome = "IPTU"
+                vm.linkExterno.nome = "IPTU " +  vm.iptu;
             }else{
                 vm.linkExterno.nome = vm.linkExterno.link;
             }
@@ -50,7 +51,7 @@
             $scope.$emit('hmProjetosApp:linkExternoUpdate', result);
 
             vm.linkExterno.link = "http://www2.cachoeiro.es.gov.br:8080/ZimWeb/servlet/ZII?vudTipoDocum=3&vudNoDocum="+iptu+"&debug=true&connection=producao&program=pwud001&template=%28vudTipoDocum%2CvudNoDocum%2CvudFinalidade%29&B1=Pesquisar";
-            vm.linkExterno.nome = "CND"
+            vm.linkExterno.nome = "CND " +  vm.iptu;
 
             LinkExterno.save(vm.linkExterno, onSaveSuccess, onSaveError);
 

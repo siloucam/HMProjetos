@@ -14,6 +14,8 @@
 
         vm.servico = entity;
 
+        vm.iptu = null;
+
         console.log(vm.servico);
 
         vm.telefones = [];
@@ -287,6 +289,16 @@
 
             LinkExterno.queryByServico({Cid: vm.servico.id}, function(result) {
                 vm.linkExternos = result;
+
+                for(var i = 0; i < vm.linkExternos.length; i++){
+
+                    var array = vm.linkExternos[i].nome.split(" ");
+
+                    if(array[0] == "IPTU"){
+                        vm.iptu = array[1];
+                    }
+                }
+
                 vm.searchQuery = null;
             });
 
