@@ -33,7 +33,7 @@ spring:
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
         url: jdbc:mysql://localhost:3306/hmprojetos?useUnicode=true&characterEncoding=utf8&useSSL=false
-        username: silas
+        username: root
         password: senha23
         hikari:
             data-source-properties:
@@ -129,7 +129,6 @@ jhipster:
             host: localhost
             port: 5000
             queue-size: 512
-
 
 # ===================================================================
 # Application specific properties
